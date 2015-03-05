@@ -1,12 +1,8 @@
 ﻿
 /*global require*/
-require(["esri/map"], function (Map) {
+require(["esri/arcgis/utils"], function (arcgisUtils) {
 	var map;
 
-	map = new Map("map", {
-		basemap: "hybrid",
-		center: [-120.80566406246835, 47.41322033015946],
-		zoom: 7,
-		showAttribution: true
+	arcgisUtils.createMap("719b5f02dd334bc09ba0600d27363c1d", "map").then(function (response) {
 	});
 });
