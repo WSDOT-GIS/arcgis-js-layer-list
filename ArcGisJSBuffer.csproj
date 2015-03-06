@@ -45,6 +45,7 @@
     <Content Include="Scripts\custom\buffer\units.js" />
     <Content Include="Scripts\custom\buffer\main.js" />
     <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\polyfills\custom-event-polyfill.js" />
     <Content Include="Styles\index.css" />
   </ItemGroup>
   <ItemGroup>

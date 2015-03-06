@@ -1,9 +1,27 @@
 ﻿
 /*global require*/
-require(["esri/arcgis/utils", "buffer"], function (arcgisUtils, Buffer) {
+require(["esri/arcgis/utils", "buffer"], function (arcgisUtils, BufferUI) {
 	arcgisUtils.createMap("927b5daaa7f4434db4b312364489544d", "map").then(function (response) {
 		var map = response.map;
 		var popup = map.infoWindow;
+
+		var buffer = new BufferUI(document.getElementById("buffer"));
+
+		buffer.form.addEventListener("buffer", function (e) {
+			console.debug("buffer event triggered", e);
+		});
+
+		function getSelectedFeature(e) {
+			var features = e.target.features;
+			var count = e.target.count;
+			var selectedIndex = e.target.selectedIndex;
+
+			var output = null;
+			if (features && count) {
+				output = features[selectedIndex].geometry.toJson();
+			}
+			return output;
+		}
 
 		/**
 		 * @typedef SelectionChangeEvent
@@ -11,13 +29,14 @@ require(["esri/arcgis/utils", "buffer"], function (arcgisUtils, Buffer) {
 		 */
 
 		popup.on("selection-change", function (e) {
-			console.debug("selection-change", e.target);
+			console.debug("selection-change", getSelectedFeature(e));
+			buffer.selectedGeometry = getSelectedFeature(e);
 		});
 
 		popup.on("clear-features", function (e) {
-			console.debug("clear-features", e.target);
+			console.debug("clear-features", getSelectedFeature(e));
+			buffer.selectedGeometry = getSelectedFeature(e);
 		});
 
-		var buffer = new Buffer(document.getElementById("buffer"));
 	});
 });
