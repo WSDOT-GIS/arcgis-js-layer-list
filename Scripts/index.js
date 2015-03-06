@@ -1,8 +1,21 @@
 ﻿
 /*global require*/
-require(["esri/arcgis/utils", "buffer"], function (arcgisUtils, BufferUI) {
-	var buffer = new BufferUI(document.getElementById("buffer"));
+require(["esri/config", "esri/arcgis/utils", "buffer"], function (esriConfig, arcgisUtils, BufferUI) {
+	var buffer;
 
+	// Specify CORS enabled servers.
+	["www.wsdot.wa.gov", "wsdot.wa.gov", "gispublic.dfw.wa.gov"].forEach(function (svr) {
+		esriConfig.defaults.io.corsEnabledServers.push(svr);
+	});
+	// Since CORS servers are explicitly specified, CORS detection is not necessary.
+	// This prevents the following types of errors from appearing in the console:
+	// XMLHttpRequest cannot load http://gis.rita.dot.gov/ArcGIS/rest/info?f=json. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://example.com' is therefore not allowed access. 
+	esriConfig.defaults.io.corsDetection = false;
+	
+	// Create the Buffer UI in the specified node.
+	buffer = new BufferUI(document.getElementById("buffer"));
+
+	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap("927b5daaa7f4434db4b312364489544d", "map").then(function (response) {
 		var map = response.map;
 		var popup = map.infoWindow;
@@ -13,6 +26,14 @@ require(["esri/arcgis/utils", "buffer"], function (arcgisUtils, BufferUI) {
 			console.debug("buffer event triggered", e);
 		});
 
+		/**
+		 * Gets the currently selected feature.
+		 * @param {Event} e
+		 * @param {InfoWindow} e.target
+		 * @param {Graphic[]} e.target.features
+		 * @param {number} e.target.count
+		 * @param {number} e.target.selectedIndex
+		 */
 		function getSelectedFeature(e) {
 			var features = e.target.features;
 			var count = e.target.count;

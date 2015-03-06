@@ -22,11 +22,18 @@
     flex-grow: 1;
 }
 
-.buffer-ui input, .buffer-ui select {
-    display: block;
-    width: 100%;
-}
-
 .buffer-ui {
     padding: 0.5em;
+}
+
+.buffer-ui fieldset > ul {
+    list-style: none;
+    padding: 0;
+    margin: auto;
+}
+
+.geometry-list:empty:after {
+    content: 'No geometries have been selected';
+    font-style: oblique;
+    color: #bb0707;
 }

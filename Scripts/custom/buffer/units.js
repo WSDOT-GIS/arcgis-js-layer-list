@@ -81,7 +81,7 @@ define(function () {
 		option.textContent = this.description;
 		option.dataset.name = this.name;
 		return option;
-	}
+	};
 
 	// Convert to Unit objects.
 	units = units.map(function (u) {
@@ -91,15 +91,17 @@ define(function () {
 	// Sort by name.
 	units = units.sort(function (a, b) {
 		if (a.name > b.name) {
-			return 1
+			return 1;
 		} else if (a.name < b.name) {
-			return -1
+			return -1;
 		} else {
 			return 0;
 		}
 	});
 
-	function createUnitSelect(defaultName) {
+
+
+	function createUnitSelectContents(defaultName) {
 		if (!defaultName) {
 			defaultName = "Foot";
 		}
@@ -115,7 +117,7 @@ define(function () {
 		var usSurveyGroup = createGroup("US Survey");
 		var nauticalGroup = createGroup("Nautical");
 		var arcGroup = createGroup("Arc");
-		var clarkesGroup = createGroup("Clarke's")
+		var clarkesGroup = createGroup("Clarke's");
 		var searsGroup = createGroup("Sears");
 		var indianGroup = createGroup("Indian");
 		var benoitGroup = createGroup("Benoit");
@@ -131,7 +133,7 @@ define(function () {
 		var benoitRe = /Benoit/i;
 
 		units.forEach(function (unit) {
-			var option = unit.toOption()
+			var option = unit.toOption();
 			if (unit.name === defaultName) {
 				option.selected = true;
 			}
@@ -157,12 +159,18 @@ define(function () {
 				frag.appendChild(option);
 			}
 		});
-		var select = document.createElement("select");
-		select.appendChild(frag);
+		return frag;
+	}
+
+	function createUnitSelect(defaultName) {
+		var frag = createUnitSelectContents(defaultName);
+		var select = select.appendChild(frag);
 		return select;
+
 	}
 
 	Unit.createUnitSelect = createUnitSelect;
+	Unit.createUnitSelectContents = createUnitSelectContents;
 	Unit.units = units;
 
 	return Unit;
