@@ -5,6 +5,10 @@
     overflow: hidden;
 }
 
+#map, #mapContainer {
+    height: 100%;
+}
+
 #flexcontainer {
     height: 100%;
     display: flex;
@@ -21,4 +25,8 @@
 .buffer-ui input, .buffer-ui select {
     display: block;
     width: 100%;
+}
+
+.buffer-ui {
+    padding: 0.5em;
 }

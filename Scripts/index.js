@@ -1,11 +1,13 @@
 ﻿
 /*global require*/
 require(["esri/arcgis/utils", "buffer"], function (arcgisUtils, BufferUI) {
+	var buffer = new BufferUI(document.getElementById("buffer"));
+
 	arcgisUtils.createMap("927b5daaa7f4434db4b312364489544d", "map").then(function (response) {
 		var map = response.map;
 		var popup = map.infoWindow;
 
-		var buffer = new BufferUI(document.getElementById("buffer"));
+		buffer.setMap(map);
 
 		buffer.form.addEventListener("buffer", function (e) {
 			console.debug("buffer event triggered", e);
@@ -18,7 +20,7 @@ require(["esri/arcgis/utils", "buffer"], function (arcgisUtils, BufferUI) {
 
 			var output = null;
 			if (features && count) {
-				output = features[selectedIndex].geometry.toJson();
+				output = features[selectedIndex].toJson();
 			}
 			return output;
 		}
