@@ -6,7 +6,27 @@
     <link href="Styles/index.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="map"></div>
+    <div id="flexcontainer">
+        <div id="map"></div>
+        <div id="tools">
+            <div id="buffer"></div>
+        </div>
+    </div>
+    <script>
+        (function(root) {
+            var dojoConfig = {
+                async: true,
+                packages: [
+                    {
+                        name: "buffer",
+                        location: root + "/Scripts/custom/buffer"
+                    }
+                ]
+
+            };
+            window.dojoConfig = dojoConfig;
+        }(location.pathname.replace(/\/[^\/]*$/, "")));
+    </script>
     <script src="//js.arcgis.com/3.12/init.js"></script>
     <script src="Scripts/index.js"></script>
 </body>

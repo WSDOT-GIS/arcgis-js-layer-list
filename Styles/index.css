@@ -1,5 +1,24 @@
-﻿html, body, #map, .map.container {
-    padding:0;
-    margin:0;
-    height:100%;
+﻿html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+#flexcontainer {
+    height: 100%;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+#flexcontainer > div:first-child {
+    flex-grow: 1;
+}
+
+.buffer-ui input, .buffer-ui select {
+    display: block;
+    width: 100%;
 }

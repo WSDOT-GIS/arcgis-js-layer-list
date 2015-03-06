@@ -42,8 +42,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="index.html" />
+    <Content Include="Scripts\custom\buffer\units.js" />
+    <Content Include="Scripts\custom\buffer\main.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Styles\index.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\custom\buffer\units.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
