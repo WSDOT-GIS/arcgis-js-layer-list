@@ -46,20 +46,27 @@ define([
 
 		this.root.appendChild(form);
 
+
 		form.onsubmit = function () {
-			var evt = new CustomEvent('buffer', {
-				detail: {
-					bufferSpatialReference: self.getBufferSpatialReference(),
-					distances: self.getDistances(),
-					geodesic: Boolean(self.form.querySelector("[name=geodesic]:checked")),
-					geometries: self.getGeometries(),
-					unionResults: Boolean(self.form.querySelector("[name=union]:checked")),
-					unit: parseInt(self.form.unit.value, 10),
-				}
-			});
-			form.dispatchEvent(evt);
+			var geometries = self.getGeometries();
+			if (geometries) {
+				var evt = new CustomEvent('buffer', {
+					detail: {
+						bufferSpatialReference: self.getBufferSpatialReference(),
+						distances: self.getDistances(),
+						geodesic: Boolean(self.form.querySelector("[name=geodesic]:checked")),
+						geometries: geometries,
+						unionResults: Boolean(self.form.querySelector("[name=union]:checked")),
+						unit: parseInt(self.form.unit.value, 10),
+					}
+				});
+				form.dispatchEvent(evt);
+			}
 			return false;
 		};
+
+		var clearGeometriesButton = this.root.querySelector("button.clear-geometries");
+		clearGeometriesButton.onclick = function () { self.clearGeometryList(); };
 
 		this.form = form;
 
@@ -129,7 +136,15 @@ define([
 			g = JSON.parse(g);
 			geometries.push(g);
 		}
+		if (geometries.length < 1) {
+			geometries = null;
+		}
 		return geometries;
+	};
+
+	BufferUI.prototype.clearGeometryList = function () {
+		var ul = this.root.querySelector(".geometry-list");
+		ul.innerHTML = "";
 	};
 
 	return BufferUI;
