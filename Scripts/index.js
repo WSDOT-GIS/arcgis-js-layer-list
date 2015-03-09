@@ -5,14 +5,11 @@ require([
 	"esri/arcgis/utils",
 	"esri/graphic",
 	"esri/geometry/jsonUtils",
-	"esri/tasks/GeometryService",
-	"esri/tasks/BufferParameters",
 	"esri/layers/FeatureLayer",
+	"esri/geometry/geometryEngineAsync",
 	"buffer",
-	"buffer/BufferLinkInfoWindow",
-	"epsg_io",
-	"dojo/text!epsg_io/WA_prj_cs.json"
-], function (esriConfig, arcgisUtils, Graphic, geometryJsonUtils, GeometryService, BufferParameters, FeatureLayer, BufferUI, BufferLinkInfoWindow, epsg_io, projections) {
+	"buffer/BufferLinkInfoWindow"
+], function (esriConfig, arcgisUtils, Graphic, geometryJsonUtils, FeatureLayer, geometryEngineAsync, BufferUI, BufferLinkInfoWindow) {
 	var buffer, bufferFeatureLayer;
 
 	bufferFeatureLayer = new FeatureLayer({
@@ -24,9 +21,6 @@ require([
 	}, {
 		className: "buffer"
 	});
-
-	projections = epsg_io.parse(projections);
-	var geometryService = new GeometryService("http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Geometry/GeometryServer");
 
 	// Specify CORS enabled servers.
 	["www.wsdot.wa.gov", "wsdot.wa.gov", "gispublic.dfw.wa.gov"].forEach(function (svr) {
@@ -40,8 +34,6 @@ require([
 	// Create the Buffer UI in the specified node.
 	buffer = new BufferUI(document.getElementById("buffer"));
 
-	buffer.addProjections(projections.results);
-
 	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap("927b5daaa7f4434db4b312364489544d", "map").then(function (response) {
 		var map = response.map;
@@ -50,17 +42,10 @@ require([
 		BufferLinkInfoWindow.addBufferLink(map.infoWindow, buffer);
 
 		buffer.form.addEventListener("buffer", function (e) {
-			var bufferParameters = new BufferParameters();
 			var detail = e.detail;
 
-			bufferParameters.bufferSpatialReference = detail.bufferSpatialReference;
-			bufferParameters.distances = detail.distances;
-			bufferParameters.geodesic = detail.geodesic;
-			bufferParameters.geometries = detail.geometries.map(geometryJsonUtils.fromJson);
-			bufferParameters.unionResults = detail.unionResults;
-			bufferParameters.unit = detail.unit;
-
-			geometryService.buffer(bufferParameters).then(function (bufferResults) {
+			geometryEngineAsync.buffer(detail.geometry, detail.distance, detail.unit, detail.unionResults).then(function (bufferResults) {
+				console.log("buffer results", bufferResults);
 				if (bufferResults) {
 					bufferFeatureLayer.suspend();
 					bufferResults.forEach(function (geometry) {
@@ -72,7 +57,6 @@ require([
 			}, function (error) {
 				console.error("buffer error", error);
 			});
-			console.debug("buffer event triggered", bufferParameters);
 		});
 	});
 });

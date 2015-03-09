@@ -20,18 +20,6 @@ define([
 		return form;
 	}
 
-	function createDataList(coordinateSystems) {
-		var dl = document.createElement("datalist");
-		var option;
-		coordinateSystems.forEach(function (cs) {
-			option = document.createElement("option");
-			option.value = cs.code;
-			option.label = cs.name;
-			dl.appendChild(option);
-		});
-		return dl;
-	}
-
 	/**
 	 * UI for the Buffer operation on an ArcGIS Server Geometry service.
 	 * @class
@@ -49,12 +37,10 @@ define([
 		form.onsubmit = function () {
 			var evt = new CustomEvent('buffer', {
 				detail: {
-					bufferSpatialReference: self.getBufferSpatialReference(),
-					distances: self.getDistances(),
-					geodesic: Boolean(self.form.querySelector("[name=geodesic]:checked")),
-					geometries: self.getGeometries(),
-					unionResults: Boolean(self.form.querySelector("[name=union]:checked")),
+					geometry: self.getGeometries(),
+					distance: self.getDistances(),
 					unit: parseInt(self.form.unit.value, 10),
+					unionResults: Boolean(self.form.querySelector("[name=union]:checked")),
 				}
 			});
 			form.dispatchEvent(evt);
@@ -80,23 +66,6 @@ define([
 			});
 		}
 		return distances;
-	};
-
-	BufferUI.prototype.getBufferSpatialReference = function () {
-		var bufferSRBox = this.form.bufferSpatialReference;
-		return bufferSRBox.value ? { wkid: parseInt(bufferSRBox.value, 10) } : null;
-	};
-
-	BufferUI.prototype.addProjections = function (projections) {
-		var datalist = this.root.querySelector("datalist");
-		if (!datalist) {
-			datalist = createDataList(projections);
-			datalist.id = "projections";
-			this.form.bufferSpatialReference.setAttribute("list", datalist.id);
-		} else {
-			throw new Error("Not implemented");
-		}
-		this.root.appendChild(datalist);
 	};
 
 	BufferUI.prototype.addFeature = function (feature) {
