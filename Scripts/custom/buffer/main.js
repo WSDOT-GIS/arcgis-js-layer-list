@@ -20,6 +20,18 @@ define([
 		return form;
 	}
 
+	function createDataList(coordinateSystems) {
+		var dl = document.createElement("datalist");
+		var option;
+		coordinateSystems.forEach(function (cs) {
+			option = document.createElement("option");
+			option.value = cs.code;
+			option.label = cs.name;
+			dl.appendChild(option);
+		});
+		return dl;
+	}
+
 	/**
 	 * UI for the Buffer operation on an ArcGIS Server Geometry service.
 	 * @class
@@ -74,6 +86,18 @@ define([
 	BufferUI.prototype.getBufferSpatialReference = function () {
 		var bufferSRBox = this.form.bufferSpatialReference;
 		return bufferSRBox.value ? { wkid: parseInt(bufferSRBox.value, 10) } : null;
+	};
+
+	BufferUI.prototype.addProjections = function (projections) {
+		var datalist = this.root.querySelector("datalist");
+		if (!datalist) {
+			datalist = createDataList(projections);
+			datalist.id = "projections";
+			this.form.bufferSpatialReference.setAttribute("list", datalist.id);
+		} else {
+			throw new Error("Not implemented");
+		}
+		this.root.appendChild(datalist);
 	};
 
 	return BufferUI;
