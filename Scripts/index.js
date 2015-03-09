@@ -9,7 +9,7 @@ require([
 ], function (esriConfig, arcgisUtils, BufferUI, epsg_io, projections) {
 	var buffer;
 
-	var projections = epsg_io.parse(projections);
+	projections = epsg_io.parse(projections);
 
 	console.debug("projections", projections);
 
