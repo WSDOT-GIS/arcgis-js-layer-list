@@ -54,6 +54,12 @@ define([
 		var clearGeometriesButton = this.root.querySelector("button.clear-geometries");
 		clearGeometriesButton.onclick = function () { self.clearGeometryList(); };
 
+		var clearGraphicsButton = this.root.querySelector("button.clear-result-graphics-button");
+		clearGraphicsButton.onclick = function () {
+			var evt = new CustomEvent('clear-graphics');
+			form.dispatchEvent(evt);
+		}
+
 		this.form = form;
 
 		this.root.appendChild(form);
