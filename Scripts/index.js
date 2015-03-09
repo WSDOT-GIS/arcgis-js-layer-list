@@ -44,10 +44,24 @@ require([
 		buffer.form.addEventListener("buffer", function (e) {
 			var detail = e.detail;
 
+			// Convert regular objects into esri/Geometry objects.
 			if (Array.isArray(detail.geometry)) {
 				detail.geometry = detail.geometry.map(geometryJsonUtils.fromJson, detail.geometry);
 			} else {
 				detail.geometry = geometryJsonUtils.fromJson(detail.geometry);
+			}
+
+			// The geometry engine requires that the number of geometries and distances be the same.
+			// If multiple distances are provided but only a single geometry, that geometry will be
+			// buffered for each distance.
+			if (Array.isArray(detail.distance) && !Array.isArray(detail.geometry)) {
+				detail.geometry = (function () {
+					var outGeoArray = [];
+					for (var i = 0, l = detail.distance.length; i < l; i += 1) {
+						outGeoArray[i] = detail.geometry;
+					}
+					return outGeoArray;
+				}());
 			}
 
 			geometryEngineAsync.buffer(detail.geometry, detail.distance, detail.unit, detail.unionResults).then(function (bufferResults) {
