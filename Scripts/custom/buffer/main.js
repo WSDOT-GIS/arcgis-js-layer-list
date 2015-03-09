@@ -41,17 +41,20 @@ define([
 		var form = getFormFromTemplate(template);
 
 		this.root = domNode;
-		this._map = null;
-		this.selectedGeometry = null;
+		////this._map = null;
+		////this.selectedGeometry = null;
 
 		this.root.appendChild(form);
 
 		form.onsubmit = function () {
 			var evt = new CustomEvent('buffer', {
 				detail: {
+					bufferSpatialReference: self.getBufferSpatialReference(),
 					distances: self.getDistances(),
+					geodesic: Boolean(self.form.querySelector("[name=geodesic]:checked")),
+					geometries: self.getGeometries(),
+					unionResults: Boolean(self.form.querySelector("[name=union]:checked")),
 					unit: parseInt(self.form.unit.value, 10),
-					spatialReference: self.getBufferSpatialReference()
 				}
 			});
 			form.dispatchEvent(evt);
@@ -63,10 +66,6 @@ define([
 		this.root.appendChild(form);
 
 	}
-
-	BufferUI.prototype.setMap = function (map) {
-		this._map = map;
-	};
 
 	/**
 	 * Gets the distances entered in the distances box.
@@ -98,6 +97,39 @@ define([
 			throw new Error("Not implemented");
 		}
 		this.root.appendChild(datalist);
+	};
+
+	BufferUI.prototype.addFeature = function (feature) {
+		var list = this.root.querySelector(".geometry-list");
+		var li = document.createElement("li");
+
+		function getGeometry(featureOrGeometry) {
+			if (featureOrGeometry.geometry) {
+				return featureOrGeometry.geometry;
+			} else if (featureOrGeometry.hasOwnProperty("x") || featureOrGeometry.hasOwnProperty("points") || featureOrGeometry.hasOwnProperty("rings") || featureOrGeometry.hasOwnProperty("paths")) {
+				return featureOrGeometry;
+			}
+		}
+
+		var geometry = getGeometry(feature);
+		if (geometry.toJson) {
+			geometry = geometry.toJson();
+		}
+		li.dataset.geometry = JSON.stringify(geometry);
+		li.textContent = "Geometry";
+		list.appendChild(li);
+	};
+
+	BufferUI.prototype.getGeometries = function () {
+		var geometries = [];
+		var listItems = this.root.querySelectorAll(".geometry-list > li");
+		var g;
+		for (var i = 0, l = listItems.length; i < l; i += 1) {
+			g = listItems[i].dataset.geometry;
+			g = JSON.parse(g);
+			geometries.push(g);
+		}
+		return geometries;
 	};
 
 	return BufferUI;

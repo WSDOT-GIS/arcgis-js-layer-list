@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="index.html" />
+    <Content Include="Scripts\custom\buffer\BufferLinkInfoWindow.js" />
     <Content Include="Scripts\custom\buffer\Templates\BufferUI.html" />
     <Content Include="Scripts\custom\buffer\Templates\BufferUI.min.html">
       <DependentUpon>BufferUI.html</DependentUpon>

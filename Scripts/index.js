@@ -3,13 +3,18 @@
 require([
 	"esri/config",
 	"esri/arcgis/utils",
+	"esri/geometry/jsonUtils",
+	"esri/tasks/GeometryService",
+	"esri/tasks/BufferParameters",
 	"buffer",
+	"buffer/BufferLinkInfoWindow",
 	"epsg_io",
 	"dojo/text!epsg_io/WA_prj_cs.json"
-], function (esriConfig, arcgisUtils, BufferUI, epsg_io, projections) {
+], function (esriConfig, arcgisUtils, geometryJsonUtils, GeometryService, BufferParameters, BufferUI, BufferLinkInfoWindow, epsg_io, projections) {
 	var buffer;
 
 	projections = epsg_io.parse(projections);
+	var geometryService = new GeometryService("http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Geometry/GeometryServer");
 
 	// Specify CORS enabled servers.
 	["www.wsdot.wa.gov", "wsdot.wa.gov", "gispublic.dfw.wa.gov"].forEach(function (svr) {
@@ -28,48 +33,32 @@ require([
 	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap("927b5daaa7f4434db4b312364489544d", "map").then(function (response) {
 		var map = response.map;
-		var popup = map.infoWindow;
 
-		buffer.setMap(map);
+		var bufferLink = BufferLinkInfoWindow.addBufferLink(map.infoWindow, buffer);
 
 		buffer.form.addEventListener("buffer", function (e) {
-			console.debug("buffer event triggered", e);
+			var bufferParameters = new BufferParameters();
+			var detail = e.detail;
+
+			bufferParameters.bufferSpatialReference = detail.bufferSpatialReference;
+			bufferParameters.distances = detail.distances;
+			bufferParameters.geodesic = detail.geodesic;
+			bufferParameters.geometries = detail.geometries.map(geometryJsonUtils.fromJson);
+			bufferParameters.unionResults = detail.unionResults;
+			bufferParameters.unit = detail.unit;
+
+			//for (var name in detail) {
+			//	if (detail.hasOwnProperty(name)) {
+			//		bufferParameters[name] = detail[name];
+			//	}
+			//}
+
+			geometryService.buffer(bufferParameters).then(function (bufferResults) {
+				console.log("buffer results", bufferResults);
+			}, function (error) {
+				console.error("buffer error", error);
+			});
+			console.debug("buffer event triggered", bufferParameters);
 		});
-
-		/**
-		 * Gets the currently selected feature.
-		 * @param {Event} e
-		 * @param {InfoWindow} e.target
-		 * @param {Graphic[]} e.target.features
-		 * @param {number} e.target.count
-		 * @param {number} e.target.selectedIndex
-		 */
-		function getSelectedFeature(e) {
-			var features = e.target.features;
-			var count = e.target.count;
-			var selectedIndex = e.target.selectedIndex;
-
-			var output = null;
-			if (features && count) {
-				output = features[selectedIndex].toJson();
-			}
-			return output;
-		}
-
-		/**
-		 * @typedef SelectionChangeEvent
-		 * @property {InfoWindow} target
-		 */
-
-		popup.on("selection-change", function (e) {
-			console.debug("selection-change", getSelectedFeature(e));
-			buffer.selectedGeometry = getSelectedFeature(e);
-		});
-
-		popup.on("clear-features", function (e) {
-			console.debug("clear-features", getSelectedFeature(e));
-			buffer.selectedGeometry = getSelectedFeature(e);
-		});
-
 	});
 });

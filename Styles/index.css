@@ -26,14 +26,14 @@
     padding: 0.5em;
 }
 
-.buffer-ui fieldset > ul {
+.buffer-options-list {
     list-style: none;
     padding: 0;
     margin: auto;
 }
 
 .geometry-list:empty:after {
-    content: 'No geometries have been selected';
+    content: 'None';
     font-style: oblique;
     color: #bb0707;
 }
