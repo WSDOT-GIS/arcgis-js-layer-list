@@ -54,6 +54,7 @@ require([
 					});
 					bufferFeatureLayer.resume();
 				}
+				buffer.clearGeometryList();
 			}, function (error) {
 				console.error("buffer error", error);
 			});
