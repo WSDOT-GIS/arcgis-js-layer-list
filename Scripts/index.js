@@ -3,15 +3,27 @@
 require([
 	"esri/config",
 	"esri/arcgis/utils",
+	"esri/graphic",
 	"esri/geometry/jsonUtils",
 	"esri/tasks/GeometryService",
 	"esri/tasks/BufferParameters",
+	"esri/layers/FeatureLayer",
 	"buffer",
 	"buffer/BufferLinkInfoWindow",
 	"epsg_io",
 	"dojo/text!epsg_io/WA_prj_cs.json"
-], function (esriConfig, arcgisUtils, geometryJsonUtils, GeometryService, BufferParameters, BufferUI, BufferLinkInfoWindow, epsg_io, projections) {
-	var buffer;
+], function (esriConfig, arcgisUtils, Graphic, geometryJsonUtils, GeometryService, BufferParameters, FeatureLayer, BufferUI, BufferLinkInfoWindow, epsg_io, projections) {
+	var buffer, bufferFeatureLayer;
+
+	bufferFeatureLayer = new FeatureLayer({
+		featureSet: null,
+		layerDefinition: {
+			geometryType: "esriGeometryPolygon",
+			fields: []
+		}
+	}, {
+		className: "buffer"
+	});
 
 	projections = epsg_io.parse(projections);
 	var geometryService = new GeometryService("http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Geometry/GeometryServer");
@@ -33,8 +45,9 @@ require([
 	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap("927b5daaa7f4434db4b312364489544d", "map").then(function (response) {
 		var map = response.map;
+		map.addLayer(bufferFeatureLayer);
 
-		var bufferLink = BufferLinkInfoWindow.addBufferLink(map.infoWindow, buffer);
+		BufferLinkInfoWindow.addBufferLink(map.infoWindow, buffer);
 
 		buffer.form.addEventListener("buffer", function (e) {
 			var bufferParameters = new BufferParameters();
@@ -47,14 +60,15 @@ require([
 			bufferParameters.unionResults = detail.unionResults;
 			bufferParameters.unit = detail.unit;
 
-			//for (var name in detail) {
-			//	if (detail.hasOwnProperty(name)) {
-			//		bufferParameters[name] = detail[name];
-			//	}
-			//}
-
 			geometryService.buffer(bufferParameters).then(function (bufferResults) {
-				console.log("buffer results", bufferResults);
+				if (bufferResults) {
+					bufferFeatureLayer.suspend();
+					bufferResults.forEach(function (geometry) {
+						var graphic = new Graphic(geometry);
+						bufferFeatureLayer.add(graphic);
+					});
+					bufferFeatureLayer.resume();
+				}
 			}, function (error) {
 				console.error("buffer error", error);
 			});
