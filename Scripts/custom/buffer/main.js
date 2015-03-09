@@ -29,9 +29,6 @@ define([
 		var form = getFormFromTemplate(template);
 
 		this.root = domNode;
-		////this._map = null;
-		////this.selectedGeometry = null;
-
 		this.root.appendChild(form);
 
 

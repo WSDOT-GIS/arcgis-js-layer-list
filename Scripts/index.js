@@ -10,13 +10,32 @@ require([
 	"buffer",
 	"buffer/BufferLinkInfoWindow"
 ], function (esriConfig, arcgisUtils, Graphic, geometryJsonUtils, FeatureLayer, geometryEngineAsync, BufferUI, BufferLinkInfoWindow) {
-	var buffer, bufferFeatureLayer;
+	var buffer, bufferFeatureLayer, oid = 0;
 
 	bufferFeatureLayer = new FeatureLayer({
 		featureSet: null,
 		layerDefinition: {
 			geometryType: "esriGeometryPolygon",
-			fields: []
+			fields: [
+				{
+					name: "oid",
+					type: "esriFieldTypeOID"
+				},
+				{
+					name: "distance",
+					type: "esriFieldTypeDouble"
+				},
+				{
+					name: "unit",
+					type: "esriFieldTypeInteger",
+					alias: "Measurement Unit ID"
+				},
+				{
+					name: "unioned",
+					type: "esriFieldTypeSmallInteger",
+					alias: "Is Unioned"
+				}
+			]
 		}
 	}, {
 		className: "buffer"
@@ -76,7 +95,12 @@ require([
 						bufferResults = [bufferResults];
 					}
 					bufferResults.forEach(function (geometry) {
-						var graphic = new Graphic(geometry);
+						var graphic = new Graphic(geometry, null, {
+							oid: oid++,
+							distance: detail.distance,
+							unit: detail.unit,
+							unioned: detail.unionResults
+						});
 						bufferFeatureLayer.add(graphic);
 					});
 					bufferFeatureLayer.resume();
