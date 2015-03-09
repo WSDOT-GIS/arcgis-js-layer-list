@@ -1,7 +1,17 @@
 ﻿
 /*global require*/
-require(["esri/config", "esri/arcgis/utils", "buffer"], function (esriConfig, arcgisUtils, BufferUI) {
+require([
+	"esri/config",
+	"esri/arcgis/utils",
+	"buffer",
+	"epsg_io",
+	"dojo/text!epsg_io/WA_prj_cs.json"
+], function (esriConfig, arcgisUtils, BufferUI, epsg_io, projections) {
 	var buffer;
+
+	var projections = epsg_io.parse(projections);
+
+	console.debug("projections", projections);
 
 	// Specify CORS enabled servers.
 	["www.wsdot.wa.gov", "wsdot.wa.gov", "gispublic.dfw.wa.gov"].forEach(function (svr) {
@@ -14,6 +24,8 @@ require(["esri/config", "esri/arcgis/utils", "buffer"], function (esriConfig, ar
 	
 	// Create the Buffer UI in the specified node.
 	buffer = new BufferUI(document.getElementById("buffer"));
+
+	buffer.addProjections(projections.results);
 
 	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap("927b5daaa7f4434db4b312364489544d", "map").then(function (response) {
