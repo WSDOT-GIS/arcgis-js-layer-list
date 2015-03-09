@@ -11,8 +11,6 @@ require([
 
 	projections = epsg_io.parse(projections);
 
-	console.debug("projections", projections);
-
 	// Specify CORS enabled servers.
 	["www.wsdot.wa.gov", "wsdot.wa.gov", "gispublic.dfw.wa.gov"].forEach(function (svr) {
 		esriConfig.defaults.io.corsEnabledServers.push(svr);

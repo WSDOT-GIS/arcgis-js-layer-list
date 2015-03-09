@@ -37,3 +37,7 @@
     font-style: oblique;
     color: #bb0707;
 }
+
+label+input, label+select {
+    display: block;
+}
