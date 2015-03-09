@@ -72,6 +72,9 @@ define([
 				return parseFloat(st);
 			});
 		}
+		if (distances.length === 1) {
+			distances = distances[0];
+		}
 		return distances;
 	};
 
@@ -107,6 +110,8 @@ define([
 		}
 		if (geometries.length < 1) {
 			geometries = null;
+		} else if (geometries.length === 1) {
+			geometries = geometries[0];
 		}
 		return geometries;
 	};

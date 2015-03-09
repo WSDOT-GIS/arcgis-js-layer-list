@@ -44,10 +44,19 @@ require([
 		buffer.form.addEventListener("buffer", function (e) {
 			var detail = e.detail;
 
+			if (Array.isArray(detail.geometry)) {
+				detail.geometry = detail.geometry.map(geometryJsonUtils.fromJson, detail.geometry);
+			} else {
+				detail.geometry = geometryJsonUtils.fromJson(detail.geometry);
+			}
+
 			geometryEngineAsync.buffer(detail.geometry, detail.distance, detail.unit, detail.unionResults).then(function (bufferResults) {
 				console.log("buffer results", bufferResults);
 				if (bufferResults) {
 					bufferFeatureLayer.suspend();
+					if (!Array.isArray(bufferResults)) {
+						bufferResults = [bufferResults];
+					}
 					bufferResults.forEach(function (geometry) {
 						var graphic = new Graphic(geometry);
 						bufferFeatureLayer.add(graphic);
