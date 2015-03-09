@@ -41,7 +41,7 @@ require([
 
 		BufferLinkInfoWindow.addBufferLink(map.infoWindow, buffer);
 
-		buffer.form.addEventListener('clear-graphics', function (e) {
+		buffer.form.addEventListener('clear-graphics', function () {
 			bufferFeatureLayer.clear();
 		});
 

@@ -58,7 +58,7 @@ define([
 		clearGraphicsButton.onclick = function () {
 			var evt = new CustomEvent('clear-graphics');
 			form.dispatchEvent(evt);
-		}
+		};
 
 		this.form = form;
 
