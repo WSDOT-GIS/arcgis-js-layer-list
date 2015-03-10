@@ -5,6 +5,7 @@ require(["esri/arcgis/utils",
 	"buffer",
 	"buffer/BufferUIHelper"
 ], function (arcgisUtils, esriConfig, BufferUI, BufferUIHelper) {
+	"use strict";
 	var buffer;
 
 	// Specify CORS enabled servers.
@@ -22,6 +23,22 @@ require(["esri/arcgis/utils",
 	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap("927b5daaa7f4434db4b312364489544d", "map").then(function (response) {
 		var map = response.map;
+		var layerId;
+
+		// Setup the Buffer UI with the map.
 		BufferUIHelper.attachBufferUIToMap(map, buffer);
+
+		// Turn on some layers that are off by default.
+		(function () {
+			var airportRe = /^((Airport)|(CityLimits))/i, layer;
+			for (var i = 0, l = map.layerIds.length; i < l; i += 1) {
+				layerId = map.layerIds[i];
+				if (airportRe.test(layerId)) {
+					layer = map.getLayer(layerId);
+					layer.show();
+				}
+			}
+		}());
+
 	});
 });
