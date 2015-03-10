@@ -49,7 +49,6 @@
     </Content>
     <Content Include="Scripts\custom\buffer\units.js" />
     <Content Include="Scripts\custom\buffer\main.js" />
-    <Content Include="Scripts\custom\epsg_io\main.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\polyfills\custom-event-polyfill.js" />
     <Content Include="Scripts\polyfills\custom-event-polyfill.min.js">
@@ -63,7 +62,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\custom\epsg_io\WA_prj_cs.json" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -85,6 +85,14 @@ require([
 					}
 					return outGeoArray;
 				}());
+			} else if (!Array.isArray(detail.distance) && Array.isArray(detail.geometry)) {
+				detail.distance = (function () {
+					var outDistanceArray = [];
+					for (var i = 0; i < detail.geometry.length; i++) {
+						outDistanceArray[i] = detail.distance;
+					}
+					return outDistanceArray;
+				}());
 			}
 
 			geometryEngineAsync.buffer(detail.geometry, detail.distance, detail.unit, detail.unionResults).then(function (bufferResults) {
