@@ -41,3 +41,22 @@
 label+input, label+select {
     display: block;
 }
+
+#githubLink {
+    text-align: center;
+    width: 126px;
+    position: absolute;
+    bottom: 47px;
+    left: -41px;
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: black;
+    padding: 0.2em 2em;
+}
+
+#githubLink > a {
+    color: white;
+}
