@@ -24,6 +24,7 @@
 
 .buffer-ui {
     padding: 0.5em;
+    max-width: 200px;
 }
 
 .buffer-options-list {
@@ -33,7 +34,8 @@
 }
 
 .geometry-list:empty:after {
-    content: 'None';
+    content: 'Select a geometry on the map, then click the "Buffer" link in the info window.';
+    width: 100px;
     font-style: oblique;
     color: #bb0707;
 }
