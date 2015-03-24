@@ -1,4 +1,4 @@
-﻿
+
 /*global require*/
 require(["esri/arcgis/utils",
 	"esri/config",

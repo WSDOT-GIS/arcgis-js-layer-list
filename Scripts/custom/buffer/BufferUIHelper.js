@@ -1,4 +1,4 @@
-﻿/*global define*/
+/*global define*/
 define([
 	"esri/graphic",
 	"esri/geometry/jsonUtils",

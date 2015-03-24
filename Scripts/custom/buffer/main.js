@@ -1,4 +1,4 @@
-﻿/*global define*/
+/*global define*/
 define([
 	"./units",
 	"dojo/text!./Templates/BufferUI.min.html"
