@@ -50,10 +50,17 @@
     <Content Include="Scripts\custom\buffer\units.js" />
     <Content Include="Scripts\custom\buffer\main.js" />
     <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\polyfills\custom-event-polyfill.js" />
+    <Content Include="Scripts\polyfills\custom-event-polyfill.min.js">
+      <DependentUpon>custom-event-polyfill.js</DependentUpon>
+    </Content>
     <Content Include="Styles\index.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
+    <Content Include="Scripts\polyfills\custom-event-polyfill.min.js.map">
+      <DependentUpon>custom-event-polyfill.min.js</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
