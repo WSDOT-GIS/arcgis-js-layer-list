@@ -514,17 +514,6 @@
 		"maxScale": 4514
 	},
 	{
-		"id": "ATR_8572",
-		"layerType": "ArcGISMapServiceLayer",
-		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Traffic/ATR/MapServer",
-		"visibility": false,
-		"visibleLayers": [0,
-		1],
-		"opacity": 1,
-		"title": "Annual Traffic Report",
-		"itemId": "5a734dbb595340e68ae7a2dd6e5218b2"
-	},
-	{
 		"id": "TribalReservationLands_3882",
 		"layerType": "ArcGISMapServiceLayer",
 		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/TribalReservationLands/MapServer",
@@ -533,15 +522,6 @@
 		"opacity": 1,
 		"title": "Tribal Reservation and Trust Lands",
 		"itemId": "6388822ea6ac4270a0194ac5a147cf14"
-	},
-	{
-		"id": "LevelOfServiceStandard_7783",
-		"layerType": "ArcGISMapServiceLayer",
-		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/CommunityPlanning/LevelOfServiceStandard/MapServer",
-		"visibility": false,
-		"opacity": 1,
-		"title": "Level of Service Standard",
-		"itemId": "3f840aeeb1ba481c905270ca103cd1db"
 	},
 	{
 		"id": "FishPassageInventoryMap_8489",
@@ -1476,15 +1456,6 @@
 				"mediaInfos": []
 			}
 		}]
-	},
-	{
-		"id": "ClimateImpactVulnerability_3340",
-		"layerType": "ArcGISMapServiceLayer",
-		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/ClimateImpactVulnerability/MapServer",
-		"visibility": false,
-		"opacity": 1,
-		"title": "Climate Impact Vulnerability",
-		"itemId": "2087a184b3344ebba99866b5adfe4e4b"
 	},
 	{
 		"id": "PavementCondition_5997",
