@@ -10,8 +10,8 @@
     <ProjectGuid>{D0D6CAD9-19EF-4684-A28A-AA836E1A7DC3}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>ArcGisJSBuffer</RootNamespace>
-    <AssemblyName>ArcGisJSBuffer</AssemblyName>
+    <RootNamespace>ArcGisJSLayerList</RootNamespace>
+    <AssemblyName>ArcGisJSLayerList</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
