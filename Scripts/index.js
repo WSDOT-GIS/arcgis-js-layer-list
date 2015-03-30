@@ -17,13 +17,16 @@ require(["esri/arcgis/utils",
 	// This prevents the following types of errors from appearing in the console:
 	// XMLHttpRequest cannot load http://gis.rita.dot.gov/ArcGIS/rest/info?f=json. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://example.com' is therefore not allowed access. 
 	esriConfig.defaults.io.corsDetection = false;
-	
+
 	// Create the Buffer UI in the specified node.
 	buffer = new BufferUI(document.getElementById("buffer"));
 
 	webmap = JSON.parse(webmap);
 
 	webmap = {
+		item: {
+			extent: [[-126.3619, 44.2285], [-114.3099, 50.0139]],
+		},
 		itemData: webmap
 	};
 
