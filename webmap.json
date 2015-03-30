@@ -1,0 +1,1981 @@
+{
+	"operationalLayers": [{
+		"id": "MetroPlanningAreas_9842",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MetroPlanningAreas/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Metropolitan Planning Areas",
+		"itemId": "eb41261114aa4802abcf7a3626f10da3"
+	},
+	{
+		"id": "RegionalTransportationPlanning_8124",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionalTransportationPlanning/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Regional Transportation Planning Organization (RTPO)",
+		"itemId": "d1de4f2d8a8348e0af97c858c7cff8ad"
+	},
+	{
+		"id": "CityLimits_4157",
+		"layerType": "ArcGISTiledMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CityLimits/MapServer",
+		"visibility": false,
+		"opacity": 0.47,
+		"title": "City Limits",
+		"itemId": "bb7c67c334be494c88cf00ebb91fe51f",
+		"minScale": 4622325,
+		"maxScale": 4513
+	},
+	{
+		"id": "CountyBoundaries_775",
+		"layerType": "ArcGISTiledMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CountyBoundaries/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "County Boundaries",
+		"itemId": "fe229f9df5aa4289b8ccd2a99289951b",
+		"minScale": 4622325,
+		"maxScale": 4513
+	},
+	{
+		"id": "RegionBoundaries_9238",
+		"layerType": "ArcGISTiledMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionBoundaries/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "WSDOT Regions",
+		"itemId": "1c0845bd12944017b3bb3631bda09e0e",
+		"minScale": 6000000,
+		"maxScale": 4513
+	},
+	{
+		"id": "Rail_9192",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/Rail/MapServer",
+		"visibility": false,
+		"visibleLayers": [0],
+		"opacity": 1,
+		"title": "Railroads",
+		"itemId": "bf6946236eac4d03a6e789559e66061a",
+		"minScale": 6000000,
+		"maxScale": 0,
+		"layers": [{
+			"id": 0,
+			"popupInfo": {
+				"title": "Rail Lines of Washingtion State: {Name}",
+				"fieldInfos": [{
+					"fieldName": "OBJECTID",
+					"label": "OBJECTID",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Rept_Mark",
+					"label": "Rept_Mark",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Name",
+					"label": "Name",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Owner",
+					"label": "Owner",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Status",
+					"label": "Status",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Abandonment",
+					"label": "Abandonment",
+					"tooltip": "",
+					"visible": false,
+					"format": {
+						"places": 0,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Shape",
+					"label": "Shape",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Shape.len",
+					"label": "Shape.len",
+					"tooltip": "",
+					"visible": false,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				}],
+				"description": null,
+				"showAttachments": true,
+				"mediaInfos": []
+			}
+		}]
+	},
+	{
+		"id": "FerryRoutes_6149",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/FerryRoutes/MapServer",
+		"visibility": false,
+		"visibleLayers": [0,
+		1],
+		"opacity": 1,
+		"title": "Ferry Routes",
+		"itemId": "9e9fabcead1a463499895f3bb7df23f0",
+		"layers": [{
+			"id": 1,
+			"popupInfo": {
+				"title": "Ferry Routes (Public & Private): {OWNER}",
+				"fieldInfos": [{
+					"fieldName": "OBJECTID",
+					"label": "OBJECTID",
+					"isEditable": false,
+					"visible": false
+				},
+				{
+					"fieldName": "SR",
+					"label": "State Route Number",
+					"isEditable": false,
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Display",
+					"label": "Route Name",
+					"isEditable": false,
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Owner",
+					"label": "Owner",
+					"isEditable": false,
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Shape",
+					"label": "Shape",
+					"isEditable": false,
+					"visible": false
+				},
+				{
+					"fieldName": "Shape.STLength()",
+					"label": "Shape.STLength()",
+					"isEditable": false,
+					"visible": false,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					}
+				}],
+				"description": null,
+				"showAttachments": false,
+				"mediaInfos": []
+			}
+		},
+		{
+			"id": 0,
+			"popupInfo": {
+				"title": "Ferry Terminals (Public & Private): {SR}",
+				"fieldInfos": [{
+					"fieldName": "OBJECTID",
+					"label": "OBJECTID",
+					"isEditable": false,
+					"visible": false
+				},
+				{
+					"fieldName": "SR",
+					"label": "State Route Number",
+					"isEditable": false,
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Description",
+					"label": "Description",
+					"isEditable": false,
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Display",
+					"label": "Terminal Name",
+					"isEditable": false,
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Owner",
+					"label": "OWNER",
+					"isEditable": false,
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Shape",
+					"label": "Shape",
+					"isEditable": false,
+					"visible": false
+				}],
+				"description": null,
+				"showAttachments": false,
+				"mediaInfos": []
+			}
+		}]
+	},
+	{
+		"id": "Airports_9022",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/Airports/MapServer",
+		"visibility": false,
+		"visibleLayers": [0],
+		"opacity": 1,
+		"title": "Airports",
+		"itemId": "ddb7c46710a44a5884a3f95dc8672fef",
+		"minScale": 6000000,
+		"maxScale": 0,
+		"layers": [{
+			"id": 0,
+			"popupInfo": {
+				"title": "Airports: {NAME}",
+				"fieldInfos": [{
+					"fieldName": "SHAPE",
+					"label": "SHAPE",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "NAME",
+					"label": "NAME",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "OBJECTID",
+					"label": "OBJECTID",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "OWNERSHIP",
+					"label": "Ownership",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "ASSOCIATED",
+					"label": "Associated City",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "ID",
+					"label": "Airport Identifier",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "STATE",
+					"label": "State Emergency Airport",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FAA_ARC",
+					"label": "FAA ARC",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "SYSTEM_PLA",
+					"label": "SYSTEM_PLA",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "DESIGNATIO",
+					"label": "Designation",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "RUNWAY_",
+					"label": "RUNWAY_",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "ELEVATION",
+					"label": "ELEVATION",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LATITUDE",
+					"label": "LATITUDE",
+					"tooltip": "",
+					"visible": false,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LONGITUDE",
+					"label": "LONGITUDE",
+					"tooltip": "",
+					"visible": false,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LineID",
+					"label": "LineID",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FAA_CLASS",
+					"label": "FAA Class",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "URL",
+					"label": "Web Link",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				}],
+				"description": null,
+				"showAttachments": true,
+				"mediaInfos": []
+			}
+		}]
+	},
+	{
+		"id": "StateRoutes_3376",
+		"layerType": "ArcGISTiledMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/StateRoutes/MapServer",
+		"visibility": true,
+		"opacity": 1,
+		"title": "State Routes",
+		"itemId": "9bb8291584784d1798018af06b7230e0"
+	},
+	{
+		"id": "MilepostValues_7245",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Milepost Values (Zoom in to View)",
+		"itemId": "03ec5ff3609f45caa849d5afa4d92e9e"
+	},
+	{
+		"id": "FreightGoods_4834",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/TruckPerformanceMeasures/FreightGoods/MapServer",
+		"visibility": false,
+		"visibleLayers": [0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6],
+		"opacity": 1,
+		"title": "Freight and Goods Transportation System",
+		"itemId": "4fe77ff9b40342cc997945b71035b1ae"
+	},
+	{
+		"id": "HSS_6740",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/HSS/MapServer",
+		"visibility": false,
+		"visibleLayers": [0],
+		"opacity": 1,
+		"title": "Highways of Statewide Significance (HSS)",
+		"itemId": "9fcb9e36ab67438dafe7b0fb0764481f"
+	},
+	{
+		"id": "WSDOTFunctionalClassMap_2063",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/FunctionalClass/WSDOTFunctionalClassMap/MapServer",
+		"visibility": false,
+		"visibleLayers": [0,
+		1,
+		2],
+		"opacity": 1,
+		"title": "Functional Class",
+		"itemId": "5fa0e9671d104edfadb7fa4e7f9ed17f"
+	},
+	{
+		"id": "NHS_6751",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/NHS/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "National Highway System Routes (NHS)",
+		"itemId": "c61c897dea214de0a8791605375475ce"
+	},
+	{
+		"id": "ScenicByways_5945",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/ScenicByways/MapServer",
+		"visibility": false,
+		"visibleLayers": [0],
+		"opacity": 1,
+		"title": "Scenic Byways",
+		"itemId": "30ff128d5ad140dba6abdb9142277ddc",
+		"minScale": 0,
+		"maxScale": 0
+	},
+	{
+		"id": "ParkAndRide_9260",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/ParkAndRide/MapServer",
+		"visibility": false,
+		"visibleLayers": [0],
+		"opacity": 1,
+		"title": "Park And Ride Lots",
+		"itemId": "c00c8a1225d54d33955bd2f54f8d1a95"
+	},
+	{
+		"id": "TribalReservationLands_4150",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/TribalReservationLands/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Tribal Planning Fact Sheets (Click on reservation)",
+		"itemId": "81e4aafd20f645169f9d0a3bc5fa776e"
+	},
+	{
+		"id": "CountyBoundaries_8960",
+		"layerType": "ArcGISTiledMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CountyBoundaries/MapServer",
+		"visibility": false,
+		"opacity": 0.72,
+		"title": "County Planning Fact Sheet (Click County to Open)",
+		"itemId": "ac87f36d55934a3b918dcce7ae1a3a98",
+		"minScale": 6000000,
+		"maxScale": 4513.988705
+	},
+	{
+		"id": "CityLimits_1499",
+		"layerType": "ArcGISTiledMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CityLimits/MapServer",
+		"visibility": false,
+		"opacity": 0.31999999999999995,
+		"title": "City Planning Fact Sheets (Click City to Open)",
+		"itemId": "c5007cbb98904dbbbf3d193a2aa136c6",
+		"minScale": 6000000,
+		"maxScale": 4514
+	},
+	{
+		"id": "ATR_8572",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Traffic/ATR/MapServer",
+		"visibility": false,
+		"visibleLayers": [0,
+		1],
+		"opacity": 1,
+		"title": "Annual Traffic Report",
+		"itemId": "5a734dbb595340e68ae7a2dd6e5218b2"
+	},
+	{
+		"id": "TribalReservationLands_3882",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/TribalReservationLands/MapServer",
+		"visibility": false,
+		"visibleLayers": [0],
+		"opacity": 1,
+		"title": "Tribal Reservation and Trust Lands",
+		"itemId": "6388822ea6ac4270a0194ac5a147cf14"
+	},
+	{
+		"id": "LevelOfServiceStandard_7783",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/CommunityPlanning/LevelOfServiceStandard/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Level of Service Standard",
+		"itemId": "3f840aeeb1ba481c905270ca103cd1db"
+	},
+	{
+		"id": "FishPassageInventoryMap_8489",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://gispublic.dfw.wa.gov/arcgis/rest/services/ApplicationServices/FishPassageInventoryMap/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Fish Passage Barriers",
+		"itemId": "854425bb0db545e680464f46dcde65c2",
+		"layers": [{
+			"id": 0,
+			"popupInfo": {
+				"title": "Road Crossings: {Road_Name}",
+				"fieldInfos": [{
+					"fieldName": "OBJECTID",
+					"label": "OBJECTID",
+					"tooltip": "",
+					"visible": false,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "SiteRec_Id",
+					"label": "SiteRec_Id",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Fish_Passage_ID",
+					"label": "Fish_Passage_ID",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Site_Num",
+					"label": "Site_Num",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LatWGS84_Meas",
+					"label": "LatWGS84_Meas",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LongWGS84_Meas",
+					"label": "LongWGS84_Meas",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Road_Name",
+					"label": "Road_Name",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "MilePost_Meas",
+					"label": "MilePost_Meas",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "County",
+					"label": "County",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LLID_Num",
+					"label": "LLID_Num",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Stream_Name",
+					"label": "Stream_Name",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "TribTo_Name",
+					"label": "TribTo_Name",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "WRIA_Num",
+					"label": "WRIA_Num",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FishUse_Desc",
+					"label": "FishUse_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FUCriteria_Desc",
+					"label": "FUCriteria_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Feature_Desc",
+					"label": "Feature_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Barrier_Status_Desc",
+					"label": "Barrier_Status_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Blockage_Desc",
+					"label": "Blockage_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FW_Present",
+					"label": "FW_Present",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Survey_Date",
+					"label": "Survey_Date",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"dateFormat": "longMonthDayYear"
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Owner_Type_Desc",
+					"label": "Owner_Type_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Data_Source",
+					"label": "Data_Source",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Shape",
+					"label": "Shape",
+					"tooltip": "",
+					"visible": false,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "UpdatesPending_ind",
+					"label": "Updates Pending",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FormLink_url",
+					"label": "Barrier Correction Form",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				}],
+				"description": null,
+				"showAttachments": true,
+				"mediaInfos": []
+			}
+		},
+		{
+			"id": 1,
+			"popupInfo": {
+				"title": "Dams: {STREAM_NAME}",
+				"fieldInfos": [{
+					"fieldName": "OBJECTID",
+					"label": "OBJECTID",
+					"tooltip": "",
+					"visible": false,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "SITEREC_ID",
+					"label": "SiteRec_Id",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FISH_PASSAGE_ID",
+					"label": "Fish_Passage_ID",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "SITE_NUM",
+					"label": "Site_Num",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LATWGS84_MEAS",
+					"label": "LatWGS84_Meas",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LONGWGS84_MEAS",
+					"label": "LongWGS84_Meas",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "COUNTY",
+					"label": "County",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LLID_NUM",
+					"label": "LLID_Num",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "STREAM_NAME",
+					"label": "Stream_Name",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "TRIBTO_NAME",
+					"label": "TribTo_Name",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "WRIA_NUM",
+					"label": "WRIA_Num",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FISHUSE_DESC",
+					"label": "FishUse_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FUCRITERIA_DESC",
+					"label": "FUCriteria_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "DAM_PURPOSE_DESC",
+					"label": "Dam_Purpose_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "BARRIER_STATUS_DESC",
+					"label": "Barrier_Status_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "BLOCKAGE_DESC",
+					"label": "Blockage_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FW_PRESENT",
+					"label": "FW_Present",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "SURVEY_DATE",
+					"label": "Survey_Date",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"dateFormat": "longMonthDayYear"
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "OWNER_TYPE_DESC",
+					"label": "Owner_Type_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "DATA_SOURCE",
+					"label": "Data_Source",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Shape",
+					"label": "Shape",
+					"tooltip": "",
+					"visible": false,
+					"format": null,
+					"stringFieldOption": "textbox"
+				}],
+				"description": null,
+				"showAttachments": true,
+				"mediaInfos": []
+			}
+		},
+		{
+			"id": 2,
+			"popupInfo": {
+				"title": "Miscellaneous Barriers: {STREAM_NAME}",
+				"fieldInfos": [{
+					"fieldName": "OBJECTID",
+					"label": "OBJECTID",
+					"tooltip": "",
+					"visible": false,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "SITEREC_ID",
+					"label": "SiteRec_Id",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FISH_PASSAGE_ID",
+					"label": "Fish_Passage_ID",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "SITE_NUM",
+					"label": "Site_Num",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LATWGS84_MEAS",
+					"label": "LatWGS84_Meas",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LONGWGS84_MEAS",
+					"label": "LongWGS84_Meas",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "COUNTY",
+					"label": "County",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LLID_NUM",
+					"label": "LLID_Num",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "STREAM_NAME",
+					"label": "Stream_Name",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "TRIBTO_NAME",
+					"label": "TribTo_Name",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "WRIA_NUM",
+					"label": "WRIA_Num",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FISHUSE_DESC",
+					"label": "FishUse_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FUCRITERIA_DESC",
+					"label": "FUCriteria_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FEATURE_DESC",
+					"label": "Feature_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "BARRIER_STATUS_DESC",
+					"label": "Barrier_Status_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "BLOCKAGE_DESC",
+					"label": "Blockage_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "FW_PRESENT",
+					"label": "FW_Present",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "SURVEY_DATE",
+					"label": "Survey_Date",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"dateFormat": "longMonthDayYear"
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "OWNER_TYPE_DESC",
+					"label": "Owner_Type_Desc",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "DATA_SOURCE",
+					"label": "Data_Source",
+					"tooltip": "",
+					"visible": true,
+					"format": null,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Shape",
+					"label": "Shape",
+					"tooltip": "",
+					"visible": false,
+					"format": null,
+					"stringFieldOption": "textbox"
+				}],
+				"description": null,
+				"showAttachments": true,
+				"mediaInfos": []
+			}
+		}]
+	},
+	{
+		"id": "altfuels_1278",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://gis.rita.dot.gov/ArcGIS/rest/services/NTAD/altfuels/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Alternative Fuel Stations",
+		"itemId": "3e970f220c5a4aabaa7cf56a0b059105",
+		"layers": [{
+			"id": 0,
+			"popupInfo": {
+				"title": "altfuels: {Fuel_Type}",
+				"fieldInfos": [{
+					"fieldName": "OBJECTID",
+					"label": "OBJECTID",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Shape",
+					"label": "Shape",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Fuel_Type",
+					"label": "Fuel Type\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Station_Na",
+					"label": "Station Name\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Street_Add",
+					"label": "Street Address\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Intersecti",
+					"label": "Intersection\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "City",
+					"label": "City\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "State",
+					"label": "State\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "ZIP",
+					"label": "ZIP Code",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 0,
+						"digitSeparator": false
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Plus4",
+					"label": "Plus-4 ZIP Code\n",
+					"tooltip": "",
+					"visible": false,
+					"format": {
+						"places": 0,
+						"digitSeparator": false
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Station_Ph",
+					"label": "Station Phone Number\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Status_Cod",
+					"label": "Station Status\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Expected_D",
+					"label": "Expected Station Date\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Groups_Wit",
+					"label": "Groups With Access\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Access_Day",
+					"label": "Hours of Operation\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Cards_Acce",
+					"label": "Accepted Credit Cards\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "BD_Blends",
+					"label": "Biodiesel Blends\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "NG_Fill_Ty",
+					"label": "Dispensing Capability\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "NG_PSI",
+					"label": "PSI Pressures Availability\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "EV_Level1",
+					"label": "Number of Level 1 EVSE\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "EV_Level2",
+					"label": "Number of Level 2 EVSE\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "EV_DC_Fast",
+					"label": "Number of DC Fast Chargers\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "EV_Other_I",
+					"label": "Number of Other EVSE\n",
+					"tooltip": "",
+					"visible": false,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "EV_Network",
+					"label": "Name of EVSE Network\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "EV_Netwo_1",
+					"label": "Additional Name of EVSE Network \n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Geocode_St",
+					"label": "Accuracy of Geolocation\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Latitude",
+					"label": "Latitude\n",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Longitude",
+					"label": "Longitude\n",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 2,
+						"digitSeparator": true
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Date_Last",
+					"label": "Station Details Last Confirmed Date\n",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"dateFormat": "longMonthDayYear"
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "ID",
+					"label": "Unique ID",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"places": 0,
+						"digitSeparator": false
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Updated_At",
+					"label": "Last Update Time\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Owner_Type",
+					"label": "Owner Type\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Federal_Ag",
+					"label": "Federally Owned Agency\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Federal__1",
+					"label": "Additional Federally Owned Agency\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Open_Date",
+					"label": "Open Date\n",
+					"tooltip": "",
+					"visible": true,
+					"format": {
+						"dateFormat": "longMonthDayYear"
+					},
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "Hydrogen_S",
+					"label": "Website (Hydrogen)\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "NG_Vehicle",
+					"label": "Maximum Vehicle Size\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "LPG_Primar",
+					"label": "Type of Station (Propane)\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				},
+				{
+					"fieldName": "E85_Blende",
+					"label": "Blender Pump (E85 Stations)\n",
+					"tooltip": "",
+					"visible": true,
+					"stringFieldOption": "textbox"
+				}],
+				"description": null,
+				"showAttachments": true,
+				"mediaInfos": []
+			}
+		}]
+	},
+	{
+		"id": "ClimateImpactVulnerability_3340",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/ClimateImpactVulnerability/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Climate Impact Vulnerability",
+		"itemId": "2087a184b3344ebba99866b5adfe4e4b"
+	},
+	{
+		"id": "PavementCondition_5997",
+		"layerType": "ArcGISMapServiceLayer",
+		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/PavementCondition/MapServer",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Pavement Condition",
+		"itemId": "f49a4724610548c693680fa745b0a44e"
+	},
+	{
+		"id": "Urban_Growth_Areas_9578",
+		"layerType": "ArcGISFeatureLayer",
+		"url": "http://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/Urban_Growth_Areas/FeatureServer/0",
+		"visibility": false,
+		"opacity": 1,
+		"title": "WAECY - Urban Growth Areas",
+		"itemId": "6357d05c56fb40e6a183e6cd67436153",
+		"popupInfo": {
+			"title": "Urban Growth Areas: {CITY_NM}",
+			"fieldInfos": [{
+				"fieldName": "OBJECTID",
+				"label": "OBJECTID",
+				"isEditable": false,
+				"tooltip": "",
+				"visible": false,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "CITY_NM",
+				"label": "CITY_NM",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "UGA_NM",
+				"label": "UGA_NM",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "UGA_NM2",
+				"label": "UGA_NM2",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "COUNTY_NM",
+				"label": "COUNTY_NM",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "GMA",
+				"label": "GMA",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "FIPS_PLC",
+				"label": "FIPS_PLC",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "INCORP",
+				"label": "INCORP",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "ORIGIN",
+				"label": "ORIGIN",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "DATEMOD",
+				"label": "DATEMOD",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": {
+					"places": 2,
+					"digitSeparator": true
+				},
+				"stringFieldOption": "textbox"
+			}],
+			"description": null,
+			"showAttachments": true,
+			"mediaInfos": []
+		}
+	},
+	{
+		"id": "Mobility2020_2032",
+		"layerType": "ArcGISFeatureLayer",
+		"url": "http://services.arcgis.com/IYrj3otxNjPsrTRD/arcgis/rest/services/Mobility2020/FeatureServer/0",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Mobility Needs 2020",
+		"itemId": "b2b58308b23e42ada1ce82385b4596a6",
+		"popupInfo": {
+			"title": "Mobility Needs 2020: {SR}",
+			"fieldInfos": [{
+				"fieldName": "OBJECTID_1",
+				"label": "OBJECTID_1",
+				"isEditable": false,
+				"tooltip": "",
+				"visible": false,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "SR",
+				"label": "State Route",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": null,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "BARM",
+				"label": "Begin Accumulated Route Mile",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": {
+					"places": 2,
+					"digitSeparator": true
+				},
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "EARM",
+				"label": "End Accumulated Route Mile",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": {
+					"places": 2,
+					"digitSeparator": true
+				},
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "Direction",
+				"label": "Direction",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": null,
+				"stringFieldOption": "textbox"
+			}],
+			"description": null,
+			"showAttachments": true,
+			"mediaInfos": []
+		}
+	},
+	{
+		"id": "WSDOTAccessControl_6289",
+		"layerType": "ArcGISFeatureLayer",
+		"url": "http://services.arcgis.com/IYrj3otxNjPsrTRD/arcgis/rest/services/WSDOTAccessControl/FeatureServer/0",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Access Control (Zoom in to View)",
+		"itemId": "25fcada3c5b34a9d83adf42a12e09075",
+		"layerDefinition": {
+			"minScale": 3000000,
+			"maxScale": 0
+		},
+		"popupInfo": {
+			"title": "State Route Access Control: {SRID}",
+			"fieldInfos": [{
+				"fieldName": "OBJECTID",
+				"label": "OBJECTID",
+				"isEditable": false,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "SRID",
+				"label": "SRID",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "SR",
+				"label": "State Route Number",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "RRT",
+				"label": "RRT",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "RRQ",
+				"label": "RRQ",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "BegMP",
+				"label": "Beginning Milepost",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": {
+					"places": 2,
+					"digitSeparator": true
+				},
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "BegAB",
+				"label": "BegAB",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "BegARM",
+				"label": "BegARM",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"format": {
+					"places": 2,
+					"digitSeparator": true
+				},
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "EndMP",
+				"label": "Ending Milepost",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": {
+					"places": 2,
+					"digitSeparator": true
+				},
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "EndAB",
+				"label": "EndAB",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "EndARM",
+				"label": "EndARM",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"format": {
+					"places": 2,
+					"digitSeparator": true
+				},
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "AccessControlTypeCode",
+				"label": "Access Control Type",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "AccessControlTypeDescription",
+				"label": "Access Control Description",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "SnapshotDate",
+				"label": "Last Updated",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": true,
+				"format": {
+					"dateFormat": "shortDateShortTime"
+				},
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "EVENTERR",
+				"label": "EVENTERR",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"format": {
+					"places": 0,
+					"digitSeparator": true
+				},
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "LOC_ERROR",
+				"label": "LOC_ERROR",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "RouteID",
+				"label": "RouteID",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "StateRouteNumber",
+				"label": "StateRouteNumber",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "RelRouteType",
+				"label": "RelRouteType",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			},
+			{
+				"fieldName": "RelRouteQual",
+				"label": "RelRouteQual",
+				"isEditable": true,
+				"tooltip": "",
+				"visible": false,
+				"stringFieldOption": "textbox"
+			}],
+			"description": null,
+			"showAttachments": true,
+			"mediaInfos": []
+		}
+	},
+	{
+		"id": "WSDOT - Roadway Characteristics_8797",
+		"layerType": "ArcGISFeatureLayer",
+		"url": "http://services.arcgis.com/IYrj3otxNjPsrTRD/arcgis/rest/services/WSDOT - Roadway Characteristics/FeatureServer/2",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Number of Lanes, Width, & Type (Zoom in to View)",
+		"itemId": "34eea7f961964637b88867d56b125687",
+		"layerDefinition": {
+			"minScale": 1500000,
+			"maxScale": 0
+		}
+	},
+	{
+		"id": "WSDOT - Roadway Characteristics_1781",
+		"layerType": "ArcGISFeatureLayer",
+		"url": "http://services.arcgis.com/IYrj3otxNjPsrTRD/arcgis/rest/services/WSDOT - Roadway Characteristics/FeatureServer/1",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Legal Speed Limits (Zoom in to View)",
+		"itemId": "34eea7f961964637b88867d56b125687",
+		"layerDefinition": {
+			"minScale": 3000000,
+			"maxScale": 0
+		}
+	},
+	{
+		"id": "WSDOT - Roadway Characteristics_3101",
+		"layerType": "ArcGISFeatureLayer",
+		"url": "http://services.arcgis.com/IYrj3otxNjPsrTRD/arcgis/rest/services/WSDOT - Roadway Characteristics/FeatureServer/0",
+		"visibility": false,
+		"opacity": 1,
+		"title": "Special Use Lanes (Zoom in to View)",
+		"itemId": "34eea7f961964637b88867d56b125687",
+		"layerDefinition": {
+			"minScale": 1500000,
+			"maxScale": 0
+		}
+	},
+	{
+		"id": "NoiseWalls_Built_8336",
+		"layerType": "ArcGISFeatureLayer",
+		"url": "http://services.arcgis.com/IYrj3otxNjPsrTRD/arcgis/rest/services/NoiseWalls_Built/FeatureServer/0",
+		"visibility": false,
+		"opacity": 1,
+		"title": "NoiseWalls_Built - Noise Walls - Built",
+		"itemId": "e5e3de9df611441aa56ebf5fa573847d"
+	}],
+	"baseMap": {
+		"baseMapLayers": [{
+			"id": "World_Light_Gray_Base_1486",
+			"layerType": "ArcGISTiledMapServiceLayer",
+			"opacity": 1,
+			"visibility": true,
+			"url": "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer"
+		},
+		{
+			"id": "World_Light_Gray_Reference_481",
+			"layerType": "ArcGISTiledMapServiceLayer",
+			"isReference": true,
+			"opacity": 1,
+			"visibility": true,
+			"url": "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer"
+		}],
+		"title": "Light Gray Canvas"
+	},
+	"spatialReference": {
+		"wkid": 102100,
+		"latestWkid": 3857
+	},
+	"version": "2.1",
+	"tables": [{
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/TribalReservationLands/MapServer/1",
+		"id": "TribalReservationLands_483",
+		"title": "TribalReservationLands - TribalReservationLands"
+	}],
+	"bookmarks": [{
+		"extent": {
+			"spatialReference": {
+				"wkid": 102100
+			},
+			"xmax": -1.2804783627233924E7,
+			"xmin": -1.4069357823183538E7,
+			"ymax": 6504503.411262843,
+			"ymin": 5446614.9397962885
+		},
+		"name": "Washington"
+	}],
+	"applicationProperties": {
+		"viewing": {
+			"routing": {
+				"enabled": true
+			},
+			"measure": {
+				"enabled": true
+			},
+			"basemapGallery": {
+				"enabled": true
+			},
+			"search": {
+				"enabled": true,
+				"disablePlaceFinder": false,
+				"hintText": "Place or Address",
+				"layers": []
+			}
+		}
+	}
+}

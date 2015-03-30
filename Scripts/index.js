@@ -3,8 +3,9 @@
 require(["esri/arcgis/utils",
 	"esri/config",
 	"buffer",
-	"buffer/BufferUIHelper"
-], function (arcgisUtils, esriConfig, BufferUI, BufferUIHelper) {
+	"buffer/BufferUIHelper",
+	"dojo/text!./webmap.json"
+], function (arcgisUtils, esriConfig, BufferUI, BufferUIHelper, webmap) {
 	"use strict";
 	var buffer;
 
@@ -20,8 +21,14 @@ require(["esri/arcgis/utils",
 	// Create the Buffer UI in the specified node.
 	buffer = new BufferUI(document.getElementById("buffer"));
 
+	webmap = JSON.parse(webmap);
+
+	webmap = {
+		itemData: webmap
+	};
+
 	// Create a map from a predefined webmap on AGOL.
-	arcgisUtils.createMap("927b5daaa7f4434db4b312364489544d", "map").then(function (response) {
+	arcgisUtils.createMap(webmap, "map").then(function (response) {
 		var map = response.map;
 		var layerId;
 
