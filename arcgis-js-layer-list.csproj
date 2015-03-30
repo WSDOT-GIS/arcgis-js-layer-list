@@ -42,13 +42,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="index.html" />
-    <Content Include="Scripts\custom\buffer\BufferUIHelper.js" />
-    <Content Include="Scripts\custom\buffer\Templates\BufferUI.html" />
-    <Content Include="Scripts\custom\buffer\Templates\BufferUI.min.html">
-      <DependentUpon>BufferUI.html</DependentUpon>
-    </Content>
-    <Content Include="Scripts\custom\buffer\units.js" />
-    <Content Include="Scripts\custom\buffer\main.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\polyfills\custom-event-polyfill.js" />
     <Content Include="Scripts\polyfills\custom-event-polyfill.min.js">
@@ -68,6 +61,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="webmap.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\custom\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

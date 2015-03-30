@@ -2,12 +2,9 @@
 /*global require*/
 require(["esri/arcgis/utils",
 	"esri/config",
-	"buffer",
-	"buffer/BufferUIHelper",
 	"dojo/text!./webmap.json"
-], function (arcgisUtils, esriConfig, BufferUI, BufferUIHelper, webmap) {
+], function (arcgisUtils, esriConfig, webmap) {
 	"use strict";
-	var buffer;
 
 	// Specify CORS enabled servers.
 	["www.wsdot.wa.gov", "wsdot.wa.gov", "gispublic.dfw.wa.gov"].forEach(function (svr) {
@@ -17,9 +14,6 @@ require(["esri/arcgis/utils",
 	// This prevents the following types of errors from appearing in the console:
 	// XMLHttpRequest cannot load http://gis.rita.dot.gov/ArcGIS/rest/info?f=json. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://example.com' is therefore not allowed access. 
 	esriConfig.defaults.io.corsDetection = false;
-
-	// Create the Buffer UI in the specified node.
-	buffer = new BufferUI(document.getElementById("buffer"));
 
 	webmap = JSON.parse(webmap);
 
@@ -34,9 +28,6 @@ require(["esri/arcgis/utils",
 	arcgisUtils.createMap(webmap, "map").then(function (response) {
 		var map = response.map;
 		var layerId;
-
-		// Setup the Buffer UI with the map.
-		BufferUIHelper.attachBufferUIToMap(map, buffer);
 
 		// Turn on some layers that are off by default.
 		(function () {
