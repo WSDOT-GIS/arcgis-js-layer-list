@@ -12,36 +12,17 @@ html, body {
 #flexcontainer {
     height: 100%;
     display: flex;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
 }
 
-#flexcontainer > div:first-child {
-    flex-grow: 1;
-}
+    #flexcontainer > div:first-child {
+        -ms-flex: 2 0 auto;
+        flex: auto;
+    }
 
-.buffer-ui {
-    padding: 0.5em;
-    max-width: 200px;
-}
-
-.buffer-options-list {
-    list-style: none;
-    padding: 0;
-    margin: auto;
-}
-
-.geometry-list:empty:after {
-    content: 'Select a geometry on the map, then click the "Buffer" link in the info window.';
-    width: 100px;
-    font-style: oblique;
-    color: #bb0707;
-}
-
-label+input, label+select {
-    display: block;
+#tools {
+    overflow-y: auto;
 }
 
 #githubLink {

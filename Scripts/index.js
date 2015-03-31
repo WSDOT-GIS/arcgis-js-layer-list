@@ -24,22 +24,44 @@ require(["esri/arcgis/utils",
 		itemData: webmap
 	};
 
+
+
 	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap(webmap, "map").then(function (response) {
+		function setLayerVisibility(e) {
+			var layer = map.getLayer(this.value);
+			if (this.checked) {
+				layer.show();
+			} else {
+				layer.hide();
+			}
+			console.debug(layer);
+		}
+
+		function createLayerList(opLayers) {
+			var list = document.createElement("ul");
+			opLayers.forEach(function (opLayer) {
+				console.log(opLayer);
+				var item = document.createElement("li");
+				var checkbox = document.createElement("input");
+				checkbox.type = "checkbox";
+				checkbox.checked = opLayer.layerObject.visible;
+				var label = document.createElement("label");
+				item.appendChild(label);
+				label.appendChild(checkbox);
+				label.appendChild(document.createTextNode(opLayer.title));
+				checkbox.value = opLayer.id;
+				list.appendChild(item);
+				checkbox.addEventListener("click", setLayerVisibility);
+			});
+			return list;
+		}
+
 		var map = response.map;
+		var opLayers = response.itemInfo.itemData.operationalLayers;
 		var layerId;
 
-		// Turn on some layers that are off by default.
-		(function () {
-			var airportRe = /^((Airport)|(CityLimits))/i, layer;
-			for (var i = 0, l = map.layerIds.length; i < l; i += 1) {
-				layerId = map.layerIds[i];
-				if (airportRe.test(layerId)) {
-					layer = map.getLayer(layerId);
-					layer.show();
-				}
-			}
-		}());
-
+		var list = createLayerList(opLayers);
+		document.getElementById("layerlist").appendChild(list);
 	});
 });
