@@ -28,7 +28,7 @@ require(["esri/arcgis/utils",
 
 	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap(webmap, "map").then(function (response) {
-		function setLayerVisibility(e) {
+		var setLayerVisibility = function () {
 			var layer = map.getLayer(this.value);
 			if (this.checked) {
 				layer.show();
@@ -36,13 +36,14 @@ require(["esri/arcgis/utils",
 				layer.hide();
 			}
 			console.debug(layer);
-		}
+		};
 
 		function createLayerList(opLayers) {
 			var list = document.createElement("ul");
 			opLayers.forEach(function (opLayer) {
 				console.log(opLayer);
 				var item = document.createElement("li");
+				item.dataset.layerType = opLayer.layerType;
 				var checkbox = document.createElement("input");
 				checkbox.type = "checkbox";
 				checkbox.checked = opLayer.layerObject.visible;
@@ -59,9 +60,9 @@ require(["esri/arcgis/utils",
 
 		var map = response.map;
 		var opLayers = response.itemInfo.itemData.operationalLayers;
-		var layerId;
 
 		var list = createLayerList(opLayers);
+		map.resize();
 		document.getElementById("layerlist").appendChild(list);
 	});
 });

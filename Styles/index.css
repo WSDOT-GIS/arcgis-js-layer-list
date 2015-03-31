@@ -16,9 +16,14 @@ html, body {
     flex-flow: row nowrap;
 }
 
-    #flexcontainer > div:first-child {
-        -ms-flex: 2 0 auto;
-        flex: auto;
+    #flexcontainer > div:last-child {
+        -ms-flex: 1;
+        flex: 1;
+    }
+
+    #flexcontainer > :first-child {
+        -ms-flex: 3;
+        flex: 3;
     }
 
 #tools {
@@ -43,3 +48,4 @@ html, body {
 #githubLink > a {
     color: white;
 }
+
