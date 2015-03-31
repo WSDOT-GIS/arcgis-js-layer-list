@@ -3,12 +3,31 @@ html, body {
     margin: 0;
     height: 100%;
     overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .layer-list {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.layer-list ul {
+    list-style: none;
+}
+
+.layer-list > li > ul {
+    border: 1px solid gray;
+    border-top-style: dashed;
+    border-radius: 0 0 10px 10px;
+    margin: 0 0 0.5em 0;
+    padding: 0 1em 0.5em 1em;
+    background-color: lightgray;
+}
+
+.layer-label {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 #map, #mapContainer {
@@ -34,6 +53,12 @@ html, body {
 
 #tools {
     overflow-y: auto;
+}
+
+.opacity-slider {
+    display: block;
+    margin-left: 2em;
+    width: 80%;
 }
 
 #githubLink {

@@ -33,19 +33,23 @@ require(["esri/arcgis/utils",
 		var opLayers = response.itemInfo.itemData.operationalLayers;
 
 		var list = new LayerList(opLayers, document.getElementById("layerlist"));
-		list.root.addEventListener("layer-visibility-change", function (e) {
-			var layer = map.getLayer(e.detail.layerId);
-			if (e.detail.visible) {
-				layer.show();
-			} else {
-				layer.hide();
-			}
-		});
+		////list.root.addEventListener("layer-visibility-change", function (e) {
+		////	var layer = map.getLayer(e.detail.layerId);
+		////	if (e.detail.visible) {
+		////		layer.show();
+		////	} else {
+		////		layer.hide();
+		////	}
+		////});
 
-		list.root.addEventListener("opacity-change", function (e) {
-			var layer = map.getLayer(e.detail.layerId);
-			layer.setOpacity(e.detail.opacity);
-		});
+		////list.root.addEventListener("opacity-change", function (e) {
+		////	var layer = map.getLayer(e.detail.layerId);
+		////	layer.setOpacity(e.detail.opacity);
+		////});
+
+		////list.root.addEventListener("set-visible-layers", function (e) {
+		////	console.log("set-visible-layers", e);
+		////});
 
 		map.on("zoom-end", function (e) {
 			// TODO: Update layer list items to show if they are not visible due to zoom scale.
