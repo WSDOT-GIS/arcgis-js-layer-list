@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="index.html" />
+    <Content Include="Scripts\custom\layer-list\main.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\polyfills\custom-event-polyfill.js" />
     <Content Include="Scripts\polyfills\custom-event-polyfill.min.js">
@@ -62,9 +63,7 @@
     </None>
     <Content Include="webmap.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\custom\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />

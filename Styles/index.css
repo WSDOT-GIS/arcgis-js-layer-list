@@ -5,6 +5,12 @@ html, body {
     overflow: hidden;
 }
 
+.layer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 #map, #mapContainer {
     height: 100%;
 }

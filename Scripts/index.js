@@ -2,8 +2,9 @@
 /*global require*/
 require(["esri/arcgis/utils",
 	"esri/config",
+	"layer-list",
 	"dojo/text!./webmap.json"
-], function (arcgisUtils, esriConfig, webmap) {
+], function (arcgisUtils, esriConfig, LayerList, webmap) {
 	"use strict";
 
 	// Specify CORS enabled servers.
@@ -28,41 +29,17 @@ require(["esri/arcgis/utils",
 
 	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap(webmap, "map").then(function (response) {
-		var setLayerVisibility = function () {
-			var layer = map.getLayer(this.value);
-			if (this.checked) {
+		var map = response.map;
+		var opLayers = response.itemInfo.itemData.operationalLayers;
+
+		var list = new LayerList(opLayers, document.getElementById("layerlist"));
+		list.root.addEventListener("layer-visibility-change", function (e) {
+			var layer = map.getLayer(e.detail.layerId);
+			if (e.detail.visible) {
 				layer.show();
 			} else {
 				layer.hide();
 			}
-			console.debug(layer);
-		};
-
-		function createLayerList(opLayers) {
-			var list = document.createElement("ul");
-			opLayers.forEach(function (opLayer) {
-				console.log(opLayer);
-				var item = document.createElement("li");
-				item.dataset.layerType = opLayer.layerType;
-				var checkbox = document.createElement("input");
-				checkbox.type = "checkbox";
-				checkbox.checked = opLayer.layerObject.visible;
-				var label = document.createElement("label");
-				item.appendChild(label);
-				label.appendChild(checkbox);
-				label.appendChild(document.createTextNode(opLayer.title));
-				checkbox.value = opLayer.id;
-				list.appendChild(item);
-				checkbox.addEventListener("click", setLayerVisibility);
-			});
-			return list;
-		}
-
-		var map = response.map;
-		var opLayers = response.itemInfo.itemData.operationalLayers;
-
-		var list = createLayerList(opLayers);
-		map.resize();
-		document.getElementById("layerlist").appendChild(list);
+		});
 	});
 });

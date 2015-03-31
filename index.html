@@ -13,7 +13,7 @@
             <div id="map"></div>
         </div>
         <div id="tools">
-            <div id="layerlist"></div>
+            <ul id="layerlist"></ul>
         </div>
     </div>
     <div id="githubLink">
@@ -24,7 +24,10 @@
             var dojoConfig = {
                 async: true,
                 packages: [
-                   
+                   {
+                       name: 'layer-list',
+                       location: root + "/Scripts/custom/layer-list"
+                   }
                 ]
 
             };
