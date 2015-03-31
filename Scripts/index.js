@@ -41,5 +41,15 @@ require(["esri/arcgis/utils",
 				layer.hide();
 			}
 		});
+
+		list.root.addEventListener("opacity-change", function (e) {
+			var layer = map.getLayer(e.detail.layerId);
+			layer.setOpacity(e.detail.opacity);
+		});
+
+		map.on("zoom-end", function (e) {
+			// TODO: Update layer list items to show if they are not visible due to zoom scale.
+			console.debug("zoom-end", e);
+		});
 	});
 });
