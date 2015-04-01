@@ -3,6 +3,9 @@ html, body {
     margin: 0;
     height: 100%;
     overflow: hidden;
+}
+
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -10,6 +13,10 @@ html, body {
     list-style: none;
     margin: 0;
     padding: 0;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .layer-list ul {
@@ -22,6 +29,19 @@ html, body {
     border-radius: 0 0 10px 10px;
     padding: 0 1em 0.5em 1em;
     background-color: lightgray;
+}
+
+.badge:before {
+    display: inline-block;
+    padding: 0.01em 0.2em;
+    border-radius: 5px;
+    margin-left: 0.2em;
+}
+
+.badge.supports-dynamic-layers:before {
+    background-color: red;
+    color: white;
+    content: 'DL';
 }
 
 .sublayer-list {
@@ -66,12 +86,12 @@ html, body {
     width: 100%;
 }
 
-#githubLink {
+.github-link {
     text-align: center;
     width: 126px;
     position: absolute;
-    bottom: 47px;
-    left: -41px;
+    bottom: 39px;
+    left: -43px;
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
@@ -81,7 +101,7 @@ html, body {
     padding: 0.2em 2em;
 }
 
-#githubLink > a {
+.github-link > a {
     color: white;
 }
 

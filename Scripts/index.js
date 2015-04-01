@@ -33,31 +33,14 @@ require(["esri/arcgis/utils",
 		var map = response.map;
 		var opLayers = response.itemInfo.itemData.operationalLayers;
 
-		var list = new LayerList(opLayers, document.getElementById("layerlist"));
-		////list.root.addEventListener("layer-visibility-change", function (e) {
-		////	var layer = map.getLayer(e.detail.layerId);
-		////	if (e.detail.visible) {
-		////		layer.show();
-		////	} else {
-		////		layer.hide();
-		////	}
-		////});
-
-		////list.root.addEventListener("opacity-change", function (e) {
-		////	var layer = map.getLayer(e.detail.layerId);
-		////	layer.setOpacity(e.detail.opacity);
-		////});
-
-		////list.root.addEventListener("set-visible-layers", function (e) {
-		////	console.log("set-visible-layers", e);
-		////});
+		new LayerList(opLayers, document.getElementById("layerlist"));
 
 		map.on("zoom-end", function (e) {
 			// TODO: Update layer list items to show if they are not visible due to zoom scale.
 			console.debug("zoom-end", e);
 		});
 
-		map.on("update-start", function (e) {
+		map.on("update-start", function () {
 			domUtils.show(document.getElementById("mapProgress"));
 		});
 

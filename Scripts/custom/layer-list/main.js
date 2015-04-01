@@ -1,5 +1,23 @@
 ﻿/*global define*/
 define([], function () {
+	"use strict";
+
+	/**
+	 * Creates an HTML span with classes applied.
+	 * @param {...string} classNames - One or more class names to be added to the span.
+	 * @returns {HTMLSpanElement}
+	 */
+	function createBadge() {
+		var badge = document.createElement("span");
+		badge.classList.add("badge");
+
+		for (var i = 0, l = arguments.length; i < l; i += 1) {
+			badge.classList.add(arguments[i]);
+		}
+
+		return badge;
+	}
+
 	/**
 	 * Parses a string containing comma-separated 
 	 * integer values into an array of integers.
@@ -152,26 +170,9 @@ define([], function () {
 				} else {
 					opLayer.layerObject.hide();
 				}
-				////var event = new CustomEvent('layer-visibility-change', {
-				////	detail: {
-				////		layerId: this.value,
-				////		visible: this.checked
-				////	}
-				////});
-
-				////self.root.dispatchEvent(event);
 			};
 
 			var setOpacity = function () {
-				////var item = this.parentElement;
-				////var event = new CustomEvent('opacity-change', {
-				////	detail: {
-				////		layerId: item.dataset.layerId,
-				////		opacity: this.value
-				////	}
-				////});
-
-				////self.root.dispatchEvent(event);
 				opLayer.layerObject.setOpacity(this.value);
 			};
 
@@ -285,13 +286,6 @@ define([], function () {
 					}
 				}
 
-				//var event = new CustomEvent('set-visible-layers', {
-				//	detail: {
-				//		layerId: item.dataset.layerId,
-				//		sublayerIds: filteredChecked
-				//	}
-				//});
-
 				// Set the layer's visible sublayers to match the checkboxes.
 				// If there are NO checked boxes, -1 is used to indicate this.
 				// (This is because an empty array will indicate that all layers should be displayed.)
@@ -300,14 +294,29 @@ define([], function () {
 				//self.root.dispatchEvent(event);
 			};
 
-			var sublayerList, subChecks;
-			if (opLayer.layerObject.layerInfos && opLayer.layerObject.setVisibleLayers) {
-				sublayerList = new SublayerList(opLayer.layerObject);
-				subChecks = sublayerList.root.querySelectorAll("input[type=checkbox]");
-				for (var i = 0, l = subChecks.length; i < l; i += 1) {
-					subChecks[i].addEventListener("click", setVisibleLayers);
+			var sublayerList, subChecks, i, l, badge;
+			if (opLayer.layerObject) {
+
+				if (opLayer.layerObject.supportsDynamicLayers) {
+					badge = createBadge("supports-dynamic-layers");
+					
+					item.insertBefore(badge, controlContainer);
 				}
-				controlContainer.appendChild(sublayerList.root);
+
+				if (opLayer.layerObject.layerInfos) {
+					sublayerList = new SublayerList(opLayer.layerObject);
+					subChecks = sublayerList.root.querySelectorAll("input[type=checkbox]");
+					if (opLayer.layerObject.setVisibleLayers) {
+						for (i = 0, l = subChecks.length; i < l; i += 1) {
+							subChecks[i].addEventListener("click", setVisibleLayers);
+						}
+					} else {
+						for (i = 0, l = subChecks.length; i < l; i += 1) {
+							subChecks[i].disabled = true;
+						}
+					}
+					controlContainer.appendChild(sublayerList.root);
+				}
 			}
 
 		});
