@@ -16,13 +16,20 @@ html, body {
     list-style: none;
 }
 
-.layer-list > li > ul {
+.control-container {
     border: 1px solid gray;
     border-top-style: dashed;
     border-radius: 0 0 10px 10px;
-    margin: 0 0 0.5em 0;
     padding: 0 1em 0.5em 1em;
     background-color: lightgray;
+}
+
+.sublayer-list {
+    padding: 0;
+}
+
+.toggle-closed .control-container {
+    display: none;
 }
 
 .layer-label {
@@ -56,9 +63,7 @@ html, body {
 }
 
 .opacity-slider {
-    display: block;
-    margin-left: 2em;
-    width: 80%;
+    width: 100%;
 }
 
 #githubLink {

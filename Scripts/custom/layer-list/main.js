@@ -140,14 +140,9 @@ define([], function () {
 	 * @param {(HTMLUListElement|HTMLOListElement)} domNode
 	 */
 	function LayerList(operationalLayers, domNode) {
-		var self = this;
 		/** @member {(HTMLUListElement|HTMLOListElement)} */
 		this.root = domNode;
 		domNode.classList.add("layer-list");
-
-
-
-
 
 		operationalLayers.forEach(function (opLayer) {
 			var setLayerVisibility = function () {
@@ -182,6 +177,7 @@ define([], function () {
 
 			var item = document.createElement("li");
 			item.classList.add("layer-list-item");
+			item.classList.add("toggle-closed");
 			item.dataset.layerType = opLayer.layerType;
 			item.dataset.itemId = opLayer.itemId;
 			item.dataset.layerId = opLayer.id;
@@ -195,12 +191,21 @@ define([], function () {
 			var label = document.createElement("label");
 			label.classList.add("layer-label");
 			label.appendChild(document.createTextNode(opLayer.title));
+			label.addEventListener("click", function () {
+				item.classList.toggle("toggle-closed");
+			});
 			item.appendChild(label);
 
-			//domNode.appendChild(item);
+
+			// Layers are displayed on the map in the OPPOSITE order
+			// than what is listed in the webmap JSON.
 			domNode.insertBefore(item, domNode.firstChild);
 
 			checkbox.addEventListener("click", setLayerVisibility);
+
+			var controlContainer = document.createElement("div");
+			controlContainer.classList.add("control-container");
+			item.appendChild(controlContainer);
 
 			var opacitySlider = document.createElement("input");
 			opacitySlider.classList.add("opacity-slider");
@@ -209,14 +214,24 @@ define([], function () {
 			opacitySlider.max = 1;
 			opacitySlider.step = 0.05;
 			opacitySlider.value = opLayer.opacity;
-			item.appendChild(opacitySlider);
+			controlContainer.appendChild(opacitySlider);
 
 			opacitySlider.addEventListener("change", setOpacity);
 
+			/**
+			 * Set the layer's visible sublayers based on the corresponding
+			 * checkboxes' checked state.
+			 */
 			var setVisibleLayers = function () {
 				var checkedBoxes = item.querySelectorAll(".sublayer-list input:checked");
 				var uncheckedBoxes = item.querySelectorAll(".sublayer-list input:not(:checked)");
 
+				/**
+				 * Get the sublayer info objects corresponding to 
+				 * the given checkboxes.
+				 * @param {HTMLInputElement[]} checkboxes - An array of checkbox input elements.
+				 * @returns {Object[]}
+				 */
 				function getSubitems(checkboxes) {
 					var subItems = [];
 					var ds;
@@ -227,11 +242,19 @@ define([], function () {
 					return subItems;
 				}
 
+				// Get the checked and unchecked checkboxes.
 				var checkedItems = getSubitems(checkedBoxes);
 				var uncheckedItems = getSubitems(uncheckedBoxes);
+
+
 				var filteredChecked = [];
 				var currentItem;
 
+				/**
+				 * Determines if the collection of unchecked list items contains the given item.
+				 * @param {Object} item
+				 * @returns {Boolean}
+				 */
 				function uncheckedContainsItem(item) {
 					var output = false;
 					var ucItem;
@@ -253,6 +276,8 @@ define([], function () {
 				}
 
 				// Filter out checked items with unchecked parents.
+				// If the parent layer IDs are included, ArcGIS Server
+				// will ignore the checked status of its sublayers.
 				for (var i = 0, l = checkedItems.length; i < l; i += 1) {
 					currentItem = checkedItems[i];
 					if (!currentItem.subLayerIds && !uncheckedContainsItem(currentItem)) {
@@ -260,16 +285,19 @@ define([], function () {
 					}
 				}
 
-				var event = new CustomEvent('set-visible-layers', {
-					detail: {
-						layerId: item.dataset.layerId,
-						sublayerIds: filteredChecked
-					}
-				});
+				//var event = new CustomEvent('set-visible-layers', {
+				//	detail: {
+				//		layerId: item.dataset.layerId,
+				//		sublayerIds: filteredChecked
+				//	}
+				//});
 
+				// Set the layer's visible sublayers to match the checkboxes.
+				// If there are NO checked boxes, -1 is used to indicate this.
+				// (This is because an empty array will indicate that all layers should be displayed.)
 				opLayer.layerObject.setVisibleLayers(filteredChecked.length ? filteredChecked : [-1]);
 
-				self.root.dispatchEvent(event);
+				//self.root.dispatchEvent(event);
 			};
 
 			var sublayerList, subChecks;
@@ -279,7 +307,7 @@ define([], function () {
 				for (var i = 0, l = subChecks.length; i < l; i += 1) {
 					subChecks[i].addEventListener("click", setVisibleLayers);
 				}
-				item.appendChild(sublayerList.root);
+				controlContainer.appendChild(sublayerList.root);
 			}
 
 		});
