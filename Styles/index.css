@@ -80,3 +80,9 @@ html, body {
     color: white;
 }
 
+#mapProgress {
+    position: absolute;
+    bottom: 10px;
+    left: 200px;
+    z-index: 50;
+}

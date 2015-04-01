@@ -2,9 +2,10 @@
 /*global require*/
 require(["esri/arcgis/utils",
 	"esri/config",
+	"esri/domUtils",
 	"layer-list",
 	"dojo/text!./webmap.json"
-], function (arcgisUtils, esriConfig, LayerList, webmap) {
+], function (arcgisUtils, esriConfig, domUtils, LayerList, webmap) {
 	"use strict";
 
 	// Specify CORS enabled servers.
@@ -54,6 +55,14 @@ require(["esri/arcgis/utils",
 		map.on("zoom-end", function (e) {
 			// TODO: Update layer list items to show if they are not visible due to zoom scale.
 			console.debug("zoom-end", e);
+		});
+
+		map.on("update-start", function (e) {
+			domUtils.show(document.getElementById("mapProgress"));
+		});
+
+		map.on("update-end", function () {
+			domUtils.hide(document.getElementById("mapProgress"));
 		});
 	});
 });
