@@ -60,7 +60,11 @@ define([], function () {
 		return words.join("-");
 	}
 
-	function createLayerTypeBadge(layerType) {
+	/**
+	 * Creates a span element with a layer type class and "badge" class.
+	 * @returns {HTMLSpanElement}
+	 */
+	function createLayerTypeBadge(/**{string}*/ layerType) {
 		return createBadge(["layer", "type", createLayerTypeClass(layerType)].join("-"));
 	}
 
@@ -228,6 +232,8 @@ define([], function () {
 			item.dataset.layerType = opLayer.layerType;
 			item.dataset.itemId = opLayer.itemId;
 			item.dataset.layerId = opLayer.id;
+			item.dataset.minScale = opLayer.minScale || "";
+			item.dataset.maxScale = opLayer.maxScale || "";
 
 			var checkbox = document.createElement("input");
 			checkbox.type = "checkbox";
