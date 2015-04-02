@@ -33,11 +33,14 @@ require(["esri/arcgis/utils",
 		var map = response.map;
 		var opLayers = response.itemInfo.itemData.operationalLayers;
 
-		new LayerList(opLayers, document.getElementById("layerlist"));
+		var layerList = new LayerList(opLayers, document.getElementById("layerlist"));
 
-		map.on("zoom-end", function (e) {
-			// TODO: Update layer list items to show if they are not visible due to zoom scale.
-			console.debug("zoom-end", e);
+		// Update layer list items to show if they are not visible due to zoom scale.
+		layerList.setScale(map.getScale());
+
+		map.on("zoom-end", function () {
+			// Update layer list items to show if they are not visible due to zoom scale.
+			layerList.setScale(map.getScale());
 		});
 
 		map.on("update-start", function () {

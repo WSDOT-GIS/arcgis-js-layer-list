@@ -372,5 +372,27 @@ define([], function () {
 		});
 	}
 
+	/**
+	 * Call this function to update the out-of-scale classes
+	 * on layers.
+	 */
+	LayerList.prototype.setScale = function (scale) {
+		var items, item, i, l, minScale, maxScale;
+		items = this.root.querySelectorAll("li[data-max-scale]");
+
+		var cls = "out-of-scale";
+
+		for (i = 0, l = items.length; i < l; i += 1) {
+			item = items[i];
+			minScale = parseInt(item.dataset.minScale, 10);
+			maxScale = parseInt(item.dataset.maxScale, 10);
+			if ((!minScale || minScale >= scale) && (!maxScale || maxScale <= scale)) {
+				item.classList.remove(cls);
+			} else {
+				item.classList.add(cls);
+			}
+		}
+	};
+
 	return LayerList;
 });
