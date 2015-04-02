@@ -57,6 +57,10 @@ body {
     text-decoration: underline;
 }
 
+.opacity-slider {
+    width: 100%;
+}
+
 #map, #mapContainer {
     height: 100%;
 }
@@ -82,9 +86,7 @@ body {
     overflow-y: auto;
 }
 
-.opacity-slider {
-    width: 100%;
-}
+
 
 .github-link {
     text-align: center;

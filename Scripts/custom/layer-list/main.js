@@ -19,6 +19,41 @@ define([], function () {
 	}
 
 	/**
+	 * Splits Pascal-case identifiers into individual words.
+	 * @param {string} identifier
+	 * @param {RegExp} [re=/(?:(?:ArcGIS)|(?:[A-Z][a-z]+))/g] 
+	 * @returns {string[]}
+	 */
+	function splitWords(identifier, re) {
+		if (!re) {
+			re = /(?:(?:ArcGIS)|(?:[A-Z][a-z]+))/g;
+		}
+		var match = re.exec(identifier);
+		var parts = [];
+		while (match) {
+			parts.push(match[0]);
+			match = re.exec(identifier);
+		}
+		return parts;
+	}
+
+	/**
+	 * Creates a CSS class name based on a operationalLayers elements' layerType value.
+	 * @param {string} layerType
+	 */
+	function createLayerTypeClass(layerType) {
+		var words = splitWords(layerType);
+		words = words.map(function (w) {
+			return w.toLowerCase();
+		});
+		return words.join("-");
+	}
+
+	function createLayerTypeBadge(layerType) {
+		return createBadge(["layer", "type", createLayerTypeClass(layerType)].join("-"));
+	}
+
+	/**
 	 * Parses a string containing comma-separated 
 	 * integer values into an array of integers.
 	 * @param {string} s
