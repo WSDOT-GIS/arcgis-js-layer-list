@@ -44,6 +44,21 @@ body {
     content: 'DL';
 }
 
+.badge.layer-type-arcgis-feature-layer:before {
+    background-color: #ffd800;
+    content: 'F';
+}
+
+.badge.layer-type-arcgis-map-service-layer:before {
+    background-color: #ffd800;
+    content: 'D';
+}
+
+.badge.layer-type-arcgis-tiled-map-service-layer:before {
+    background-color: #ffd800;
+    content: 'T';
+}
+
 .sublayer-list {
     padding: 0;
 }

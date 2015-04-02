@@ -18,23 +18,34 @@ define([], function () {
 		return badge;
 	}
 
-	/**
-	 * Splits Pascal-case identifiers into individual words.
-	 * @param {string} identifier
-	 * @param {RegExp} [re=/(?:(?:ArcGIS)|(?:[A-Z][a-z]+))/g] 
+	/** Splits a camel-case or Pascal-case variable name into individual words.
+	 * @param {string} s
+	 * @param {RegExp} [re=/([A-Za-z]?)([a-z]+)/g]
 	 * @returns {string[]}
 	 */
-	function splitWords(identifier, re) {
+	function splitWords(s, re) {
+		var match, output = [];
+		// re = /[A-Z]?[a-z]+/g
 		if (!re) {
-			re = /(?:(?:ArcGIS)|(?:[A-Z][a-z]+))/g;
+			re = /([A-Za-z]?)([a-z]+)/g;
 		}
-		var match = re.exec(identifier);
-		var parts = [];
+
+		/*
+		matches example: "oneTwoThree"
+		["one", "o", "ne"]
+		["Two", "T", "wo"]
+		["Three", "T", "hree"]
+		*/
+
+		match = re.exec(s);
 		while (match) {
-			parts.push(match[0]);
-			match = re.exec(identifier);
+			// output.push(match.join(""));
+			output.push(match[0]);
+			match = re.exec(s);
 		}
-		return parts;
+
+		return output;
+
 	}
 
 	/**
@@ -42,7 +53,7 @@ define([], function () {
 	 * @param {string} layerType
 	 */
 	function createLayerTypeClass(layerType) {
-		var words = splitWords(layerType);
+		var words = splitWords(layerType, /(?:(?:ArcGIS)|(?:[A-Z][a-z]+))/g);
 		words = words.map(function (w) {
 			return w.toLowerCase();
 		});
@@ -232,6 +243,8 @@ define([], function () {
 			});
 			item.appendChild(label);
 
+			badge = createLayerTypeBadge(opLayer.layerType);
+			item.appendChild(badge);
 
 			// Layers are displayed on the map in the OPPOSITE order
 			// than what is listed in the webmap JSON.
@@ -333,8 +346,10 @@ define([], function () {
 			if (opLayer.layerObject) {
 
 				if (opLayer.layerObject.supportsDynamicLayers) {
-					badge = createBadge("supports-dynamic-layers");
 					
+
+
+					badge = createBadge("supports-dynamic-layers");
 					item.insertBefore(badge, controlContainer);
 				}
 
