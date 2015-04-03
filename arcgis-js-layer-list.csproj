@@ -47,15 +47,20 @@
     <Content Include="Scripts\custom\legend-helper\main.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\polyfills\custom-event-polyfill.js" />
-    <Content Include="Scripts\polyfills\custom-event-polyfill.min.js">
-      <DependentUpon>custom-event-polyfill.js</DependentUpon>
+    <Content Include="Scripts\polyfills\polyfills.js">
+      <DependentUpon>polyfills.js.bundle</DependentUpon>
     </Content>
+    <Content Include="Scripts\polyfills\polyfills.min.js">
+      <DependentUpon>polyfills.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\polyfills\promise-6.1.0.js" />
     <Content Include="Styles\index.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
-    <Content Include="Scripts\polyfills\custom-event-polyfill.min.js.map">
-      <DependentUpon>custom-event-polyfill.min.js</DependentUpon>
+    <Content Include="Scripts\polyfills\polyfills.js.bundle" />
+    <Content Include="Scripts\polyfills\polyfills.min.js.map">
+      <DependentUpon>polyfills.min.js</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
