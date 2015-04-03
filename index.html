@@ -6,6 +6,8 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link href="//js.arcgis.com/3.13/esri/css/esri.css" rel="stylesheet" />
     <link href="Styles/index.css" rel="stylesheet" />
+    <script src="Scripts/polyfills/custom-event-polyfill.min.js"></script> 
+    <script src="//www.promisejs.org/polyfills/promise-6.1.0.min.js"></script>
 </head>
 <body>
     <div id="flexcontainer">
@@ -43,7 +45,6 @@
         }(location.pathname.replace(/\/[^\/]*$/, "")));
     </script>
     <script src="//js.arcgis.com/3.13/init.js"></script>
-    <script src="//cdn.polyfill.io/v1/polyfill.min.js?features=default,Promise"></script>
     <script src="Scripts/index.js"></script>
 </body>
 </html>
