@@ -35,7 +35,8 @@ define(function () {
 			output = document.createElement("tr");
 
 			// Create image cell
-			cell = output.insertCell(-1);
+			cell = document.createElement("td");
+			output.appendChild(cell);
 			img = document.createElement("img");
 			img.src = this.getDataUrl();
 			if (this.label) {
@@ -49,17 +50,19 @@ define(function () {
 			}
 			cell.appendChild(img);
 
+			// Create label cell
+			cell = document.createElement("td");
 			if (this.label) {
-				// Create label cell
-				cell = output.insertCell(-1);
 				cell.textContent = this.label;
 			}
+			output.appendChild(cell);
 
+			// Create values cell.
+			cell = document.createElement("td");
 			if (this.values) {
-				// Create values cell.
-				cell = output.insertCell(-1);
 				cell.textContent = this.values.toString();
 			}
+			output.appendChild(cell);
 		}
 
 
@@ -92,7 +95,8 @@ define(function () {
 		if (document && document.createElement && this.legend && this.legend.length > 0) {
 			table = document.createElement("table");
 			table.classList.add("legend");
-			tbody = table.createTBody();
+			tbody = document.createElement("tbody");
+			table.appendChild(tbody);
 			this.legend.forEach(function (legendItem) {
 				var row = legendItem.toHtmlTableRow();
 				tbody.appendChild(row);
