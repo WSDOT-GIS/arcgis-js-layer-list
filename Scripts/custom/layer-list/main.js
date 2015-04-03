@@ -1,5 +1,5 @@
 ﻿/*global define*/
-define([], function () {
+define(["legend-helper"], function (LegendHelper) {
 	"use strict";
 
 	/**
@@ -264,8 +264,13 @@ define([], function () {
 			item.dataset.layerType = opLayer.layerType;
 			item.dataset.itemId = opLayer.itemId;
 			item.dataset.layerId = opLayer.id;
-			item.dataset.minScale = opLayer.minScale || "";
-			item.dataset.maxScale = opLayer.maxScale || "";
+			if (opLayer.layerDefinition) {
+				item.dataset.minScale = opLayer.layerDefinition.minScale || "";
+				item.dataset.maxScale = opLayer.layerDefinition.maxScale || "";
+			} else {
+				item.dataset.minScale = opLayer.minScale || "";
+				item.dataset.maxScale = opLayer.maxScale || "";
+			}
 
 			var checkbox = document.createElement("input");
 			checkbox.type = "checkbox";
