@@ -1188,42 +1188,42 @@
 				},
 				{
 					"fieldName": "Fuel_Type",
-					"label": "Fuel Type\n",
+					"label": "Fuel Type",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Station_Na",
-					"label": "Station Name\n",
+					"label": "Station Name",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Street_Add",
-					"label": "Street Address\n",
+					"label": "Street Address",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Intersecti",
-					"label": "Intersection\n",
+					"label": "Intersection",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "City",
-					"label": "City\n",
+					"label": "City",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "State",
-					"label": "State\n",
+					"label": "State",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
@@ -1241,7 +1241,7 @@
 				},
 				{
 					"fieldName": "Plus4",
-					"label": "Plus-4 ZIP Code\n",
+					"label": "Plus-4 ZIP Code",
 					"tooltip": "",
 					"visible": false,
 					"format": {
@@ -1252,119 +1252,119 @@
 				},
 				{
 					"fieldName": "Station_Ph",
-					"label": "Station Phone Number\n",
+					"label": "Station Phone Number",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Status_Cod",
-					"label": "Station Status\n",
+					"label": "Station Status",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Expected_D",
-					"label": "Expected Station Date\n",
+					"label": "Expected Station Date",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Groups_Wit",
-					"label": "Groups With Access\n",
+					"label": "Groups With Access",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Access_Day",
-					"label": "Hours of Operation\n",
+					"label": "Hours of Operation",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Cards_Acce",
-					"label": "Accepted Credit Cards\n",
+					"label": "Accepted Credit Cards",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "BD_Blends",
-					"label": "Biodiesel Blends\n",
+					"label": "Biodiesel Blends",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "NG_Fill_Ty",
-					"label": "Dispensing Capability\n",
+					"label": "Dispensing Capability",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "NG_PSI",
-					"label": "PSI Pressures Availability\n",
+					"label": "PSI Pressures Availability",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "EV_Level1",
-					"label": "Number of Level 1 EVSE\n",
+					"label": "Number of Level 1 EVSE",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "EV_Level2",
-					"label": "Number of Level 2 EVSE\n",
+					"label": "Number of Level 2 EVSE",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "EV_DC_Fast",
-					"label": "Number of DC Fast Chargers\n",
+					"label": "Number of DC Fast Chargers",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "EV_Other_I",
-					"label": "Number of Other EVSE\n",
+					"label": "Number of Other EVSE",
 					"tooltip": "",
 					"visible": false,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "EV_Network",
-					"label": "Name of EVSE Network\n",
+					"label": "Name of EVSE Network",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "EV_Netwo_1",
-					"label": "Additional Name of EVSE Network \n",
+					"label": "Additional Name of EVSE Network ",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Geocode_St",
-					"label": "Accuracy of Geolocation\n",
+					"label": "Accuracy of Geolocation",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Latitude",
-					"label": "Latitude\n",
+					"label": "Latitude",
 					"tooltip": "",
 					"visible": true,
 					"format": {
@@ -1375,7 +1375,7 @@
 				},
 				{
 					"fieldName": "Longitude",
-					"label": "Longitude\n",
+					"label": "Longitude",
 					"tooltip": "",
 					"visible": true,
 					"format": {
@@ -1386,7 +1386,7 @@
 				},
 				{
 					"fieldName": "Date_Last",
-					"label": "Station Details Last Confirmed Date\n",
+					"label": "Station Details Last Confirmed Date",
 					"tooltip": "",
 					"visible": true,
 					"format": {
@@ -1407,35 +1407,35 @@
 				},
 				{
 					"fieldName": "Updated_At",
-					"label": "Last Update Time\n",
+					"label": "Last Update Time",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Owner_Type",
-					"label": "Owner Type\n",
+					"label": "Owner Type",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Federal_Ag",
-					"label": "Federally Owned Agency\n",
+					"label": "Federally Owned Agency",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Federal__1",
-					"label": "Additional Federally Owned Agency\n",
+					"label": "Additional Federally Owned Agency",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "Open_Date",
-					"label": "Open Date\n",
+					"label": "Open Date",
 					"tooltip": "",
 					"visible": true,
 					"format": {
@@ -1445,28 +1445,28 @@
 				},
 				{
 					"fieldName": "Hydrogen_S",
-					"label": "Website (Hydrogen)\n",
+					"label": "Website (Hydrogen)",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "NG_Vehicle",
-					"label": "Maximum Vehicle Size\n",
+					"label": "Maximum Vehicle Size",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "LPG_Primar",
-					"label": "Type of Station (Propane)\n",
+					"label": "Type of Station (Propane)",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"
 				},
 				{
 					"fieldName": "E85_Blende",
-					"label": "Blender Pump (E85 Stations)\n",
+					"label": "Blender Pump (E85 Stations)",
 					"tooltip": "",
 					"visible": true,
 					"stringFieldOption": "textbox"

@@ -3,6 +3,20 @@ define([], function () {
 	"use strict";
 
 	/**
+	 * Represents an operation layer in a web map.
+	 * @typedef {Object} OperationLayer
+	 * @property {string} id - The ID that will be given to the layer when added to a map.
+	 * @property {string} layerType - The type of layer.
+	 * @property {string} url
+	 * @property {Boolean} visibility
+	 * @property {Number} opacity
+	 * @property {string} title
+	 * @property {string} itemId - ArcGIS Online item id
+	 * @property {Number} minScale
+	 * @property {Number} maxScale
+	 */
+
+	/**
 	 * Creates an HTML span with classes applied.
 	 * @param {...string} classNames - One or more class names to be added to the span.
 	 * @returns {HTMLSpanElement}
@@ -204,7 +218,7 @@ define([], function () {
 
 	/**
 	 * @class
-	 * @param {Object[]} operationalLayers
+	 * @param {OperationLayer[]} operationalLayers
 	 * @param {(HTMLUListElement|HTMLOListElement)} domNode
 	 */
 	function LayerList(operationalLayers, domNode) {
@@ -222,9 +236,27 @@ define([], function () {
 				}
 			};
 
-			var setOpacity = function () {
-				opLayer.layerObject.setOpacity(this.value);
-			};
+
+
+
+			/**
+			 * Creates an opacity slider for the given layer.
+			 */
+			function createOpacitySlider(/**{OperationLayer}*/ opLayer) {
+				var setOpacity = function () {
+					opLayer.layerObject.setOpacity(this.value * 0.01);
+				};
+
+				var opacitySlider = document.createElement("input");
+				opacitySlider.classList.add("opacity-slider");
+				opacitySlider.type = "range";
+				opacitySlider.min = 0;
+				opacitySlider.max = 100;
+				opacitySlider.step = 1;
+				opacitySlider.value = opLayer.opacity * 100;
+				opacitySlider.addEventListener("change", setOpacity);
+				return opacitySlider;
+			}
 
 			var item = document.createElement("li");
 			item.classList.add("layer-list-item");
@@ -262,17 +294,9 @@ define([], function () {
 			controlContainer.classList.add("control-container");
 			item.appendChild(controlContainer);
 
-			var opacitySlider = document.createElement("input");
-			opacitySlider.classList.add("opacity-slider");
-			opacitySlider.type = "range";
-			opacitySlider.min = 0;
-			opacitySlider.max = 1;
-			opacitySlider.step = 0.05;
-			opacitySlider.value = opLayer.opacity;
+			var opacitySlider = createOpacitySlider(opLayer);
+
 			controlContainer.appendChild(opacitySlider);
-
-			opacitySlider.addEventListener("change", setOpacity);
-
 			/**
 			 * Set the layer's visible sublayers based on the corresponding
 			 * checkboxes' checked state.
