@@ -22,6 +22,51 @@ define(function () {
 	}
 
 	/**
+	 * Returns a data URL for the legend item's image.
+	 * @returns {string} Data URL of an image.
+	 */
+	LegendItem.prototype.getDataUrl = function () {
+		return ["data:", this.contentType, ";base64,", this.imageData].join("");
+	};
+
+	LegendItem.prototype.toHtmlTableRow = function () {
+		var output, cell, img;
+		if (document && document.createElement) {
+			output = document.createElement("tr");
+
+			// Create image cell
+			cell = output.insertCell(-1);
+			img = document.createElement("img");
+			img.src = this.getDataUrl();
+			if (this.label) {
+				img.alt = this.label;
+			}
+			if (this.height) {
+				img.height = this.height;
+			}
+			if (this.width) {
+				img.width = this.width;
+			}
+			cell.appendChild(img);
+
+			if (this.label) {
+				// Create label cell
+				cell = output.insertCell(-1);
+				cell.textContent = this.label;
+			}
+
+			if (this.values) {
+				// Create values cell.
+				cell = output.insertCell(-1);
+				cell.textContent = this.values.toString();
+			}
+		}
+
+
+		return output;
+	};
+
+	/**
 	 * Represents a layer of a map service.
 	 */
 	function LegendLayer(json) {
@@ -40,6 +85,21 @@ define(function () {
 			return new LegendItem(o);
 		});
 	}
+
+
+	LegendLayer.prototype.createHtmlTable = function () {
+		var table, tbody;
+		if (document && document.createElement && this.legend && this.legend.length > 0) {
+			table = document.createElement("table");
+			table.classList.add("legend");
+			tbody = table.createTBody();
+			this.legend.forEach(function (legendItem) {
+				var row = legendItem.toHtmlTableRow();
+				tbody.appendChild(row);
+			});
+		}
+		return table;
+	};
 
 	/**
 	 * The top level of a response for a Legend request.
@@ -71,11 +131,27 @@ define(function () {
 		return JSON.parse(jsonString, jsonReviver);
 	}
 
+	/**
+	 * Creates an array of HTML tables with a layer's legend.
+	 * Array ordinals correspond to layer IDs. 
+	 * Some elements may be undefined if there is no corresponding layer.
+	 * @return {HTMLTableElement[]}
+	 */
+	LegendResponse.prototype.createHtmlTables = function () {
+		var tables = [];
+		this.layers.forEach(function (legendLayer) {
+			var table = legendLayer.createHtmlTable();
+			tables[legendLayer.layerId] = table;
+		});
+		return tables;
+	};
+
 	LegendResponse.parseJson = parseJson;
 
 	LegendResponse.LegendLayer = LegendLayer;
 
 	LegendResponse.LegendItem = LegendItem;
+
 
 	return LegendResponse;
 });

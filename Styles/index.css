@@ -63,7 +63,7 @@ body {
     padding: 0;
 }
 
-.toggle-closed .control-container {
+.toggle-closed .control-container, .out-of-scale .legend {
     display: none;
 }
 
