@@ -43,6 +43,8 @@
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="Scripts\custom\layer-list\main.js" />
+    <Content Include="Scripts\custom\legend-helper\LegendResponse.js" />
+    <Content Include="Scripts\custom\legend-helper\main.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\polyfills\custom-event-polyfill.js" />
     <Content Include="Scripts\polyfills\custom-event-polyfill.min.js">

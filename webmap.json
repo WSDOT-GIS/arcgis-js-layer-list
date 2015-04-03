@@ -2,7 +2,7 @@
 	"operationalLayers": [{
 		"id": "MetroPlanningAreas_9842",
 		"layerType": "ArcGISMapServiceLayer",
-		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MetroPlanningAreas/MapServer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MetroPlanningAreas/MapServer",
 		"visibility": false,
 		"opacity": 1,
 		"title": "Metropolitan Planning Areas",
@@ -407,7 +407,7 @@
 	{
 		"id": "MilepostValues_7245",
 		"layerType": "ArcGISMapServiceLayer",
-		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
 		"visibility": false,
 		"opacity": 1,
 		"title": "Milepost Values (Zoom in to View)",
@@ -537,7 +537,7 @@
 	{
 		"id": "LevelOfServiceStandard_7783",
 		"layerType": "ArcGISMapServiceLayer",
-		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/CommunityPlanning/LevelOfServiceStandard/MapServer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/CommunityPlanning/LevelOfServiceStandard/MapServer",
 		"visibility": false,
 		"opacity": 1,
 		"title": "Level of Service Standard",
@@ -1480,7 +1480,7 @@
 	{
 		"id": "ClimateImpactVulnerability_3340",
 		"layerType": "ArcGISMapServiceLayer",
-		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/ClimateImpactVulnerability/MapServer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/ClimateImpactVulnerability/MapServer",
 		"visibility": false,
 		"opacity": 1,
 		"title": "Climate Impact Vulnerability",
@@ -1489,7 +1489,7 @@
 	{
 		"id": "PavementCondition_5997",
 		"layerType": "ArcGISMapServiceLayer",
-		"url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/PavementCondition/MapServer",
+		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/PavementCondition/MapServer",
 		"visibility": false,
 		"opacity": 1,
 		"title": "Pavement Condition",
