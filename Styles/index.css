@@ -64,7 +64,7 @@ body {
     padding: 0;
 }
 
-.toggle-closed .control-container, .out-of-scale .legend {
+.toggle-closed .control-container, .out-of-scale .legend, input[type=checkbox]:not(:checked) + label +.legend {
     display: none;
 }
 
