@@ -218,6 +218,207 @@ define(["legend-helper"], function (LegendHelper) {
 	}
 
 	/**
+	 * Creates an opacity slider for the given layer.
+	 * @returns {HTMLInputElement}
+	 */
+	function createOpacitySlider(/**{OperationLayer}*/ opLayer) {
+		var setOpacity = function () {
+			opLayer.layerObject.setOpacity(this.value * 0.01);
+		};
+
+		var opacitySlider = document.createElement("input");
+		opacitySlider.classList.add("opacity-slider");
+		opacitySlider.type = "range";
+		opacitySlider.min = 0;
+		opacitySlider.max = 100;
+		opacitySlider.step = 1;
+		opacitySlider.value = opLayer.opacity * 100;
+		opacitySlider.addEventListener("change", setOpacity);
+		return opacitySlider;
+	}
+
+	function createLayerListItem(opLayer, list) {
+		var setLayerVisibility = function () {
+			// Toggle the layer to match checkbox value.
+			if (this.checked) {
+				opLayer.layerObject.show();
+			} else {
+				opLayer.layerObject.hide();
+			}
+		};
+
+		var item = document.createElement("li");
+		item.classList.add("layer-list-item");
+		item.classList.add("toggle-closed");
+		item.dataset.layerType = opLayer.layerType;
+		item.dataset.itemId = opLayer.itemId;
+		item.dataset.layerId = opLayer.id;
+		if (opLayer.layerDefinition) {
+			item.dataset.minScale = opLayer.layerDefinition.minScale || "";
+			item.dataset.maxScale = opLayer.layerDefinition.maxScale || "";
+		} else {
+			item.dataset.minScale = opLayer.minScale || "";
+			item.dataset.maxScale = opLayer.maxScale || "";
+		}
+
+		var checkbox = document.createElement("input");
+		checkbox.type = "checkbox";
+		checkbox.checked = opLayer.visibility;
+		checkbox.value = opLayer.id;
+		item.appendChild(checkbox);
+
+		var label = document.createElement("label");
+		label.classList.add("layer-label");
+		label.appendChild(document.createTextNode(opLayer.title));
+		label.addEventListener("click", function () {
+			item.classList.toggle("toggle-closed");
+		});
+		item.appendChild(label);
+
+		badge = createLayerTypeBadge(opLayer.layerType);
+		item.appendChild(badge);
+
+		// Layers are displayed on the map in the OPPOSITE order
+		// than what is listed in the webmap JSON.
+		list.insertBefore(item, list.firstChild);
+
+		checkbox.addEventListener("click", setLayerVisibility);
+
+		var controlContainer = document.createElement("div");
+		controlContainer.classList.add("control-container");
+		item.appendChild(controlContainer);
+
+		var opacitySlider = createOpacitySlider(opLayer);
+
+		controlContainer.appendChild(opacitySlider);
+		/**
+		 * Set the layer's visible sublayers based on the corresponding
+		 * checkboxes' checked state.
+		 */
+		var setVisibleLayers = function () {
+			var checkedBoxes = item.querySelectorAll(".sublayer-list input:checked");
+			var uncheckedBoxes = item.querySelectorAll(".sublayer-list input:not(:checked)");
+
+			/**
+			 * Get the sublayer info objects corresponding to 
+			 * the given checkboxes.
+			 * @param {HTMLInputElement[]} checkboxes - An array of checkbox input elements.
+			 * @returns {Object[]}
+			 */
+			function getSubitems(checkboxes) {
+				var subItems = [];
+				var ds;
+				for (var i = 0, l = checkboxes.length; i < l; i += 1) {
+					ds = checkboxes[i].parentElement.dataset;
+					subItems.push(dataSetToObject(ds));
+				}
+				return subItems;
+			}
+
+			// Get the checked and unchecked checkboxes.
+			var checkedItems = getSubitems(checkedBoxes);
+			var uncheckedItems = getSubitems(uncheckedBoxes);
+
+
+			var filteredChecked = [];
+			var currentItem;
+
+			/**
+			 * Determines if the collection of unchecked list items contains the given item.
+			 * @param {Object} item
+			 * @param {number} item.id - Integer identifier
+			 * @returns {Boolean}
+			 */
+			function uncheckedContainsItem(item) {
+				var output = false;
+				var ucItem;
+				for (var i = 0, l = uncheckedItems.length; i < l; i += 1) {
+					ucItem = uncheckedItems[i];
+					if (ucItem.subLayerIds) {
+						for (var j = 0, jl = ucItem.subLayerIds.length; j < jl; j += 1) {
+							if (item.id === ucItem.subLayerIds[j]) {
+								output = true;
+								break;
+							}
+						}
+					}
+					if (output) {
+						break;
+					}
+				}
+				return output;
+			}
+
+			// Filter out checked items with unchecked parents.
+			// If the parent layer IDs are included, ArcGIS Server
+			// will ignore the checked status of its sublayers.
+			for (var i = 0, l = checkedItems.length; i < l; i += 1) {
+				currentItem = checkedItems[i];
+				if (!currentItem.subLayerIds && !uncheckedContainsItem(currentItem)) {
+					filteredChecked.push(currentItem.id);
+				}
+			}
+
+			// Set the layer's visible sublayers to match the checkboxes.
+			// If there are NO checked boxes, -1 is used to indicate this.
+			// (This is because an empty array will indicate that all layers should be displayed.)
+			opLayer.layerObject.setVisibleLayers(filteredChecked.length ? filteredChecked : [-1]);
+
+			//self.root.dispatchEvent(event);
+		};
+
+		var sublayerList, subChecks, i, l, badge;
+		if (opLayer.layerObject) {
+
+			if (opLayer.layerObject.supportsDynamicLayers) {
+				badge = createBadge("supports-dynamic-layers");
+				item.insertBefore(badge, controlContainer);
+			}
+
+			if (opLayer.layerObject.layerInfos) {
+				sublayerList = new SublayerList(opLayer.layerObject);
+				subChecks = sublayerList.root.querySelectorAll("input[type=checkbox]");
+				if (opLayer.layerObject.setVisibleLayers) {
+					for (i = 0, l = subChecks.length; i < l; i += 1) {
+						subChecks[i].addEventListener("click", setVisibleLayers);
+					}
+				} else {
+					for (i = 0, l = subChecks.length; i < l; i += 1) {
+						subChecks[i].disabled = true;
+					}
+				}
+				controlContainer.appendChild(sublayerList.root);
+			}
+		}
+
+		// Add legend
+		LegendHelper.getLegendInfo(opLayer).then(function (legendResponse) {
+			console.log("legend response", {
+				layer: opLayer,
+				legend: legendResponse,
+			});
+			var tables = legendResponse.createHtmlTables();
+			tables.forEach(function (table, i) {
+				var li;
+				if (table) {
+					li = sublayerList.root.querySelector(["[data-id='", i, "']"].join(""));
+					if (li) {
+						li.appendChild(table);
+					} else {
+						controlContainer.appendChild(table);
+					}
+
+				}
+			});
+		}, function (error) {
+			console.error("legend-error", {
+				layer: opLayer,
+				error: error
+			});
+		});
+	}
+
+	/**
 	 * @class
 	 * @param {OperationLayer[]} operationalLayers
 	 * @param {(HTMLUListElement|HTMLOListElement)} domNode
@@ -227,212 +428,9 @@ define(["legend-helper"], function (LegendHelper) {
 		this.root = domNode;
 		domNode.classList.add("layer-list");
 
-		operationalLayers.forEach(function (opLayer) {
-			var setLayerVisibility = function () {
-				// Toggle the layer to match checkbox value.
-				if (this.checked) {
-					opLayer.layerObject.show();
-				} else {
-					opLayer.layerObject.hide();
-				}
-			};
-
-
-
-
-			/**
-			 * Creates an opacity slider for the given layer.
-			 * @returns {HTMLInputElement}
-			 */
-			function createOpacitySlider(/**{OperationLayer}*/ opLayer) {
-				var setOpacity = function () {
-					opLayer.layerObject.setOpacity(this.value * 0.01);
-				};
-
-				var opacitySlider = document.createElement("input");
-				opacitySlider.classList.add("opacity-slider");
-				opacitySlider.type = "range";
-				opacitySlider.min = 0;
-				opacitySlider.max = 100;
-				opacitySlider.step = 1;
-				opacitySlider.value = opLayer.opacity * 100;
-				opacitySlider.addEventListener("change", setOpacity);
-				return opacitySlider;
-			}
-
-			var item = document.createElement("li");
-			item.classList.add("layer-list-item");
-			item.classList.add("toggle-closed");
-			item.dataset.layerType = opLayer.layerType;
-			item.dataset.itemId = opLayer.itemId;
-			item.dataset.layerId = opLayer.id;
-			if (opLayer.layerDefinition) {
-				item.dataset.minScale = opLayer.layerDefinition.minScale || "";
-				item.dataset.maxScale = opLayer.layerDefinition.maxScale || "";
-			} else {
-				item.dataset.minScale = opLayer.minScale || "";
-				item.dataset.maxScale = opLayer.maxScale || "";
-			}
-
-			var checkbox = document.createElement("input");
-			checkbox.type = "checkbox";
-			checkbox.checked = opLayer.visibility;
-			checkbox.value = opLayer.id;
-			item.appendChild(checkbox);
-
-			var label = document.createElement("label");
-			label.classList.add("layer-label");
-			label.appendChild(document.createTextNode(opLayer.title));
-			label.addEventListener("click", function () {
-				item.classList.toggle("toggle-closed");
-			});
-			item.appendChild(label);
-
-			badge = createLayerTypeBadge(opLayer.layerType);
-			item.appendChild(badge);
-
-			// Layers are displayed on the map in the OPPOSITE order
-			// than what is listed in the webmap JSON.
-			domNode.insertBefore(item, domNode.firstChild);
-
-			checkbox.addEventListener("click", setLayerVisibility);
-
-			var controlContainer = document.createElement("div");
-			controlContainer.classList.add("control-container");
-			item.appendChild(controlContainer);
-
-			var opacitySlider = createOpacitySlider(opLayer);
-
-			controlContainer.appendChild(opacitySlider);
-			/**
-			 * Set the layer's visible sublayers based on the corresponding
-			 * checkboxes' checked state.
-			 */
-			var setVisibleLayers = function () {
-				var checkedBoxes = item.querySelectorAll(".sublayer-list input:checked");
-				var uncheckedBoxes = item.querySelectorAll(".sublayer-list input:not(:checked)");
-
-				/**
-				 * Get the sublayer info objects corresponding to 
-				 * the given checkboxes.
-				 * @param {HTMLInputElement[]} checkboxes - An array of checkbox input elements.
-				 * @returns {Object[]}
-				 */
-				function getSubitems(checkboxes) {
-					var subItems = [];
-					var ds;
-					for (var i = 0, l = checkboxes.length; i < l; i += 1) {
-						ds = checkboxes[i].parentElement.dataset;
-						subItems.push(dataSetToObject(ds));
-					}
-					return subItems;
-				}
-
-				// Get the checked and unchecked checkboxes.
-				var checkedItems = getSubitems(checkedBoxes);
-				var uncheckedItems = getSubitems(uncheckedBoxes);
-
-
-				var filteredChecked = [];
-				var currentItem;
-
-				/**
-				 * Determines if the collection of unchecked list items contains the given item.
-				 * @param {Object} item
-				 * @returns {Boolean}
-				 */
-				function uncheckedContainsItem(item) {
-					var output = false;
-					var ucItem;
-					for (var i = 0, l = uncheckedItems.length; i < l; i += 1) {
-						ucItem = uncheckedItems[i];
-						if (ucItem.subLayerIds) {
-							for (var j = 0, jl = ucItem.subLayerIds.length; j < jl; j += 1) {
-								if (item.id === ucItem.subLayerIds[j]) {
-									output = true;
-									break;
-								}
-							}
-						}
-						if (output) {
-							break;
-						}
-					}
-					return output;
-				}
-
-				// Filter out checked items with unchecked parents.
-				// If the parent layer IDs are included, ArcGIS Server
-				// will ignore the checked status of its sublayers.
-				for (var i = 0, l = checkedItems.length; i < l; i += 1) {
-					currentItem = checkedItems[i];
-					if (!currentItem.subLayerIds && !uncheckedContainsItem(currentItem)) {
-						filteredChecked.push(currentItem.id);
-					}
-				}
-
-				// Set the layer's visible sublayers to match the checkboxes.
-				// If there are NO checked boxes, -1 is used to indicate this.
-				// (This is because an empty array will indicate that all layers should be displayed.)
-				opLayer.layerObject.setVisibleLayers(filteredChecked.length ? filteredChecked : [-1]);
-
-				//self.root.dispatchEvent(event);
-			};
-
-			var sublayerList, subChecks, i, l, badge;
-			if (opLayer.layerObject) {
-
-				if (opLayer.layerObject.supportsDynamicLayers) {
-					
-
-
-					badge = createBadge("supports-dynamic-layers");
-					item.insertBefore(badge, controlContainer);
-				}
-
-				if (opLayer.layerObject.layerInfos) {
-					sublayerList = new SublayerList(opLayer.layerObject);
-					subChecks = sublayerList.root.querySelectorAll("input[type=checkbox]");
-					if (opLayer.layerObject.setVisibleLayers) {
-						for (i = 0, l = subChecks.length; i < l; i += 1) {
-							subChecks[i].addEventListener("click", setVisibleLayers);
-						}
-					} else {
-						for (i = 0, l = subChecks.length; i < l; i += 1) {
-							subChecks[i].disabled = true;
-						}
-					}
-					controlContainer.appendChild(sublayerList.root);
-				}
-			}
-
-			// Add legend
-			LegendHelper.getLegendInfo(opLayer).then(function (legendResponse) {
-				console.log("legend response", {
-					layer: opLayer,
-					legend: legendResponse,
-				});
-				var tables = legendResponse.createHtmlTables();
-				tables.forEach(function (table, i) {
-					var li;
-					if (table) {
-						li = sublayerList.root.querySelector(["[data-id='", i, "']"].join(""));
-						if (li) {
-							li.appendChild(table);
-						} else {
-							controlContainer.appendChild(table);
-						}
-
-					}
-				});
-			}, function (error) {
-				console.error("legend-error", {
-					layer: opLayer,
-					error: error
-				});
-			});
+		operationalLayers.forEach(function (ol) {
+			createLayerListItem(ol, domNode);
 		});
-
 
 	}
 
