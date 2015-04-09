@@ -416,6 +416,62 @@ define(["legend-helper"], function (LegendHelper) {
 				error: error
 			});
 		});
+
+
+		// Make item draggable
+
+		item.draggable = true;
+		item.setAttribute("dropzone", "move string:text/plain");
+		
+
+		item.ondragstart = function (e) {
+			this.classList.add("being-dragged");
+			e.dataTransfer.effectAllowed = "move";
+			e.dataTransfer.setData("text/plain", this.dataset.layerId);
+		};
+
+		item.ondragover = function (e) {
+			if (e.preventDefault) {
+				e.preventDefault();
+			}
+
+			e.dataTransfer.dropEffect = "move";
+			return false;
+		};
+
+		item.ondragenter = function () {
+			this.classList.add("drag-target");
+		};
+
+		item.ondragleave = function () {
+			this.classList.remove("drag-target");
+		};
+
+		item.ondragend = function (e) {
+			this.classList.remove("being-dragged");
+			console.log("drag-end", e);
+		};
+
+		item.ondrop = function (e) {
+			if (e.stopPropagation) {
+				e.stopPropagation();
+			}
+			this.classList.remove("drag-target");
+			// get the layer ID
+			var layerId = e.dataTransfer.getData("text/plain");
+
+			// Get the parent layer list.
+			var layerList = this.parentElement;
+
+			// Get the dragged item.
+			var draggedItem = layerList.querySelector("[data-layer-id='" + layerId + "']");
+
+			layerList.insertBefore(draggedItem, this);
+
+			return false;
+		};
+
+		return item;
 	}
 
 	/**
@@ -431,12 +487,12 @@ define(["legend-helper"], function (LegendHelper) {
 		operationalLayers.forEach(function (ol) {
 			createLayerListItem(ol, domNode);
 		});
-
 	}
 
 	/**
 	 * Call this function to update the out-of-scale classes
 	 * on layers.
+	 * @param {number} scale
 	 */
 	LayerList.prototype.setScale = function (scale) {
 		var items, item, i, l, minScale, maxScale;
