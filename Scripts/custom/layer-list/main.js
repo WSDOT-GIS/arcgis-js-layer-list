@@ -447,9 +447,8 @@ define(["legend-helper"], function (LegendHelper) {
 			this.classList.remove("drag-target");
 		};
 
-		item.ondragend = function (e) {
+		item.ondragend = function () {
 			this.classList.remove("being-dragged");
-			console.log("drag-end", e);
 		};
 
 		item.ondrop = function (e) {
@@ -467,6 +466,16 @@ define(["legend-helper"], function (LegendHelper) {
 			var draggedItem = layerList.querySelector("[data-layer-id='" + layerId + "']");
 
 			layerList.insertBefore(draggedItem, this);
+
+
+			var moveEvent = new CustomEvent("layer-move", {
+				detail: {
+					movedLayerId: layerId,
+					targetLayerId: this.dataset.layerId
+				}
+			});
+
+			layerList.dispatchEvent(moveEvent);
 
 			return false;
 		};

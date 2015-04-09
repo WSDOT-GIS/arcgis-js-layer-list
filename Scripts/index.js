@@ -50,5 +50,15 @@ require(["esri/arcgis/utils",
 		map.on("update-end", function () {
 			domUtils.hide(document.getElementById("mapProgress"));
 		});
+
+		layerList.root.addEventListener("layer-move", function (e) {
+			var detail = e.detail;
+			var movedLayerId = detail.movedLayerId;
+			var targetLayerId = detail.targetLayerId;
+			console.log("layer-move", detail);
+			console.log("map", map);
+		});
+
+		
 	});
 });

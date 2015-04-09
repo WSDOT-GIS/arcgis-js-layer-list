@@ -410,7 +410,7 @@
 		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
 		"visibility": false,
 		"opacity": 1,
-		"title": "Milepost Values (Zoom in to View)",
+		"title": "Milepost Values",
 		"itemId": "03ec5ff3609f45caa849d5afa4d92e9e"
 	},
 	{
@@ -488,7 +488,7 @@
 		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/TribalReservationLands/MapServer",
 		"visibility": false,
 		"opacity": 1,
-		"title": "Tribal Planning Fact Sheets (Click on reservation)",
+		"title": "Tribal Planning Fact Sheets",
 		"itemId": "81e4aafd20f645169f9d0a3bc5fa776e"
 	},
 	{
@@ -497,7 +497,7 @@
 		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CountyBoundaries/MapServer",
 		"visibility": false,
 		"opacity": 0.72,
-		"title": "County Planning Fact Sheet (Click County to Open)",
+		"title": "County Planning Fact Sheet",
 		"itemId": "ac87f36d55934a3b918dcce7ae1a3a98",
 		"minScale": 6000000,
 		"maxScale": 4513.988705
@@ -508,7 +508,7 @@
 		"url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CityLimits/MapServer",
 		"visibility": false,
 		"opacity": 0.31999999999999995,
-		"title": "City Planning Fact Sheets (Click City to Open)",
+		"title": "City Planning Fact Sheets",
 		"itemId": "c5007cbb98904dbbbf3d193a2aa136c6",
 		"minScale": 6000000,
 		"maxScale": 4514
@@ -1675,7 +1675,7 @@
 		"url": "http://services.arcgis.com/IYrj3otxNjPsrTRD/arcgis/rest/services/WSDOTAccessControl/FeatureServer/0",
 		"visibility": false,
 		"opacity": 1,
-		"title": "Access Control (Zoom in to View)",
+		"title": "Access Control",
 		"itemId": "25fcada3c5b34a9d83adf42a12e09075",
 		"layerDefinition": {
 			"minScale": 3000000,
@@ -1877,7 +1877,7 @@
 		"url": "http://services.arcgis.com/IYrj3otxNjPsrTRD/arcgis/rest/services/WSDOT - Roadway Characteristics/FeatureServer/2",
 		"visibility": false,
 		"opacity": 1,
-		"title": "Number of Lanes, Width, & Type (Zoom in to View)",
+		"title": "Number of Lanes, Width, & Type",
 		"itemId": "34eea7f961964637b88867d56b125687",
 		"layerDefinition": {
 			"minScale": 1500000,
@@ -1890,7 +1890,7 @@
 		"url": "http://services.arcgis.com/IYrj3otxNjPsrTRD/arcgis/rest/services/WSDOT - Roadway Characteristics/FeatureServer/1",
 		"visibility": false,
 		"opacity": 1,
-		"title": "Legal Speed Limits (Zoom in to View)",
+		"title": "Legal Speed Limits",
 		"itemId": "34eea7f961964637b88867d56b125687",
 		"layerDefinition": {
 			"minScale": 3000000,
@@ -1903,7 +1903,7 @@
 		"url": "http://services.arcgis.com/IYrj3otxNjPsrTRD/arcgis/rest/services/WSDOT - Roadway Characteristics/FeatureServer/0",
 		"visibility": false,
 		"opacity": 1,
-		"title": "Special Use Lanes (Zoom in to View)",
+		"title": "Special Use Lanes",
 		"itemId": "34eea7f961964637b88867d56b125687",
 		"layerDefinition": {
 			"minScale": 1500000,
