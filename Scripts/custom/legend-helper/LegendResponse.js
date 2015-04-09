@@ -3,8 +3,9 @@
 define(function () {
 	/**
 	 * Represents an item in a layer's legend.
+	 * @class
 	 */
-	function LegendItem(json) {
+	function LegendItem(/**{Object}*/ json) {
 		/**@member {string}*/
 		this.label = json.label;
 		/**@member {string}*/
@@ -29,6 +30,10 @@ define(function () {
 		return ["data:", this.contentType, ";base64,", this.imageData].join("");
 	};
 
+	/**
+	 * Creates a table row representation of a legend item.
+	 * @returns {HTMLTableRowElement}
+	 */
 	LegendItem.prototype.toHtmlTableRow = function () {
 		var output, cell, img;
 		if (document && document.createElement) {
@@ -72,7 +77,7 @@ define(function () {
 	/**
 	 * Represents a layer of a map service.
 	 */
-	function LegendLayer(json) {
+	function LegendLayer(/**{Object}*/ json) {
 		/**@member {number} */
 		this.layerId = json.layerId;
 		/**@member {string} */
@@ -89,7 +94,10 @@ define(function () {
 		});
 	}
 
-
+	/**
+	 * Creates an HTML table for a legend layer.
+	 * @returns {HTMLTableElement}
+	 */
 	LegendLayer.prototype.createHtmlTable = function () {
 		var table, tbody;
 		if (document && document.createElement && this.legend && this.legend.length > 0) {

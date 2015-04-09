@@ -65,6 +65,7 @@ define(["legend-helper"], function (LegendHelper) {
 	/**
 	 * Creates a CSS class name based on a operationalLayers elements' layerType value.
 	 * @param {string} layerType
+	 * @returns {string}
 	 */
 	function createLayerTypeClass(layerType) {
 		var words = splitWords(layerType, /(?:(?:ArcGIS)|(?:[A-Z][a-z]+))/g);
@@ -241,6 +242,7 @@ define(["legend-helper"], function (LegendHelper) {
 
 			/**
 			 * Creates an opacity slider for the given layer.
+			 * @returns {HTMLInputElement}
 			 */
 			function createOpacitySlider(/**{OperationLayer}*/ opLayer) {
 				var setOpacity = function () {
