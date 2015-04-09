@@ -14,23 +14,46 @@ define(["./LegendResponse"], function (LegendResponse) {
 		if (typeof mapServiceUrl !== "string" && mapServiceUrl.url) {
 			mapServiceUrl = mapServiceUrl.url;
 		}
+		var featureLayerUrlRe = /\/\d+\/?$/;
 		var promise = new Promise(function (resolve, reject) {
-			var req = new XMLHttpRequest();
-			req.open("GET", mapServiceUrl.replace("/\/$", "") + "/legend?f=json");
-			req.onloadend = function () {
-				var response;
-				if (this.status === 200) {
-					response = LegendResponse.parseJson(this.responseText);
-					if (response.error) {
-						reject(response);
-					} else {
-						resolve(response);
-					}
+			if (mapServiceUrl) {
+				var req = new XMLHttpRequest();
+				if (featureLayerUrlRe.test(mapServiceUrl)) {
+					req.open("GET", mapServiceUrl + "?f=json");
+					req.onloadend = function () {
+						var response;
+						if (this.status === 200) {
+							response = JSON.parse(this.responseText);
+							if (response.error) {
+								reject(response.error);
+							} else {
+								resolve(response.drawingInfo);
+							}
+						} else {
+							reject({ error: this.statusText || this.status });
+						}
+					};
+					req.send();
 				} else {
-					reject({ error: this.statusText });
+					req.open("GET", mapServiceUrl.replace("/\/$", "") + "/legend?f=json");
+					req.onloadend = function () {
+						var response;
+						if (this.status === 200) {
+							response = LegendResponse.parseJson(this.responseText);
+							if (response.error) {
+								reject(response.error);
+							} else {
+								resolve(response);
+							}
+						} else {
+							reject({ error: this.statusText || this.status });
+						}
+					};
+					req.send();
 				}
-			};
-			req.send();
+			} else {
+				reject({ error: "No URL provided." });
+			}
 		});
 
 		return promise;
