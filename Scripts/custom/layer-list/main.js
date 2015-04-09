@@ -393,23 +393,24 @@ define(["legend-helper"], function (LegendHelper) {
 
 		// Add legend
 		LegendHelper.getLegendInfo(opLayer).then(function (legendResponse) {
-			console.log("legend response", {
-				layer: opLayer,
-				legend: legendResponse,
-			});
-			var tables = legendResponse.createHtmlTables();
-			tables.forEach(function (table, i) {
-				var li;
-				if (table) {
-					li = sublayerList.root.querySelector(["[data-id='", i, "']"].join(""));
-					if (li) {
-						li.appendChild(table);
-					} else {
-						controlContainer.appendChild(table);
-					}
+			var tables;
+			if (legendResponse.createHtmlTables) {
+				tables = legendResponse.createHtmlTables();
+				tables.forEach(function (table, i) {
+					var li;
+					if (table) {
+						li = sublayerList.root.querySelector(["[data-id='", i, "']"].join(""));
+						if (li) {
+							li.appendChild(table);
+						} else {
+							controlContainer.appendChild(table);
+						}
 
-				}
-			});
+					}
+				});
+			} else {
+				console.log("TODO: Create feature layer legend", legendResponse);
+			}
 		}, function (error) {
 			console.error("legend-error", {
 				layer: opLayer,
