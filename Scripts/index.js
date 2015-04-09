@@ -55,6 +55,32 @@ require(["esri/arcgis/utils",
 			var detail = e.detail;
 			var movedLayerId = detail.movedLayerId;
 			var targetLayerId = detail.targetLayerId;
+
+			var movedLayer = map.getLayer(movedLayerId);
+			var targetLayerOrd = null;
+			var movedLayerOrd = null;
+
+			console.log("moved layer", movedLayer);
+
+			for (var i = 0, l = map.layerIds.length; i < l; i += 1) {
+				if (map.layerIds[i] === targetLayerId) {
+					targetLayerOrd = i;
+				} else if (map.layerIds[i] === movedLayerId) {
+					movedLayerOrd = i;
+				}
+				if (targetLayerOrd !== null && movedLayerOrd !== null) {
+					break;
+				}
+			}
+
+
+			if (targetLayerOrd !== null && movedLayerOrd !== null) {
+				targetLayerOrd = l - 1 - targetLayerOrd;
+				map.reorderLayer(movedLayer, targetLayerOrd);
+			} else {
+				console.error("Couldn't determine layer ords");
+			}
+
 			console.log("layer-move", detail);
 			console.log("map", map);
 		});
