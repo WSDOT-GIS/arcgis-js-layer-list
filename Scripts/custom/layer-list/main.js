@@ -465,18 +465,33 @@ define(["legend-helper"], function (LegendHelper) {
 
 			// Get the dragged item.
 			var draggedItem = layerList.querySelector("[data-layer-id='" + layerId + "']");
+			var moveEvent;
 
-			layerList.insertBefore(draggedItem, this);
+			if ((draggedItem.dataset.layerType === "ArcGISFeatureLayer" && this.dataset.layerType === "ArcGISFeatureLayer")
+				||
+				(draggedItem.dataset.layerType !== "ArcGISFeatureLayer" && this.dataset.layerType !== "ArcGISFeatureLayer")
+				) {
+
+				layerList.insertBefore(draggedItem, this);
 
 
-			var moveEvent = new CustomEvent("layer-move", {
-				detail: {
-					movedLayerId: layerId,
-					targetLayerId: this.dataset.layerId
-				}
-			});
+				moveEvent = new CustomEvent("layer-move", {
+					detail: {
+						movedLayerId: layerId,
+						targetLayerId: this.dataset.layerId
+					}
+				});
 
-			layerList.dispatchEvent(moveEvent);
+				layerList.dispatchEvent(moveEvent);
+			} else {
+				moveEvent = new CustomEvent("layer-cannot-move", {
+					detail: {
+						movedLayerId: layerId,
+						targetLayerId: this.dataset.layerId,
+						error: "Graphics layers are not allowed below non-graphics layers."
+					}
+				});
+			}
 
 			return false;
 		};
