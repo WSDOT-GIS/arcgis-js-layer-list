@@ -26,6 +26,28 @@ require(["esri/arcgis/utils",
 		itemData: webmap
 	};
 
+	function getLayerOrdinal(map, layerId) {
+		var ord = null, i, l;
+
+		for (i = 0, l = map.graphicsLayerIds.length; i < l; i += 1) {
+			if (map.graphicsLayerIds[i] === layerId) {
+				ord = i;
+				break;
+			}
+		}
+
+		if (ord === null) {
+			for (i = 0, l = map.layerIds.length; i < l; i += 1) {
+				if (map.layerIds[i] === layerId) {
+					ord = i + map.graphicsLayerIds.length;
+					break;
+				}
+			}
+		}
+
+		return ord;
+	}
+
 
 
 	// Create a map from a predefined webmap on AGOL.
@@ -57,32 +79,12 @@ require(["esri/arcgis/utils",
 			var targetLayerId = detail.targetLayerId;
 
 			var movedLayer = map.getLayer(movedLayerId);
-			var targetLayerOrd = null;
-			var movedLayerOrd = null;
 
-			console.log("moved layer", movedLayer);
+			var targetLayerOrd = getLayerOrdinal(map, targetLayerId);
 
-			for (var i = 0, l = map.layerIds.length; i < l; i += 1) {
-				if (map.layerIds[i] === targetLayerId) {
-					targetLayerOrd = i;
-				} else if (map.layerIds[i] === movedLayerId) {
-					movedLayerOrd = i;
-				}
-				if (targetLayerOrd !== null && movedLayerOrd !== null) {
-					break;
-				}
-			}
-
-
-			if (targetLayerOrd !== null && movedLayerOrd !== null) {
-				targetLayerOrd = l - 1 - targetLayerOrd;
+			if (targetLayerOrd !== null) {
 				map.reorderLayer(movedLayer, targetLayerOrd);
-			} else {
-				console.error("Couldn't determine layer ords");
 			}
-
-			console.log("layer-move", detail);
-			console.log("map", map);
 		});
 
 		
