@@ -26,6 +26,31 @@ require(["esri/arcgis/utils",
 		itemData: webmap
 	};
 
+	/**
+	 * Gets the layer's position in its collection (either map.graphicsLayersIds or map.layerIds).
+	 */
+	function getLayerOrdinal(map, layerId) {
+		var ord = null, i, l;
+
+		for (i = 0, l = map.graphicsLayerIds.length; i < l; i += 1) {
+			if (map.graphicsLayerIds[i] === layerId) {
+				ord = i + 1;
+				break;
+			}
+		}
+
+		if (ord === null) {
+			for (i = 0, l = map.layerIds.length; i < l; i += 1) {
+				if (map.layerIds[i] === layerId) {
+					ord = i + 1;
+					break;
+				}
+			}
+		}
+
+		return ord;
+	}
+
 
 
 	// Create a map from a predefined webmap on AGOL.
@@ -50,5 +75,21 @@ require(["esri/arcgis/utils",
 		map.on("update-end", function () {
 			domUtils.hide(document.getElementById("mapProgress"));
 		});
+
+		layerList.root.addEventListener("layer-move", function (e) {
+			var detail = e.detail;
+			var movedLayerId = detail.movedLayerId;
+			var targetLayerId = detail.targetLayerId;
+
+			var movedLayer = map.getLayer(movedLayerId);
+
+			var targetLayerOrd = getLayerOrdinal(map, targetLayerId);
+
+			if (targetLayerOrd !== null) {
+				map.reorderLayer(movedLayer, targetLayerOrd);
+			}
+		});
+
+		
 	});
 });

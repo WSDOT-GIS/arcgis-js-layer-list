@@ -417,6 +417,86 @@ define(["legend-helper"], function (LegendHelper) {
 				error: error
 			});
 		});
+
+
+		// Make item draggable
+
+		item.draggable = true;
+		item.setAttribute("dropzone", "move string:text/plain");
+		
+
+		item.ondragstart = function (e) {
+			this.classList.add("being-dragged");
+			e.dataTransfer.effectAllowed = "move";
+			e.dataTransfer.setData("text/plain", this.dataset.layerId);
+		};
+
+		item.ondragover = function (e) {
+			if (e.preventDefault) {
+				e.preventDefault();
+			}
+
+			e.dataTransfer.dropEffect = "move";
+			return false;
+		};
+
+		item.ondragenter = function () {
+			this.classList.add("drag-target");
+		};
+
+		item.ondragleave = function () {
+			this.classList.remove("drag-target");
+		};
+
+		item.ondragend = function () {
+			this.classList.remove("being-dragged");
+		};
+
+		item.ondrop = function (e) {
+			if (e.stopPropagation) {
+				e.stopPropagation();
+			}
+			this.classList.remove("drag-target");
+			// get the layer ID
+			var layerId = e.dataTransfer.getData("text/plain");
+
+			// Get the parent layer list.
+			var layerList = this.parentElement;
+
+			// Get the dragged item.
+			var draggedItem = layerList.querySelector("[data-layer-id='" + layerId + "']");
+			var moveEvent;
+
+			if ((draggedItem.dataset.layerType === "ArcGISFeatureLayer" && this.dataset.layerType === "ArcGISFeatureLayer")
+				||
+				(draggedItem.dataset.layerType !== "ArcGISFeatureLayer" && this.dataset.layerType !== "ArcGISFeatureLayer")
+				) {
+
+				layerList.insertBefore(draggedItem, this);
+
+
+				moveEvent = new CustomEvent("layer-move", {
+					detail: {
+						movedLayerId: layerId,
+						targetLayerId: this.dataset.layerId
+					}
+				});
+
+				layerList.dispatchEvent(moveEvent);
+			} else {
+				moveEvent = new CustomEvent("layer-cannot-move", {
+					detail: {
+						movedLayerId: layerId,
+						targetLayerId: this.dataset.layerId,
+						error: "Graphics layers are not allowed below non-graphics layers."
+					}
+				});
+			}
+
+			return false;
+		};
+
+		return item;
 	}
 
 	/**
@@ -432,12 +512,12 @@ define(["legend-helper"], function (LegendHelper) {
 		operationalLayers.forEach(function (ol) {
 			createLayerListItem(ol, domNode);
 		});
-
 	}
 
 	/**
 	 * Call this function to update the out-of-scale classes
 	 * on layers.
+	 * @param {number} scale
 	 */
 	LayerList.prototype.setScale = function (scale) {
 		var items, item, i, l, minScale, maxScale;
