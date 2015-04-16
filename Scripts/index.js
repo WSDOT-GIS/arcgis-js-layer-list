@@ -26,12 +26,15 @@ require(["esri/arcgis/utils",
 		itemData: webmap
 	};
 
+	/**
+	 * Gets the layer's position in its collection (either map.graphicsLayersIds or map.layerIds).
+	 */
 	function getLayerOrdinal(map, layerId) {
 		var ord = null, i, l;
 
 		for (i = 0, l = map.graphicsLayerIds.length; i < l; i += 1) {
 			if (map.graphicsLayerIds[i] === layerId) {
-				ord = i;
+				ord = i + 1;
 				break;
 			}
 		}
@@ -39,7 +42,7 @@ require(["esri/arcgis/utils",
 		if (ord === null) {
 			for (i = 0, l = map.layerIds.length; i < l; i += 1) {
 				if (map.layerIds[i] === layerId) {
-					ord = i + map.graphicsLayerIds.length;
+					ord = i + 1;
 					break;
 				}
 			}

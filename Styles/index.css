@@ -32,7 +32,7 @@ body {
 }
 
 .drag-target {
-    border: 1px inset gray;
+    border-top: 1px inset gray;
 }
 
 .control-container {
