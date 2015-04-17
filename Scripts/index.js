@@ -51,7 +51,7 @@ require(["esri/arcgis/utils",
 		return ord;
 	}
 
-
+	domUtils.hide(document.getElementById("mapProgress"));
 
 	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap(webmap, "map").then(function (response) {
