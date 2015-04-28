@@ -28,6 +28,9 @@ require(["esri/arcgis/utils",
 
 	/**
 	 * Gets the layer's position in its collection (either map.graphicsLayersIds or map.layerIds).
+	 * @param {esri/Map} map
+	 * @param {string} layerId
+	 * @returns {number}
 	 */
 	function getLayerOrdinal(map, layerId) {
 		var ord = null, i, l;
