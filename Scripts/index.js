@@ -4,8 +4,10 @@ require(["esri/arcgis/utils",
 	"esri/config",
 	"esri/domUtils",
 	"layer-list",
+	"esri/arcgis/Portal",
+	"agol-portal-browser",
 	"dojo/text!./webmap.json"
-], function (arcgisUtils, esriConfig, domUtils, LayerList, webmap) {
+], function (arcgisUtils, esriConfig, domUtils, LayerList, arcgisPortal, PortalBrowser, webmap) {
 	"use strict";
 
 	// Specify CORS enabled servers.
@@ -93,6 +95,11 @@ require(["esri/arcgis/utils",
 			}
 		});
 
+		var portal = new arcgisPortal.Portal('http://www.arcgis.com');
+		var portalBrowser = new PortalBrowser(portal, document.getElementById("portalBrowser"));
+		portalBrowser.root.addEventListener("item-add", function (e) {
+			console.log("item-add", e.detail);
+		});
 		
 	});
 });

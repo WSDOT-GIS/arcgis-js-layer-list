@@ -113,11 +113,57 @@ body {
         flex: 3;
     }
 
-#tools {
-    overflow-y: auto;
+.more-button[data-next-query-params=''], .portal-browser.busy .more-button {
+    display: none;
 }
 
+.more-button {
+    width: 100%;
+}
 
+#tools {
+    overflow-y: auto;
+    display: flex;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+}
+
+    #tools > div {
+        -ms-flex: 1;
+        flex: 1;
+        overflow: auto;
+    }
+
+.portal-browser:not(.busy) progress {
+    display: none;
+}
+
+.portal-item-list .thumbnail, .portal-item-list .thumbnail-placeholder {
+    width: 100px;
+    height: 67px;
+}
+
+.portal-item-list {
+    list-style: none;
+    display: table;
+    padding: 0;
+}
+
+.portal-item-list > li {
+    display: table-row;
+}
+
+.portal-item-list > li > div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.portal-item-list > li:nth-child(even) {
+    background-color: lightgray;
+}
+.portal-item-list > li:nth-child(odd) {
+    background-color: #f3efef;
+}
 
 .github-link {
     text-align: center;
