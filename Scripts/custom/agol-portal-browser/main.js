@@ -2,10 +2,31 @@
 define(function () {
 	"use strict";
 
+	/**
+	 * 
+	 * @external Portal
+	 * @see https://developers.arcgis.com/javascript/jsapi/portal-amd.html
+	 */
+
+	/**
+	 * Details about the result of an ArcGIS Portal query.
+	 * @external PortalQueryResult
+	 * @see https://developers.arcgis.com/javascript/jsapi/portalqueryresult-amd.html
+	 */
+
+	/**
+	 * 
+	 * @typedef {Object} QueryParams
+	 * @property {number} num
+	 * @property {string} q
+	 * @property {string} sortField
+	 * @property {number] start
+	 */
+
 
 	/**
 	 * A UI for browsing Portal contents.
-	 * @param {esri/arcgis/Portal} portal
+	 * @param {external:Portal} portal
 	 * @class
 	 */
 	function PortalBrowser(portal, domNode) {
@@ -91,14 +112,36 @@ define(function () {
 		}
 
 		this.root = domNode;
+		domNode.classList.add("portal-browser");
+
+		var form = document.createElement("form");
 
 		var searchBox = document.createElement("input");
 		searchBox.type = "search";
 		searchBox.disabled = true;
+		searchBox.setAttribute("value", '(group:"2485b37bd67d45bf8a1e56c6216eeb7a") AND (typekeywords: "Service")');
+		this.searchBox = searchBox;
 
-		domNode.appendChild(searchBox);
+		var submitButton = document.createElement("button");
+		submitButton.type = "submit";
+		var searchIcon = document.createElement("span");
+		searchIcon.setAttribute("class", "search icon");
+		submitButton.appendChild(searchIcon);
+		var labelSpan = document.createElement("span");
+		labelSpan.classList.add("label");
+		labelSpan.textContent = "Search";
+		submitButton.appendChild(labelSpan);
 
-		domNode.classList.add("portal-browser");
+
+		form.appendChild(searchBox);
+		form.appendChild(submitButton);
+
+		form.onsubmit = function () {
+			return false;
+		};
+
+		domNode.appendChild(form);
+
 
 		this.portal = portal;
 
@@ -125,8 +168,12 @@ define(function () {
 
 		domNode.appendChild(moreButton);
 
-		function handleQueryResults(/**{esri/arcgis/Portal/PortalQueryResult}*/ result) {
-			console.log("query results", result);
+		/**
+		 * Adds portal items to the list.
+		 * Sets the "nextQueryParams" dataset item in the "More" button.
+		 * @param {external:PortalQueryResult} result
+		 */
+		function handleQueryResults(result) {
 			var frag = document.createDocumentFragment();
 			result.results.forEach(function (item) {
 				console.log(item);
@@ -141,7 +188,7 @@ define(function () {
 
 		domNode.classList.add("busy");
 		portal.queryItems({
-			q: '(group:"2485b37bd67d45bf8a1e56c6216eeb7a") AND (typekeywords: "Service")' 
+			q: this.searchBox.value
 		}).then(handleQueryResults);
 	}
 

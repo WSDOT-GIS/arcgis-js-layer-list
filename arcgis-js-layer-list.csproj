@@ -43,6 +43,7 @@
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="Scripts\custom\agol-portal-browser\main.js" />
+    <Content Include="Scripts\custom\layer-factory\main.js" />
     <Content Include="Scripts\custom\layer-list\main.js" />
     <Content Include="Scripts\custom\legend-helper\LegendResponse.js" />
     <Content Include="Scripts\custom\legend-helper\main.js" />

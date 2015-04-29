@@ -10,6 +10,8 @@ require(["esri/arcgis/utils",
 ], function (arcgisUtils, esriConfig, domUtils, LayerList, arcgisPortal, PortalBrowser, webmap) {
 	"use strict";
 
+
+
 	// Specify CORS enabled servers.
 	["www.wsdot.wa.gov", "wsdot.wa.gov", "gispublic.dfw.wa.gov"].forEach(function (svr) {
 		esriConfig.defaults.io.corsEnabledServers.push(svr);
@@ -98,7 +100,12 @@ require(["esri/arcgis/utils",
 		var portal = new arcgisPortal.Portal('http://www.arcgis.com');
 		var portalBrowser = new PortalBrowser(portal, document.getElementById("portalBrowser"));
 		portalBrowser.root.addEventListener("item-add", function (e) {
-			console.log("item-add", e.detail);
+
+			var item = e.detail;
+
+			arcgisUtils.getItem(item.id).then(function (response) {
+				console.log("item response", response);
+			});
 		});
 		
 	});
