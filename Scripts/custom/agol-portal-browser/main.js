@@ -145,15 +145,19 @@ define(function () {
 
 		this.portal = portal;
 
-		var progress = document.createElement("progress");
-		domNode.appendChild(progress);
 		
 
 		var list = document.createElement("ul");
 		this.list = list;
 
+
+
 		list.classList.add("portal-item-list");
 		domNode.appendChild(list);
+
+		var progress = document.createElement("progress");
+		domNode.appendChild(progress);
+
 
 		var moreButton = document.createElement("button");
 		moreButton.type = "button";
@@ -163,6 +167,7 @@ define(function () {
 
 		moreButton.addEventListener("click", function () {
 			var queryParams = JSON.parse(moreButton.dataset.nextQueryParams);
+			domNode.classList.add("busy");
 			portal.queryItems(queryParams).then(handleQueryResults);
 		});
 

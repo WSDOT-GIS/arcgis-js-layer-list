@@ -537,5 +537,9 @@ define(["legend-helper"], function (LegendHelper) {
 		}
 	};
 
+	LayerList.prototype.addLayer = function (layer) {
+		var li = createLayerListItem({ layer: layer }, this.root);
+	};
+
 	return LayerList;
 });

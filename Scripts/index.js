@@ -6,8 +6,9 @@ require(["esri/arcgis/utils",
 	"layer-list",
 	"esri/arcgis/Portal",
 	"agol-portal-browser",
+	"layer-factory",
 	"dojo/text!./webmap.json"
-], function (arcgisUtils, esriConfig, domUtils, LayerList, arcgisPortal, PortalBrowser, webmap) {
+], function (arcgisUtils, esriConfig, domUtils, LayerList, arcgisPortal, PortalBrowser, layerFactory, webmap) {
 	"use strict";
 
 
@@ -63,6 +64,9 @@ require(["esri/arcgis/utils",
 	// Create a map from a predefined webmap on AGOL.
 	arcgisUtils.createMap(webmap, "map").then(function (response) {
 		var map = response.map;
+
+		console.log("map", map);
+
 		var opLayers = response.itemInfo.itemData.operationalLayers;
 
 		var layerList = new LayerList(opLayers, document.getElementById("layerlist"));
@@ -97,6 +101,9 @@ require(["esri/arcgis/utils",
 			}
 		});
 
+
+		// Setup the portal browser.
+
 		var portal = new arcgisPortal.Portal('http://www.arcgis.com');
 		var portalBrowser = new PortalBrowser(portal, document.getElementById("portalBrowser"));
 		portalBrowser.root.addEventListener("item-add", function (e) {
@@ -105,6 +112,15 @@ require(["esri/arcgis/utils",
 
 			arcgisUtils.getItem(item.id).then(function (response) {
 				console.log("item response", response);
+
+				layerFactory.createLayer(response).then(function (layerResponse) {
+					var layer = layerResponse.layer;
+					//layerList.addLayer({ layerObject: layer });
+					map.addLayer(layer);
+					console.log("layer", layer);
+				}, function (error) {
+					console.error("create layer error", error);
+				});
 			});
 		});
 		
