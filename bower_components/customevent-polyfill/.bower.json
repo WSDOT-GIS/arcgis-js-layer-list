@@ -1,0 +1,33 @@
+{
+  "name": "customevent-polyfill",
+  "version": "1.0.0",
+  "homepage": "https://github.com/kaesetoast/customevent-polyfill",
+  "authors": [
+    "Philipp Nowinski <philipp@nowinski.de>"
+  ],
+  "description": "A polyfill for CustomEvent",
+  "main": "customevent-polyfill.js",
+  "keywords": [
+    "polyfill",
+    "customevent"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "ba95768284351e2682ec4f3b1ecd2652c17b4036"
+  },
+  "_source": "git://github.com/kaesetoast/customevent-polyfill.git",
+  "_target": "~1.0.0",
+  "_originalSource": "customevent-polyfill",
+  "_direct": true
+}

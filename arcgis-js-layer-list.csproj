@@ -41,36 +41,39 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="index.html" />
-    <Content Include="Scripts\custom\agol-portal-browser\main.js" />
-    <Content Include="Scripts\custom\layer-factory\main.js" />
-    <Content Include="Scripts\custom\layer-list\main.js" />
-    <Content Include="Scripts\custom\legend-helper\LegendResponse.js" />
-    <Content Include="Scripts\custom\legend-helper\main.js" />
-    <Content Include="Scripts\index.js" />
-    <Content Include="Scripts\polyfills\custom-event-polyfill.js" />
-    <Content Include="Scripts\polyfills\polyfills.js">
+    <Content Include="agol-portal-browser\main.js" />
+    <Content Include="bower_components\customevent-polyfill\customevent-polyfill.js" />
+    <Content Include="bower_components\customevent-polyfill\customevent-polyfill.min.js" />
+    <Content Include="bower_components\promises\promise.js" />
+    <Content Include="bower_components\setImmediate\setimmediate.js" />
+    <Content Include="demo\index.css" />
+    <Content Include="demo\index.html" />
+    <Content Include="demo\index.js" />
+    <Content Include="demo\polyfills.js">
       <DependentUpon>polyfills.js.bundle</DependentUpon>
     </Content>
-    <Content Include="Scripts\polyfills\polyfills.min.js">
+    <Content Include="demo\polyfills.min.js">
       <DependentUpon>polyfills.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\polyfills\promise-6.1.0.js" />
-    <Content Include="Styles\index.css" />
+    <Content Include="layer-factory\main.js" />
+    <Content Include="LayerList.js" />
+    <Content Include="legend-helper\LegendHelper.js" />
+    <Content Include="legend-helper\LegendResponse.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
-    <Content Include="Scripts\polyfills\polyfills.js.bundle" />
-    <Content Include="Scripts\polyfills\polyfills.min.js.map">
+    <Content Include="demo\webmap.json" />
+    <Content Include="demo\polyfills.js.bundle" />
+    <Content Include="demo\polyfills.min.js.map">
       <DependentUpon>polyfills.min.js</DependentUpon>
     </Content>
+    <Content Include="bower.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="webmap.json" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
