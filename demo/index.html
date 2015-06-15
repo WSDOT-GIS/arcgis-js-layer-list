@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link href="//js.arcgis.com/3.13/esri/css/esri.css" rel="stylesheet" />
-    <link href="Styles/index.css" rel="stylesheet" />
+    <link href="index.css" rel="stylesheet" />
     <script src="polyfills.min.js"></script>
 </head>
 <body>
@@ -31,11 +31,13 @@
                 packages: [
                    {
                        name: 'layer-list',
-                       location: root + "/Scripts/custom/layer-list"
+                       location: root + "/..",
+                       main: 'LayerList'
                    },
                    {
                        name: 'legend-helper',
-                       location: root + "/Scripts/custom/legend-helper"
+                       location: root + "/../legend-helper",
+                       main: 'LegendHelper'
                    }
                 ]
 
@@ -44,6 +46,6 @@
         }(location.pathname.replace(/\/[^\/]*$/, "")));
     </script>
     <script src="//js.arcgis.com/3.13/init.js"></script>
-    <script src="Scripts/index.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
