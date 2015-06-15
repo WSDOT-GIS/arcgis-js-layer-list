@@ -10,7 +10,8 @@
   </settings>
   <!--The order of the <file> elements determines the order of the files in the bundle.-->
   <files>
-    <file>/Scripts/polyfills/custom-event-polyfill.js</file>
-    <file>/Scripts/polyfills/promise-6.1.0.js</file>
+    <file>/bower_components/setImmediate/setimmediate.js</file>
+    <file>/bower_components/promises/promise.js</file>
+    <file>/bower_components/customevent-polyfill/customevent-polyfill.js</file>
   </files>
 </bundle>

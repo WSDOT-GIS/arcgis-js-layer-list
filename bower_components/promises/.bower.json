@@ -1,0 +1,41 @@
+{
+  "name": "Promise polyfill",
+  "version": "1.0.10",
+  "description": "ES6 Promise polyfill",
+  "keywords": [
+    "es6",
+    "async",
+    "deferred",
+    "deferreds",
+    "promise",
+    "promises",
+    "promises-a",
+    "promises-aplus"
+  ],
+  "homepage": "https://github.com/Octane/Promise",
+  "license": "MIT",
+  "authors": [
+    "Dmitry Korobkin <dmitry.korobkin@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "dependencies": {
+    "setImmediate": "*"
+  },
+  "ignore": [
+    "*",
+    "!promise.js"
+  ],
+  "main": "promise.js",
+  "_release": "1.0.10",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.10",
+    "commit": "739778a0ecc8640e05ead90d3e758adccbc2469c"
+  },
+  "_source": "git://github.com/Octane/Promise.git",
+  "_target": "~1.0.10",
+  "_originalSource": "promises",
+  "_direct": true
+}

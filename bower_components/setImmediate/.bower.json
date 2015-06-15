@@ -1,0 +1,30 @@
+{
+  "name": "setImmediate polyfill",
+  "version": "1.0.1",
+  "description": "setImmediate polyfill",
+  "homepage": "https://github.com/Octane/setImmediate",
+  "license": "MIT",
+  "authors": [
+    "Dmitry Korobkin <dmitry.korobkin@gmail.com>"
+  ],
+  "keywords": [
+    "setImmediate",
+    "clearImmediate",
+    "polyfill"
+  ],
+  "ignore": [
+    "*",
+    "!setimmediate.js",
+    "!setimmediate-ie8.js"
+  ],
+  "main": "setimmediate.js",
+  "_release": "1.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.1",
+    "commit": "460141f1aee19d77eab7f96fc332f26aa27f445b"
+  },
+  "_source": "git://github.com/Octane/setImmediate.git",
+  "_target": "*",
+  "_originalSource": "setImmediate"
+}
