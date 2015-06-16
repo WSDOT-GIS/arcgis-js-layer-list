@@ -232,9 +232,74 @@ define(["legend-helper"], function (LegendHelper) {
 		opacitySlider.min = 0;
 		opacitySlider.max = 100;
 		opacitySlider.step = 1;
-		opacitySlider.value = opLayer.opacity * 100;
+		opacitySlider.value = (opLayer.layerObject ? opLayer.layerObject.opacity : opLayer.opacity) * 100;
 		opacitySlider.addEventListener("change", setOpacity);
 		return opacitySlider;
+	}
+
+	function createLayerOptionsDialog() {
+		var dialog = document.createElement("dialog");
+
+		dialog.classList.add("layer-options-dialog");
+		
+		var headerSection = document.createElement("section");
+		headerSection.classList.add("layer-options-dialog-header");
+
+		var closeButton = document.createElement("button");
+		closeButton.type = "button";
+		closeButton.classList.add("layer-options-dialog-close-button");
+		closeButton.textContent = "X";
+
+		headerSection.appendChild(closeButton);
+
+		dialog.appendChild(headerSection);
+
+		var mainSection = document.createElement("section");
+		mainSection.classList.add("layer-options-dialog-main-section");
+
+		dialog.appendChild(mainSection);
+
+		closeButton.addEventListener("click", function () {
+			dialog.close();
+		});
+
+
+		if (window.dialogPolyfill) {
+			window.dialogPolyfill.registerDialog(dialog);
+		}
+
+		document.body.appendChild(dialog);
+
+		return dialog;
+	}
+
+	function showLayerOptionsDialog(/**{OperationLayer}*/ opLayer) {
+		var dialog = document.querySelector("dialog.layer-options-dialog");
+
+		var mainSection = dialog.querySelector(".layer-options-dialog-main-section");
+
+		// Remove existing child elements.
+		var mainSectionChildren = dialog.querySelectorAll(".layer-options-dialog-main-section > *");
+
+		for (var i = 0; i < mainSectionChildren.length; i++) {
+			mainSection.removeChild(mainSectionChildren[i]);
+		}
+
+		var opacitySlider = createOpacitySlider(opLayer);
+		mainSection.appendChild(opacitySlider);
+
+		dialog.showModal();
+	}
+
+	function createLayerOptionsButton(/**{OperationLayer}*/ opLayer) {
+		var button = document.createElement("button");
+		button.type = "button";
+		button.textContent = "Options";
+		button.addEventListener("click", function () {
+			showLayerOptionsDialog(opLayer);
+		});
+
+		return button;
 	}
 
 	function createLayerListItem(opLayer, list) {
@@ -278,6 +343,9 @@ define(["legend-helper"], function (LegendHelper) {
 		badge = createLayerTypeBadge(opLayer.layerType);
 		item.appendChild(badge);
 
+		var optionsButton = createLayerOptionsButton(opLayer);
+		item.appendChild(optionsButton);
+
 		// Layers are displayed on the map in the OPPOSITE order
 		// than what is listed in the webmap JSON.
 		list.insertBefore(item, list.firstChild);
@@ -288,9 +356,6 @@ define(["legend-helper"], function (LegendHelper) {
 		controlContainer.classList.add("control-container");
 		item.appendChild(controlContainer);
 
-		var opacitySlider = createOpacitySlider(opLayer);
-
-		controlContainer.appendChild(opacitySlider);
 		/**
 		 * Set the layer's visible sublayers based on the corresponding
 		 * checkboxes' checked state.
@@ -507,6 +572,7 @@ define(["legend-helper"], function (LegendHelper) {
 	function LayerList(operationalLayers, domNode) {
 		/** @member {(HTMLUListElement|HTMLOListElement)} */
 		this.root = domNode;
+		this.dialog = createLayerOptionsDialog();
 		domNode.classList.add("layer-list");
 
 		operationalLayers.forEach(function (ol) {

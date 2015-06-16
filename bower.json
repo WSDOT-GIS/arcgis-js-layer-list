@@ -33,6 +33,7 @@
   ],
   "dependencies": {
     "customevent-polyfill": "~1.0.0",
-    "promises": "~1.0.10"
+    "promises": "~1.0.10",
+    "dialog-polyfill": "~0.3.0"
   }
 }

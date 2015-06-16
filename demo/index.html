@@ -7,6 +7,21 @@
     <link href="//js.arcgis.com/3.13/esri/css/esri.css" rel="stylesheet" />
     <link href="index.css" rel="stylesheet" />
     <script src="polyfills.min.js"></script>
+    <script>
+        (function () {
+            var link, script;
+            if (!window.HTMLDialogElement) {
+                link = document.createElement("link");
+                link.href = "../bower_components/dialog-polyfill/dialog-polyfill.css";
+                link.rel = "stylesheet";
+                document.head.appendChild(link);
+
+                script = document.createElement("script");
+                script.src = "../bower_components/dialog-polyfill/dialog-polyfill.js";
+                document.head.appendChild(script);
+            }
+        }());
+    </script>
 </head>
 <body>
     <div id="flexcontainer">

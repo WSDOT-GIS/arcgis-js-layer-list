@@ -43,6 +43,8 @@
   <ItemGroup>
     <Content Include="bower_components\customevent-polyfill\customevent-polyfill.js" />
     <Content Include="bower_components\customevent-polyfill\customevent-polyfill.min.js" />
+    <Content Include="bower_components\dialog-polyfill\dialog-polyfill.css" />
+    <Content Include="bower_components\dialog-polyfill\dialog-polyfill.js" />
     <Content Include="bower_components\promises\promise.js" />
     <Content Include="bower_components\setImmediate\setimmediate.js" />
     <Content Include="demo\index.css" />
