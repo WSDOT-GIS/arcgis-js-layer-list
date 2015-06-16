@@ -1,5 +1,5 @@
 ﻿/*global define*/
-define(["legend-helper"], function (LegendHelper) {
+define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerOptionsDialog) {
 	"use strict";
 
 	/**
@@ -217,86 +217,16 @@ define(["legend-helper"], function (LegendHelper) {
 		}
 	}
 
-	/**
-	 * Creates an opacity slider for the given layer.
-	 * @returns {HTMLInputElement}
-	 */
-	function createOpacitySlider(/**{OperationLayer}*/ opLayer) {
-		var setOpacity = function () {
-			opLayer.layerObject.setOpacity(this.value * 0.01);
-		};
-
-		var opacitySlider = document.createElement("input");
-		opacitySlider.classList.add("opacity-slider");
-		opacitySlider.type = "range";
-		opacitySlider.min = 0;
-		opacitySlider.max = 100;
-		opacitySlider.step = 1;
-		opacitySlider.value = (opLayer.layerObject ? opLayer.layerObject.opacity : opLayer.opacity) * 100;
-		opacitySlider.addEventListener("change", setOpacity);
-		return opacitySlider;
-	}
-
-	function createLayerOptionsDialog() {
-		var dialog = document.createElement("dialog");
-
-		dialog.classList.add("layer-options-dialog");
-		
-		var headerSection = document.createElement("section");
-		headerSection.classList.add("layer-options-dialog-header");
-
-		var closeButton = document.createElement("button");
-		closeButton.type = "button";
-		closeButton.classList.add("layer-options-dialog-close-button");
-		closeButton.textContent = "X";
-
-		headerSection.appendChild(closeButton);
-
-		dialog.appendChild(headerSection);
-
-		var mainSection = document.createElement("section");
-		mainSection.classList.add("layer-options-dialog-main-section");
-
-		dialog.appendChild(mainSection);
-
-		closeButton.addEventListener("click", function () {
-			dialog.close();
-		});
 
 
-		if (window.dialogPolyfill) {
-			window.dialogPolyfill.registerDialog(dialog);
-		}
 
-		document.body.appendChild(dialog);
-
-		return dialog;
-	}
-
-	function showLayerOptionsDialog(/**{OperationLayer}*/ opLayer) {
-		var dialog = document.querySelector("dialog.layer-options-dialog");
-
-		var mainSection = dialog.querySelector(".layer-options-dialog-main-section");
-
-		// Remove existing child elements.
-		var mainSectionChildren = dialog.querySelectorAll(".layer-options-dialog-main-section > *");
-
-		for (var i = 0; i < mainSectionChildren.length; i++) {
-			mainSection.removeChild(mainSectionChildren[i]);
-		}
-
-		var opacitySlider = createOpacitySlider(opLayer);
-		mainSection.appendChild(opacitySlider);
-
-		dialog.showModal();
-	}
 
 	function createLayerOptionsButton(/**{OperationLayer}*/ opLayer) {
 		var button = document.createElement("button");
 		button.type = "button";
 		button.textContent = "Options";
 		button.addEventListener("click", function () {
-			showLayerOptionsDialog(opLayer);
+			LayerOptionsDialog.showLayerOptionsDialog(opLayer);
 		});
 
 		return button;
@@ -572,7 +502,8 @@ define(["legend-helper"], function (LegendHelper) {
 	function LayerList(operationalLayers, domNode) {
 		/** @member {(HTMLUListElement|HTMLOListElement)} */
 		this.root = domNode;
-		this.dialog = createLayerOptionsDialog();
+		/** @member {HTMLDialogElement} */
+		this.dialog = LayerOptionsDialog.createLayerOptionsDialog();
 		domNode.classList.add("layer-list");
 
 		operationalLayers.forEach(function (ol) {

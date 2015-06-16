@@ -57,6 +57,7 @@
       <DependentUpon>polyfills.js</DependentUpon>
     </Content>
     <Content Include="LayerList.js" />
+    <Content Include="LayerOptionsDialog.js" />
     <Content Include="legend-helper\LegendHelper.js" />
     <Content Include="legend-helper\LegendResponse.js" />
   </ItemGroup>
