@@ -1,5 +1,5 @@
 ﻿/*global define*/
-define(function () {
+define(["./metadataUtils"], function (metadataUtils) {
 	var exports = {};
 
 	/**
@@ -20,6 +20,53 @@ define(function () {
 		opacitySlider.value = (opLayer.layerObject ? opLayer.layerObject.opacity : opLayer.opacity) * 100;
 		opacitySlider.addEventListener("change", setOpacity);
 		return opacitySlider;
+	}
+
+	/**
+	 * Creates a list of links to metadata documents.
+	 * @param {Object.<string, string>} metadataUrls - Dictionary of metadata URLs keyed by associated layer name.
+	 * @returns {HTMLUListElement}
+	 */
+	function createMetadataLinkList(metadataUrls) {
+		var list = document.createElement("ul");
+		list.classList.add("metadata-list");
+		var li, a;
+		for (var name in metadataUrls) {
+			if (metadataUrls.hasOwnProperty(name)) {
+				li = document.createElement("li");
+				a = document.createElement("a");
+				a.target = "layer_metadata";
+				a.href = [metadataUrls[name], "f=html"].join("?");
+				a.textContent = name;
+				li.appendChild(a);
+				list.appendChild(li);
+			}
+
+		}
+		return list;
+	}
+
+	function createMetadataSection(parentNode, opLayer) {
+		var section = document.createElement("section");
+
+		var h1 = document.createElement("h1");
+		h1.textContent = "Metadata";
+		section.appendChild(h1);
+
+		var progress = document.createElement("progress");
+		progress.textContent = "Loading metadata...";
+		section.appendChild(progress);
+
+		parentNode.appendChild(section);
+
+		// Load metadata and create list if successfull.
+		metadataUtils.getIdsOfLayersWithMetadata(opLayer.layerObject).then(function (metadataInfo) {
+			section.removeChild(progress);
+			section.appendChild(createMetadataLinkList(metadataInfo))
+		}, function (error) {
+			section.removeChild(progress);
+			console.error(error);
+		});
 	}
 
 	/**
@@ -59,6 +106,8 @@ define(function () {
 			window.dialogPolyfill.registerDialog(dialog);
 		}
 
+		
+
 		document.body.appendChild(dialog);
 
 		return dialog;
@@ -86,6 +135,8 @@ define(function () {
 
 		var opacitySlider = createOpacitySlider(opLayer);
 		mainSection.appendChild(opacitySlider);
+
+		createMetadataSection(mainSection, opLayer);
 
 		dialog.showModal();
 		return dialog;

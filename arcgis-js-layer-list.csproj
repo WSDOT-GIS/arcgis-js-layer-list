@@ -62,6 +62,7 @@
     <Content Include="legend-helper\LegendResponse.js" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="metadataUtils.js" />
     <Content Include="Web.config" />
     <Content Include="demo\webmap.json" />
     <Content Include="demo\polyfills.js.bundle" />
