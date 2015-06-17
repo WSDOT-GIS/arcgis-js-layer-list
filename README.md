@@ -3,8 +3,17 @@ Layer List for ArcGIS API for JavaScript
 
 Provides a layer list UI control for a map.
 
-[Demo](http://wsdot-gis.github.io/arcgis-js-layer-list/)
+## Demo ##
 
+Demo: http://wsdot-gis.github.io/arcgis-js-layer-list/demo
+
+### `webmap` parameter ###
+
+You can try the demo a webmap from ArcGIS online by adding the `webmap` query string parameter.
+
+#### Example ####
+
+http://wsdot-gis.github.io/arcgis-js-layer-list/demo?webmap=927b5daaa7f4434db4b312364489544d
 
 ## CSS ##
 
