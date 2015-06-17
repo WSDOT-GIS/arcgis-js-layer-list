@@ -70,6 +70,8 @@
       <DependentUpon>polyfills.min.js</DependentUpon>
     </Content>
     <Content Include="bower.json" />
+    <Content Include="LICENSE" />
+    <Content Include="README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

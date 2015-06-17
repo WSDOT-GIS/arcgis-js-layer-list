@@ -46,55 +46,79 @@ require([
 	// XMLHttpRequest cannot load http://gis.rita.dot.gov/ArcGIS/rest/info?f=json. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://example.com' is therefore not allowed access. 
 	esriConfig.defaults.io.corsDetection = false;
 
-	esriRequest({ url: "webmap.json" }).then(function (response) {
+	function setupMap(response) {
+		domUtils.hide(document.getElementById("mapProgress"));
 
-		var webmap = {
-			item: {
-				extent: [[-126.3619, 44.2285], [-114.3099, 50.0139]],
-			},
-			itemData: response
-		};
+		var map = response.map;
+		var opLayers = response.itemInfo.itemData.operationalLayers;
 
-		// Create a map from a predefined webmap on AGOL.
-		arcgisUtils.createMap(webmap, "map").then(function (response) {
-			domUtils.hide(document.getElementById("mapProgress"));
+		var layerList = new LayerList(opLayers, document.getElementById("layerlist"));
 
-			var map = response.map;
-			var opLayers = response.itemInfo.itemData.operationalLayers;
+		// Update layer list items to show if they are not visible due to zoom scale.
+		layerList.setScale(map.getScale());
 
-			var layerList = new LayerList(opLayers, document.getElementById("layerlist"));
-
+		map.on("zoom-end", function () {
 			// Update layer list items to show if they are not visible due to zoom scale.
 			layerList.setScale(map.getScale());
-
-			map.on("zoom-end", function () {
-				// Update layer list items to show if they are not visible due to zoom scale.
-				layerList.setScale(map.getScale());
-			});
-
-			map.on("update-start", function () {
-				domUtils.show(document.getElementById("mapProgress"));
-			});
-
-			map.on("update-end", function () {
-				domUtils.hide(document.getElementById("mapProgress"));
-			});
-
-			layerList.root.addEventListener("layer-move", function (e) {
-				var detail = e.detail;
-				var movedLayerId = detail.movedLayerId;
-				var targetLayerId = detail.targetLayerId;
-
-				var movedLayer = map.getLayer(movedLayerId);
-
-				var targetLayerOrd = getLayerOrdinal(map, targetLayerId);
-
-				if (targetLayerOrd !== null) {
-					map.reorderLayer(movedLayer, targetLayerOrd);
-				}
-			});
-
-
 		});
-	});
+
+		map.on("update-start", function () {
+			domUtils.show(document.getElementById("mapProgress"));
+		});
+
+		map.on("update-end", function () {
+			domUtils.hide(document.getElementById("mapProgress"));
+		});
+
+		layerList.root.addEventListener("layer-move", function (e) {
+			var detail = e.detail;
+			var movedLayerId = detail.movedLayerId;
+			var targetLayerId = detail.targetLayerId;
+
+			var movedLayer = map.getLayer(movedLayerId);
+
+			var targetLayerOrd = getLayerOrdinal(map, targetLayerId);
+
+			if (targetLayerOrd !== null) {
+				map.reorderLayer(movedLayer, targetLayerOrd);
+			}
+		});
+	}
+
+	function getWebMap() {
+		var search = window.location.search;
+		var re = /\bwebmap=([0-9a-f]+)/i;
+		var match = search.match(re);
+		var mapId;
+		if (match) {
+			mapId = match[1];
+		}
+		return mapId;
+	}
+
+	var mapId = getWebMap();
+
+	var createMapOptions = {
+		usePopupManager: true
+	};
+
+	if (mapId) {
+		// Create a map from a definition on ArcGIS.com.
+		arcgisUtils.createMap(mapId, "map", createMapOptions).then(setupMap);
+	} else {
+		esriRequest({ url: "webmap.json" }).then(function (response) {
+
+			var webmap = {
+				item: {
+					extent: [[-126.3619, 44.2285], [-114.3099, 50.0139]],
+				},
+				itemData: response
+			};
+
+			// Create a map from a predefined webmap on AGOL.
+			arcgisUtils.createMap(webmap, "map", createMapOptions).then(setupMap);
+		});
+	}
+
+	
 });
