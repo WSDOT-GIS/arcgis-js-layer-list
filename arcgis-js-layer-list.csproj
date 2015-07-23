@@ -56,6 +56,7 @@
     <Content Include="demo\polyfills.min.js">
       <DependentUpon>polyfills.js</DependentUpon>
     </Content>
+    <Content Include="LayerList.css" />
     <Content Include="LayerList.js" />
     <Content Include="LayerOptionsDialog.js" />
     <Content Include="legend-helper\LegendHelper.js" />
@@ -70,7 +71,7 @@
       <DependentUpon>polyfills.min.js</DependentUpon>
     </Content>
     <Content Include="bower.json" />
-    <Content Include="LICENSE" />
+    <Content Include="UNLICENSE" />
     <Content Include="README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
