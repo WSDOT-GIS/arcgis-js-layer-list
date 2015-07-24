@@ -63,6 +63,7 @@
     <Content Include="legend-helper\LegendResponse.js" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="legend-helper\utility.js" />
     <Content Include="metadataUtils.js" />
     <Content Include="Web.config" />
     <Content Include="demo\webmap.json" />

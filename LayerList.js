@@ -404,6 +404,7 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 					}
 				});
 			} else {
+				// TODO: Create feature layer legend.
 				console.log("TODO: Create feature layer legend", legendResponse);
 			}
 		}, function (error) {
