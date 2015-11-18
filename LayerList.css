@@ -31,6 +31,10 @@
     background-color: #f3f1f1;
 }
 
+.control-container:empty:after {
+    content: 'No controls available for this layer';
+}
+
 .badge:before {
     display: inline-block;
     padding: 0.01em 0.2em;
