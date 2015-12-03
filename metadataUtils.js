@@ -12,9 +12,9 @@ define(["esri/request"], function (esriRequest) {
 	function getMapServerUrl(layer) {
 		var url, match, output;
 		if (layer) {
-			if (typeof (layer) === "string") {
+			if (typeof layer === "string") {
 				url = layer;
-			} else if (typeof (layer.url) === "string") {
+			} else if (typeof layer.url === "string") {
 				url = layer.url;
 			} else {
 				throw new TypeError("The layer parameter must be either a string or a Layer.");
@@ -69,13 +69,14 @@ define(["esri/request"], function (esriRequest) {
 	 * Returns the Layer Metadata SOE URL to retrieve the metadata for a map service feature layer.
 	 * @param {String|esri.layers.Layer} layer Either a map service or map service layer URL, or an esri.layers.Layer object.
 	 * @param {Number} [sublayerId] If the URL provided via the layer parameter does not contain a layer ID, this parameter must be used to supply one.  If the URL already has a layer ID, this parameter will be ignored.
+	 * @returns {String} The URL for the layer's metadata.
 	 */
 	function getMetadataUrl(layer, sublayerId) {
 		var urlInfo = getMapServerUrl(layer), output;
 		if (urlInfo.layerId !== null) {
 			sublayerId = urlInfo.layerId;
 		}
-		if (typeof (sublayerId) !== "number") {
+		if (typeof sublayerId !== "number") {
 			throw new Error("Invalid layer id.  Layer id must be an integer.");
 		}
 		output = urlInfo.mapServerUrl + "/exts/LayerMetadata/metadata/" + String(sublayerId);
@@ -100,8 +101,7 @@ define(["esri/request"], function (esriRequest) {
 	/**
 	 * Calls the SOE to get the list of layer IDs that correspond to feature layers. 
 	 * @param {String|esri.layers.Layer} layer Either a map service or map service layer URL, or an esri.layers.Layer object.
-	 * @param {Function} Event handler function that is called when the query is successful.  Parameter "data" is an array of integers.
-	 * @param {Function} Event handler function that is called when the query fails.  Parameter "error" is an Error.
+	 * @returns {Promise} Returns a Promise. The resolve function takes parameter "data" which is an array of integers. The reject function takes an "error" parameter of type Error.
 	 */
 	function getIdsOfLayersWithMetadata(layer) {
 		var promise = new Promise(function (resolve, reject) {

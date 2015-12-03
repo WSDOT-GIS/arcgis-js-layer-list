@@ -4,9 +4,10 @@ define(["./metadataUtils"], function (metadataUtils) {
 
 	/**
 	 * Creates an opacity slider for the given layer.
-	 * @returns {HTMLInputElement}
+	 * @param {OperationalLayer} opLayer - An operational layer.
+	 * @returns {HTMLInputElement} Returns the opacity slider element.
 	 */
-	function createOpacitySlider(/**{OperationLayer}*/ opLayer) {
+	function createOpacitySlider(opLayer) {
 		var setOpacity = function () {
 			opLayer.layerObject.setOpacity(this.value * 0.01);
 		};
@@ -25,7 +26,7 @@ define(["./metadataUtils"], function (metadataUtils) {
 	/**
 	 * Creates a list of links to metadata documents.
 	 * @param {Object.<string, string>} metadataUrls - Dictionary of metadata URLs keyed by associated layer name.
-	 * @returns {HTMLUListElement}
+	 * @returns {HTMLUListElement} Returns an HTML unordered list of Geospatial Metadata links.
 	 */
 	function createMetadataLinkList(metadataUrls) {
 		var list = document.createElement("ul");
@@ -62,7 +63,7 @@ define(["./metadataUtils"], function (metadataUtils) {
 		// Load metadata and create list if successfull.
 		metadataUtils.getIdsOfLayersWithMetadata(opLayer.layerObject).then(function (metadataInfo) {
 			section.removeChild(progress);
-			section.appendChild(createMetadataLinkList(metadataInfo))
+			section.appendChild(createMetadataLinkList(metadataInfo));
 		}, function (error) {
 			section.removeChild(progress);
 			console.error(error);
@@ -73,7 +74,7 @@ define(["./metadataUtils"], function (metadataUtils) {
 	 * Creates the layer options dialog.
 	 * The layer list will use a single dialog for the options of all layers.
 	 * The controls and contents will be updated when called for a layer.
-	 * @returns {HTMLDialogElement}
+	 * @returns {HTMLDialogElement} Returns a dialog that the user can use to set layer options.
 	 */
 	exports.createLayerOptionsDialog = function () {
 		var dialog = document.createElement("dialog");
@@ -115,9 +116,10 @@ define(["./metadataUtils"], function (metadataUtils) {
 
 	/**
 	 * Shows the layer options dialog with options for the specified layer.
-	 * @returns {HTMLDialogElement}
+	 * @param {OperationalLayer} opLayer - An operational layer
+	 * @returns {HTMLDialogElement} The layer options dialog for the input operational layer.
 	 */
-	exports.showLayerOptionsDialog = function (/**{OperationLayer}*/ opLayer) {
+	exports.showLayerOptionsDialog = function (opLayer) {
 		var dialog = document.querySelector("dialog.layer-options-dialog");
 
 		var mainSection = dialog.querySelector(".layer-options-dialog-main-section");

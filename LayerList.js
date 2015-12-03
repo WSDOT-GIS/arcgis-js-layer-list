@@ -19,7 +19,7 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 	/**
 	 * Creates an HTML span with classes applied.
 	 * @param {...string} classNames - One or more class names to be added to the span.
-	 * @returns {HTMLSpanElement}
+	 * @returns {HTMLSpanElement} Returns the HTML span element that can be styled into a badge.
 	 */
 	function createBadge() {
 		var badge = document.createElement("span");
@@ -33,9 +33,9 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 	}
 
 	/** Splits a camel-case or Pascal-case variable name into individual words.
-	 * @param {string} s
+	 * @param {string} s - A camel-case or Pascal-case string.
 	 * @param {RegExp} [re=/([A-Za-z]?)([a-z]+)/g]
-	 * @returns {string[]}
+	 * @returns {string[]} The input string, split into different parts.
 	 */
 	function splitWords(s, re) {
 		var match, output = [];
@@ -64,8 +64,8 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 
 	/**
 	 * Creates a CSS class name based on a operationalLayers elements' layerType value.
-	 * @param {string} layerType
-	 * @returns {string}
+	 * @param {string} layerType - The layer type's name
+	 * @returns {string} A string that can be used as a CSS class name.
 	 */
 	function createLayerTypeClass(layerType) {
 		var words = splitWords(layerType, /(?:(?:ArcGIS)|(?:[A-Z][a-z]+))/g);
@@ -77,17 +77,18 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 
 	/**
 	 * Creates a span element with a layer type class and "badge" class.
-	 * @returns {HTMLSpanElement}
+	 * @param {string} layerType - Layer type name
+	 * @returns {HTMLSpanElement} An HTML span element that can be transformed into a badge via CSS.
 	 */
-	function createLayerTypeBadge(/**{string}*/ layerType) {
+	function createLayerTypeBadge(layerType) {
 		return createBadge(["layer", "type", createLayerTypeClass(layerType)].join("-"));
 	}
 
 	/**
 	 * Parses a string containing comma-separated 
 	 * integer values into an array of integers.
-	 * @param {string} s
-	 * @returns {number[]}
+	 * @param {string} s - A string containing a comma-separated list of integers.
+	 * @returns {number[]} Returns the integers listed in the input string as an array of numbers.
 	 */
 	function parseIntList(s) {
 		var output = null;
@@ -101,9 +102,9 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 
 	/**
 	 * Determines if an array contains a given value.
-	 * @param {Array} array
+	 * @param {Array} array - An array to be searched.
 	 * @param {*} value - The value to search for in the array.
-	 * @returns {Boolean}
+	 * @returns {Boolean} Returns true if the array contains the given value, false otherwise.
 	 */
 	function arrayContains(array, value) {
 		var output = false;
@@ -118,10 +119,9 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 
 
 	/**
-	 * Converts an HTML Element's dataset into an object,
-	 * parsing the string values into appropriate types.
-	 * @param {DOMStringMap} dataset
-	 * @returns {object}
+	 * Converts an HTML Element's dataset into an object, parsing the string values into appropriate types.
+	 * @param {DOMStringMap} dataset - An HTML element's dataset attribute.
+	 * @returns {object} An object representation of the input dataset, with property values converted to appropriate types.
 	 */
 	function dataSetToObject(dataset) {
 		var output = {};
@@ -150,15 +150,15 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 
 	/**
 	 * @class
-	 * @param {esri/layers/Layer} layer
+	 * @param {esri/layers/Layer} layer - A layer.
 	 * @member {HTMLUListElement} root
 	 */
 	function SublayerList(layer) {
 
 		/**
 		 * Creates a sublayer list item representing a layer info.
-		 * @param {esri/layers/LayerInfo} layerInfo
-		 * @returns {HTMLLIElement}
+		 * @param {esri/layers/LayerInfo} layerInfo - A LayerInfo object.
+		 * @returns {HTMLLIElement} A sublayer list item representing the input layer info object.
 		 */
 		function createSublayerListItem(layerInfo) {
 			var li = document.createElement("li");
@@ -295,10 +295,9 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 			var uncheckedBoxes = item.querySelectorAll(".sublayer-list input:not(:checked)");
 
 			/**
-			 * Get the sublayer info objects corresponding to 
-			 * the given checkboxes.
+			 * Get the sublayer info objects corresponding to the given checkboxes.
 			 * @param {HTMLInputElement[]} checkboxes - An array of checkbox input elements.
-			 * @returns {Object[]}
+			 * @returns {Object[]} An array of sublayer info objects.
 			 */
 			function getSubitems(checkboxes) {
 				var subItems = [];
@@ -320,9 +319,9 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 
 			/**
 			 * Determines if the collection of unchecked list items contains the given item.
-			 * @param {Object} item
+			 * @param {Object} item - item to search for
 			 * @param {number} item.id - Integer identifier
-			 * @returns {Boolean}
+			 * @returns {Boolean} Returns true if the collection of unchecked list items contains the input item, false otherwise.
 			 */
 			function uncheckedContainsItem(item) {
 				var output = false;
@@ -496,8 +495,8 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 
 	/**
 	 * @class
-	 * @param {OperationLayer[]} operationalLayers
-	 * @param {(HTMLUListElement|HTMLOListElement)} domNode
+	 * @param {OperationLayer[]} operationalLayers - An array of operational layers.
+	 * @param {(HTMLUListElement|HTMLOListElement)} domNode - The root DOM node: either an UL or OL.
 	 */
 	function LayerList(operationalLayers, domNode) {
 		/** @member {(HTMLUListElement|HTMLOListElement)} */
@@ -514,7 +513,7 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 	/**
 	 * Call this function to update the out-of-scale classes
 	 * on layers.
-	 * @param {number} scale
+	 * @param {number} scale - The new scale
 	 */
 	LayerList.prototype.setScale = function (scale) {
 		var items, item, i, l, minScale, maxScale;
