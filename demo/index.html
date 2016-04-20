@@ -4,11 +4,11 @@
     <title>Layer List demo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <link href="//js.arcgis.com/3.14/esri/css/esri.css" rel="stylesheet" />
+    <link href="//js.arcgis.com/3.16/esri/css/esri.css" rel="stylesheet" />
     <link href="../LayerList.css" rel="stylesheet" />
     <link href="index.css" rel="stylesheet" />
     <script src="polyfills.min.js"></script>
-    <script>
+    <!--<script>
         (function () {
             var link, script;
             if (!window.HTMLDialogElement) {
@@ -22,7 +22,14 @@
                 document.head.appendChild(script);
             }
         }());
+    </script>-->
+    <script>
+        var supportsDialogNatively = (function () {
+            return !!window.HTMLDialogElement;
+        }());
     </script>
+    <link href="../bower_components/dialog-polyfill/dialog-polyfill.css" rel="stylesheet" />
+    <script src="../bower_components/dialog-polyfill/dialog-polyfill.js"></script>
 </head>
 <body>
     <div id="flexcontainer">
@@ -54,6 +61,11 @@
                        name: 'legend-helper',
                        location: root + "/../legend-helper",
                        main: 'LegendHelper'
+                   },
+                   {
+                       name: 'MetadataClient',
+                       location: root + "/../bower_components/layer-metadata-soe-client",
+                       main: "MetadataClient"
                    }
                 ]
 
@@ -61,7 +73,7 @@
             window.dojoConfig = dojoConfig;
         }(location.pathname.replace(/\/[^\/]*$/, "")));
     </script>
-    <script src="//js.arcgis.com/3.14/init.js"></script>
+    <script src="//js.arcgis.com/3.16/init.js" integrity="sha384-2s5+rUZ76AotlHFbaNYRLAgIXMo10+lUZ4ivztOmQXk3CnL3htLDzG62hiYb0dS0" crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
 </html>

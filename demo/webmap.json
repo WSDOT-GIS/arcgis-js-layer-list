@@ -3,7 +3,7 @@
     {
       "id": "MilepostValues_9731",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Milepost Values",
@@ -12,7 +12,7 @@
     {
       "id": "Rail_4898",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/Rail/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/Rail/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Railroads",
@@ -21,7 +21,7 @@
     {
       "id": "WSDOTFunctionalClassMap_4376",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/FunctionalClass/WSDOTFunctionalClassMap/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/FunctionalClass/WSDOTFunctionalClassMap/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Functional Class",
@@ -30,7 +30,7 @@
     {
       "id": "StateRoutes_8061",
       "layerType": "ArcGISTiledMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/StateRoutes/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/StateRoutes/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "State Routes",
@@ -39,7 +39,7 @@
     {
       "id": "RegionBoundaries_6850",
       "layerType": "ArcGISTiledMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionBoundaries/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/RegionBoundaries/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Region Boundaries",
@@ -48,7 +48,7 @@
     {
       "id": "MaintenanceAreas_8321",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MaintenanceAreas/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/MaintenanceAreas/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Maintenance Areas",
@@ -57,7 +57,7 @@
     {
       "id": "InterchangeDrawings_7636",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/InterchangeDrawings/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/InterchangeDrawings/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Interchange Drawings",
@@ -66,7 +66,7 @@
     {
       "id": "TribalReservationLands_7571",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/TribalReservationLands/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/TribalReservationLands/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Tribal Reservation and Trust Lands",
@@ -75,7 +75,7 @@
     {
       "id": "TownshipSection_5468",
       "layerType": "ArcGISTiledMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/TownshipSection/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/TownshipSection/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Township, Range & Section",
@@ -84,7 +84,7 @@
     {
       "id": "RegionalTransportationPlanning_4331",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionalTransportationPlanning/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/RegionalTransportationPlanning/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Regional Transportation Planning Organization",
@@ -93,7 +93,7 @@
     {
       "id": "MetroPlanningAreas_7886",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MetroPlanningAreas/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/MetroPlanningAreas/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Metropolitan Planning Areas",
@@ -102,7 +102,7 @@
     {
       "id": "LegislativeDistricts_9629",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/LegislativeDistricts/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/LegislativeDistricts/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Legislative Districts",
@@ -111,7 +111,7 @@
     {
       "id": "CountyBoundaries_3341",
       "layerType": "ArcGISTiledMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CountyBoundaries/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/CountyBoundaries/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "County Boundaries",
@@ -120,7 +120,7 @@
     {
       "id": "CongressionalDistricts_1633",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CongressionalDistricts/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/CongressionalDistricts/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Congressional Districts",
@@ -129,7 +129,7 @@
     {
       "id": "CityLimits_1633",
       "layerType": "ArcGISTiledMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CityLimits/MapServer",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/CityLimits/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "City Limits",
@@ -143,7 +143,7 @@
         "layerType": "ArcGISTiledMapServiceLayer",
         "opacity": 1,
         "visibility": true,
-        "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/WebBaseMapWebMercator/MapServer"
+        "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/WebBaseMapWebMercator/MapServer"
       }
     ],
     "title": "WSDOT Basemap"
@@ -155,7 +155,7 @@
   "version": "2.1",
   "tables": [
     {
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/TribalReservationLands/MapServer/1",
+      "url": "http://data.wsdot.wa.gov/ArcGIS/rest/services/Shared/TribalReservationLands/MapServer/1",
       "id": "TribalReservationLands_1844",
       "title": "TribalReservationLands - TribalReservationLands",
       "popupInfo": {

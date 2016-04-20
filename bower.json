@@ -34,6 +34,7 @@
   "dependencies": {
     "customevent-polyfill": "~1.0.0",
     "promises": "~1.0.10",
-    "dialog-polyfill": "~0.3.0"
+    "dialog-polyfill": "~0.4.3",
+    "layer-metadata-soe-client": "https://github.com/WSDOT-GIS/Layer-Metadata-SOE-JS-Client.git#^2.2.2"
   }
 }

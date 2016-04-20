@@ -38,12 +38,12 @@ require([
 	}
 
 	// Specify CORS enabled servers.
-	["www.wsdot.wa.gov", "wsdot.wa.gov", "gispublic.dfw.wa.gov"].forEach(function (svr) {
+	["www.wsdot.wa.gov", "wsdot.wa.gov", "gispublic.dfw.wa.gov", "data.wsdot.wa.gov"].forEach(function (svr) {
 		esriConfig.defaults.io.corsEnabledServers.push(svr);
 	});
 	// Since CORS servers are explicitly specified, CORS detection is not necessary.
 	// This prevents the following types of errors from appearing in the console:
-	// XMLHttpRequest cannot load http://gis.rita.dot.gov/ArcGIS/rest/info?f=json. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://example.com' is therefore not allowed access. 
+	// XMLHttpRequest cannot load http://gis.rita.dot.gov/ArcGIS/rest/info?f=json. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://example.com' is therefore not allowed access.
 	esriConfig.defaults.io.corsDetection = false;
 
 	function setupMap(response) {
@@ -120,5 +120,5 @@ require([
 		});
 	}
 
-	
+
 });

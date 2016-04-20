@@ -45,6 +45,7 @@
     <Content Include="bower_components\customevent-polyfill\customevent-polyfill.min.js" />
     <Content Include="bower_components\dialog-polyfill\dialog-polyfill.css" />
     <Content Include="bower_components\dialog-polyfill\dialog-polyfill.js" />
+    <Content Include="bower_components\layer-metadata-soe-client\MetadataClient.js" />
     <Content Include="bower_components\promises\promise.js" />
     <Content Include="bower_components\setImmediate\setimmediate.js" />
     <Content Include="demo\index.css" />
@@ -63,7 +64,6 @@
     <Content Include="legend-helper\LegendResponse.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="metadataUtils.js" />
     <Content Include="Web.config" />
     <Content Include="demo\webmap.json" />
     <Content Include="demo\polyfills.js.bundle" />
