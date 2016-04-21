@@ -1,5 +1,4 @@
-﻿/*global define*/
-define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerOptionsDialog) {
+﻿define(["legend-helper", "./LayerOptionsDialog", "./miscUtils"], function (LegendHelper, LayerOptionsDialog, miscUtils) {
     "use strict";
 
     /**
@@ -32,43 +31,13 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
         return badge;
     }
 
-    /** Splits a camel-case or Pascal-case variable name into individual words.
-     * @param {string} s - A camel-case or Pascal-case string.
-     * @param {RegExp} [re=/([A-Za-z]?)([a-z]+)/g]
-     * @returns {string[]} The input string, split into different parts.
-     */
-    function splitWords(s, re) {
-        var match, output = [];
-        // re = /[A-Z]?[a-z]+/g
-        if (!re) {
-            re = /([A-Za-z]?)([a-z]+)/g;
-        }
-
-        /*
-        matches example: "oneTwoThree"
-        ["one", "o", "ne"]
-        ["Two", "T", "wo"]
-        ["Three", "T", "hree"]
-        */
-
-        match = re.exec(s);
-        while (match) {
-            // output.push(match.join(""));
-            output.push(match[0]);
-            match = re.exec(s);
-        }
-
-        return output;
-
-    }
-
     /**
      * Creates a CSS class name based on a operationalLayers elements' layerType value.
      * @param {string} layerType - The layer type's name
      * @returns {string} A string that can be used as a CSS class name.
      */
     function createLayerTypeClass(layerType) {
-        var words = splitWords(layerType, /(?:(?:ArcGIS)|(?:[A-Z][a-z]+))/g);
+        var words = miscUtils.splitWords(layerType, /(?:(?:ArcGIS)|(?:[A-Z][a-z]+))/g);
         words = words.map(function (w) {
             return w.toLowerCase();
         });
@@ -83,40 +52,6 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
     function createLayerTypeBadge(layerType) {
         return createBadge(["layer", "type", createLayerTypeClass(layerType)].join("-"));
     }
-
-    /**
-     * Parses a string containing comma-separated
-     * integer values into an array of integers.
-     * @param {string} s - A string containing a comma-separated list of integers.
-     * @returns {number[]} Returns the integers listed in the input string as an array of numbers.
-     */
-    function parseIntList(s) {
-        var output = null;
-        if (s) {
-            output = s.split(",").map(function(i){
-                return parseInt(i);
-            });
-        }
-        return output;
-    }
-
-    /**
-     * Determines if an array contains a given value.
-     * @param {Array} array - An array to be searched.
-     * @param {*} value - The value to search for in the array.
-     * @returns {Boolean} Returns true if the array contains the given value, false otherwise.
-     */
-    function arrayContains(array, value) {
-        var output = false;
-        for (var i = 0; i < array.length; i++) {
-            if (array[i] === value) {
-                output = true;
-                break;
-            }
-        }
-        return output;
-    }
-
 
     /**
      * Converts an HTML Element's dataset into an object, parsing the string values into appropriate types.
@@ -136,7 +71,7 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
                 if (intPropsRe.test(name)) {
                     output[name] = val ? parseInt(val) : null;
                 } else if (arrayPropsRe.test(name)) {
-                    output[name] = val ? parseIntList(val) : null;
+                    output[name] = val ? miscUtils.parseIntList(val) : null;
                 } else if (boolPropsRe.test(name)) {
                     output[name] = /true/i.test(dataset[name]);
                 } else {
@@ -166,7 +101,7 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
 
             var checkbox = document.createElement("input");
             checkbox.type = "checkbox";
-            checkbox.checked = arrayContains(layer.visibleLayers, layerInfo.id);
+            checkbox.checked = miscUtils.arrayContains(layer.visibleLayers, layerInfo.id);
 
             li.dataset.defaultVisibility = layerInfo.defaultVisibility;
             li.dataset.id = layerInfo.id;
@@ -509,8 +444,7 @@ define(["legend-helper", "./LayerOptionsDialog"], function (LegendHelper, LayerO
                 value: LayerOptionsDialog.createLayerOptionsDialog()
             }
         });
-
-        this.root.appendChild(this.dialog);
+        document.body.appendChild(this.dialog);
         domNode.classList.add("layer-list");
 
         operationalLayers.forEach(function (ol) {

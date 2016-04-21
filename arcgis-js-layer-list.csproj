@@ -57,6 +57,7 @@
     <Content Include="demo\polyfills.min.js">
       <DependentUpon>polyfills.js</DependentUpon>
     </Content>
+    <Content Include="miscUtils.js" />
     <Content Include="LayerList.css" />
     <Content Include="LayerList.js" />
     <Content Include="LayerOptionsDialog.js" />
@@ -64,7 +65,6 @@
     <Content Include="legend-helper\LegendResponse.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
     <Content Include="demo\webmap.json" />
     <Content Include="demo\polyfills.js.bundle" />
     <Content Include="demo\polyfills.min.js.map">
@@ -73,12 +73,6 @@
     <Content Include="bower.json" />
     <Content Include="UNLICENSE" />
     <Content Include="README.md" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

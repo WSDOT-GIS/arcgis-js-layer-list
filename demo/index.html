@@ -8,28 +8,13 @@
     <link href="../LayerList.css" rel="stylesheet" />
     <link href="index.css" rel="stylesheet" />
     <script src="polyfills.min.js"></script>
-    <!--<script>
-        (function () {
-            var link, script;
-            if (!window.HTMLDialogElement) {
-                link = document.createElement("link");
-                link.href = "../bower_components/dialog-polyfill/dialog-polyfill.css";
-                link.rel = "stylesheet";
-                document.head.appendChild(link);
-
-                script = document.createElement("script");
-                script.src = "../bower_components/dialog-polyfill/dialog-polyfill.js";
-                document.head.appendChild(script);
-            }
-        }());
-    </script>-->
     <script>
         var supportsDialogNatively = (function () {
             return !!window.HTMLDialogElement;
         }());
     </script>
-    <link href="../bower_components/dialog-polyfill/dialog-polyfill.css" rel="stylesheet" />
     <script src="../bower_components/dialog-polyfill/dialog-polyfill.js"></script>
+    <link href="../bower_components/dialog-polyfill/dialog-polyfill.css" rel="stylesheet" />
 </head>
 <body>
     <div id="flexcontainer">
