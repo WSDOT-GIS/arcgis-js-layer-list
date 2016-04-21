@@ -1,47 +1,21 @@
-﻿define(["legend-helper", "./LayerOptionsDialog", "./miscUtils", "./SublayerList"], function (LegendHelper, LayerOptionsDialog, miscUtils, SublayerList) {
+﻿define([
+    "./legend-helper/LegendHelper",
+    "./LayerOptionsDialog",
+    "./SublayerList",
+    "./badgeUtils",
+    "./miscUtils",
+], function (
+    LegendHelper,
+    LayerOptionsDialog,
+    SublayerList,
+    badgeUtils,
+    miscUtils
+) {
     "use strict";
 
     /**
      * @module LayerList
      */
-
-    /**
-     * Creates an HTML span with classes applied.
-     * @param {...string} classNames - One or more class names to be added to the span.
-     * @returns {HTMLSpanElement} Returns the HTML span element that can be styled into a badge.
-     */
-    function createBadge() {
-        var badge = document.createElement("span");
-        badge.classList.add("badge");
-
-        for (var i = 0, l = arguments.length; i < l; i += 1) {
-            badge.classList.add(arguments[i]);
-        }
-
-        return badge;
-    }
-
-    /**
-     * Creates a CSS class name based on a operationalLayers elements' layerType value.
-     * @param {string} layerType - The layer type's name
-     * @returns {string} A string that can be used as a CSS class name.
-     */
-    function createLayerTypeClass(layerType) {
-        var words = miscUtils.splitWords(layerType, /(?:(?:ArcGIS)|(?:[A-Z][a-z]+))/g);
-        words = words.map(function (w) {
-            return w.toLowerCase();
-        });
-        return words.join("-");
-    }
-
-    /**
-     * Creates a span element with a layer type class and "badge" class.
-     * @param {string} layerType - Layer type name
-     * @returns {HTMLSpanElement} An HTML span element that can be transformed into a badge via CSS.
-     */
-    function createLayerTypeBadge(layerType) {
-        return createBadge(["layer", "type", createLayerTypeClass(layerType)].join("-"));
-    }
 
     /**
      * Converts an HTML Element's dataset into an object, parsing the string values into appropriate types.
@@ -84,6 +58,92 @@
         return button;
     }
 
+    /**
+     * Makes a list item draggable so it can be reordered
+     * within its parent list.
+     * @param {HTMLLIElement} item - A list item.
+     * The li needs to have a data-layer-id attribute.
+     * @returns {HTMLLIElement} - Returns the input item.
+     */
+    function makeItemDraggable(item) {
+        item.draggable = true;
+        item.setAttribute("dropzone", "move string:text/plain");
+
+
+        item.ondragstart = function (e) {
+            this.classList.add("being-dragged");
+            e.dataTransfer.effectAllowed = "move";
+            e.dataTransfer.setData("text/plain", this.dataset.layerId);
+        };
+
+        item.ondragover = function (e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+
+            e.dataTransfer.dropEffect = "move";
+            return false;
+        };
+
+        item.ondragenter = function () {
+            this.classList.add("drag-target");
+        };
+
+        item.ondragleave = function () {
+            this.classList.remove("drag-target");
+        };
+
+        item.ondragend = function () {
+            this.classList.remove("being-dragged");
+        };
+
+        item.ondrop = function (e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+            this.classList.remove("drag-target");
+            // get the layer ID
+            var layerId = e.dataTransfer.getData("text/plain");
+
+            // Get the parent layer list.
+            var layerList = this.parentElement;
+
+            // Get the dragged item.
+            var draggedItem = layerList.querySelector("[data-layer-id='" + layerId + "']");
+            var moveEvent;
+
+            if ((draggedItem.dataset.layerType === "ArcGISFeatureLayer" && this.dataset.layerType === "ArcGISFeatureLayer")
+                ||
+                (draggedItem.dataset.layerType !== "ArcGISFeatureLayer" && this.dataset.layerType !== "ArcGISFeatureLayer")
+                ) {
+
+                layerList.insertBefore(draggedItem, this);
+
+
+                moveEvent = new CustomEvent("layer-move", {
+                    detail: {
+                        movedLayerId: layerId,
+                        targetLayerId: this.dataset.layerId
+                    }
+                });
+
+                layerList.dispatchEvent(moveEvent);
+            } else {
+                moveEvent = new CustomEvent("layer-cannot-move", {
+                    detail: {
+                        movedLayerId: layerId,
+                        targetLayerId: this.dataset.layerId,
+                        error: "Graphics layers are not allowed below non-graphics layers."
+                    }
+                });
+            }
+
+            return false;
+        };
+
+        return item;
+    }
+
     function createLayerListItem(opLayer, list) {
         var setLayerVisibility = function () {
             // Toggle the layer to match checkbox value.
@@ -122,7 +182,7 @@
         });
         item.appendChild(label);
 
-        badge = createLayerTypeBadge(opLayer.layerType);
+        badge = badgeUtils.createLayerTypeBadge(opLayer.layerType);
         item.appendChild(badge);
 
         var optionsButton = createLayerOptionsButton(opLayer);
@@ -217,7 +277,7 @@
         if (opLayer.layerObject) {
 
             if (opLayer.layerObject.supportsDynamicLayers) {
-                badge = createBadge("supports-dynamic-layers");
+                badge = badgeUtils.createBadge("supports-dynamic-layers");
                 item.insertBefore(badge, controlContainer);
             }
 
@@ -266,81 +326,7 @@
 
 
         // Make item draggable
-
-        item.draggable = true;
-        item.setAttribute("dropzone", "move string:text/plain");
-
-
-        item.ondragstart = function (e) {
-            this.classList.add("being-dragged");
-            e.dataTransfer.effectAllowed = "move";
-            e.dataTransfer.setData("text/plain", this.dataset.layerId);
-        };
-
-        item.ondragover = function (e) {
-            if (e.preventDefault) {
-                e.preventDefault();
-            }
-
-            e.dataTransfer.dropEffect = "move";
-            return false;
-        };
-
-        item.ondragenter = function () {
-            this.classList.add("drag-target");
-        };
-
-        item.ondragleave = function () {
-            this.classList.remove("drag-target");
-        };
-
-        item.ondragend = function () {
-            this.classList.remove("being-dragged");
-        };
-
-        item.ondrop = function (e) {
-            if (e.stopPropagation) {
-                e.stopPropagation();
-            }
-            this.classList.remove("drag-target");
-            // get the layer ID
-            var layerId = e.dataTransfer.getData("text/plain");
-
-            // Get the parent layer list.
-            var layerList = this.parentElement;
-
-            // Get the dragged item.
-            var draggedItem = layerList.querySelector("[data-layer-id='" + layerId + "']");
-            var moveEvent;
-
-            if ((draggedItem.dataset.layerType === "ArcGISFeatureLayer" && this.dataset.layerType === "ArcGISFeatureLayer")
-                ||
-                (draggedItem.dataset.layerType !== "ArcGISFeatureLayer" && this.dataset.layerType !== "ArcGISFeatureLayer")
-                ) {
-
-                layerList.insertBefore(draggedItem, this);
-
-
-                moveEvent = new CustomEvent("layer-move", {
-                    detail: {
-                        movedLayerId: layerId,
-                        targetLayerId: this.dataset.layerId
-                    }
-                });
-
-                layerList.dispatchEvent(moveEvent);
-            } else {
-                moveEvent = new CustomEvent("layer-cannot-move", {
-                    detail: {
-                        movedLayerId: layerId,
-                        targetLayerId: this.dataset.layerId,
-                        error: "Graphics layers are not allowed below non-graphics layers."
-                    }
-                });
-            }
-
-            return false;
-        };
+        makeItemDraggable(item);
 
         return item;
     }

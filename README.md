@@ -67,6 +67,8 @@ API
 ## Modules
 
 <dl>
+<dt><a href="#module_badgeUtils">badgeUtils</a></dt>
+<dd></dd>
 <dt><a href="#module_LayerList">LayerList</a></dt>
 <dd></dd>
 <dt><a href="#module_LayerOptionsDialog">LayerOptionsDialog</a></dt>
@@ -92,6 +94,51 @@ API
 <dd><p>Represents an operation layer in a web map.</p>
 </dd>
 </dl>
+
+<a name="module_badgeUtils"></a>
+
+## badgeUtils
+
+* [badgeUtils](#module_badgeUtils)
+    * [.createBadge(...classNames)](#module_badgeUtils.createBadge) ⇒ <code>HTMLSpanElement</code>
+    * [.createLayerTypeClass(layerType)](#module_badgeUtils.createLayerTypeClass) ⇒ <code>string</code>
+    * [.createLayerTypeBadge(layerType)](#module_badgeUtils.createLayerTypeBadge) ⇒ <code>HTMLSpanElement</code>
+
+<a name="module_badgeUtils.createBadge"></a>
+
+### badgeUtils.createBadge(...classNames) ⇒ <code>HTMLSpanElement</code>
+Creates an HTML span with classes applied.
+
+**Kind**: static method of <code>[badgeUtils](#module_badgeUtils)</code>  
+**Returns**: <code>HTMLSpanElement</code> - Returns the HTML span element that can be styled into a badge.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...classNames | <code>string</code> | One or more class names to be added to the span. |
+
+<a name="module_badgeUtils.createLayerTypeClass"></a>
+
+### badgeUtils.createLayerTypeClass(layerType) ⇒ <code>string</code>
+Creates a CSS class name based on a operationalLayers elements' layerType value.
+
+**Kind**: static method of <code>[badgeUtils](#module_badgeUtils)</code>  
+**Returns**: <code>string</code> - A string that can be used as a CSS class name.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| layerType | <code>string</code> | The layer type's name |
+
+<a name="module_badgeUtils.createLayerTypeBadge"></a>
+
+### badgeUtils.createLayerTypeBadge(layerType) ⇒ <code>HTMLSpanElement</code>
+Creates a span element with a layer type class and "badge" class.
+
+**Kind**: static method of <code>[badgeUtils](#module_badgeUtils)</code>  
+**Returns**: <code>HTMLSpanElement</code> - An HTML span element that can be transformed into a badge via CSS.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| layerType | <code>string</code> | Layer type name |
 
 <a name="module_LayerList"></a>
 

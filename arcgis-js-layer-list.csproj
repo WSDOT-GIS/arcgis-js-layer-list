@@ -58,6 +58,7 @@
       <DependentUpon>polyfills.js</DependentUpon>
     </Content>
     <Content Include="externals.js" />
+    <Content Include="badgeUtils.js" />
     <Content Include="legend-helper\LegendItem.js" />
     <Content Include="legend-helper\LegendLayer.js" />
     <Content Include="SublayerList.js" />
