@@ -3,6 +3,10 @@ define(["MetadataClient"], function (MetadataClient) {
     var exports = {};
 
     /**
+     * @module LayerOptionsDialog
+     */
+
+    /**
      * Creates an opacity slider for the given layer.
      * @param {OperationalLayer} opLayer - An operational layer.
      * @returns {HTMLInputElement} Returns the opacity slider element.
@@ -26,7 +30,7 @@ define(["MetadataClient"], function (MetadataClient) {
     /**
      * Creates a list of links to metadata documents.
      * @param {Object.<string, string>} metadataUrls - Dictionary of metadata URLs keyed by associated layer name.
-     * @returns {HTMLUListElement} Returns an HTML unordered list of Geospatial Metadata links.
+     * @returns {external:HTMLUListElement} Returns an HTML unordered list of Geospatial Metadata links.
      */
     function createMetadataLinkList(metadataUrls) {
         var list = document.createElement("ul");

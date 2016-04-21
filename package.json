@@ -1,0 +1,30 @@
+{
+  "name": "arcgis-js-layer-list",
+  "version": "0.0.1",
+  "description": "Displays a list of layers in an ArcGIS API for JavaScript application",
+  "main": "LayerList.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "jsdoc2md --template README.hbs *.js legend-helper/*.js > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WSDOT-GIS/arcgis-js-layer-list.git"
+  },
+  "keywords": [
+    "ArcGIS",
+    "layer",
+    "list",
+    "UI"
+  ],
+  "author": "WSDOT-GIS",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/WSDOT-GIS/arcgis-js-layer-list/issues"
+  },
+  "homepage": "https://github.com/WSDOT-GIS/arcgis-js-layer-list#readme",
+  "devDependencies": {
+    "jsdoc-to-markdown": "^1.3.4"
+  },
+  "private": true
+}

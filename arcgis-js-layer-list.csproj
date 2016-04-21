@@ -57,6 +57,10 @@
     <Content Include="demo\polyfills.min.js">
       <DependentUpon>polyfills.js</DependentUpon>
     </Content>
+    <Content Include="externals.js" />
+    <Content Include="legend-helper\LegendItem.js" />
+    <Content Include="legend-helper\LegendLayer.js" />
+    <Content Include="SublayerList.js" />
     <Content Include="miscUtils.js" />
     <Content Include="LayerList.css" />
     <Content Include="LayerList.js" />
@@ -74,7 +78,10 @@
     <Content Include="UNLICENSE" />
     <Content Include="README.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="package.json" />
+    <None Include="README.hbs" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
